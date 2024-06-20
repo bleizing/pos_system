@@ -1045,3 +1045,30 @@ Caused by: java.lang.UnsupportedOperationException: TemporalJavaType(javaType=ja
 2024-06-20 15:06:16,584 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
 2024-06-20 15:06:16,591 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 2.578 seconds (process running for 2.793)
 2024-06-20 15:06:16,593 INFO c.b.p.StartupListener [main] Startup Listener
+2024-06-20 15:09:51,758 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 18412 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-20 15:09:51,759 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-20 15:09:51,760 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-20 15:09:52,151 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-20 15:09:52,184 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 28 ms. Found 1 JPA repository interface.
+2024-06-20 15:09:52,603 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-20 15:09:52,614 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-20 15:09:52,617 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-20 15:09:52,617 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-20 15:09:52,667 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-20 15:09:52,667 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 865 ms
+2024-06-20 15:09:52,763 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-20 15:09:52,795 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-20 15:09:52,815 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-20 15:09:53,000 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-20 15:09:53,016 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-20 15:09:53,097 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2c678c7b
+2024-06-20 15:09:53,099 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-20 15:09:53,122 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-20 15:09:53,574 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.User (class must be instantiated by Interceptor)
+2024-06-20 15:09:53,679 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-20 15:09:53,709 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-20 15:09:53,875 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-20 15:09:54,075 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-20 15:09:54,085 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2024-06-20 15:09:54,091 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 2.656 seconds (process running for 2.876)
+2024-06-20 15:09:54,093 INFO c.b.p.StartupListener [main] Startup Listener
