@@ -1,0 +1,4 @@
+2024-06-20 13:59:36,194 INFO o.s.b.StartupInfoLogger [main] Starting PosApplicationTests using Java 19.0.1 with PID 15700 (started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-20 13:59:36,195 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-20 13:59:36,195 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-20 13:59:36,539 INFO o.s.b.StartupInfoLogger [main] Started PosApplicationTests in 0.612 seconds (process running for 1.284)
