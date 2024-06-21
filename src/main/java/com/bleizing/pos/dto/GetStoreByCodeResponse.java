@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginResponse implements Serializable {
+public class GetStoreByCodeResponse implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1119226738511373466L;
+	private static final long serialVersionUID = -7328368655937723502L;
 	
-	private Long id;
+	private String name;
 }
