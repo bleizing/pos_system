@@ -12,15 +12,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "menus")
 @Getter
 @Setter
 @Builder
-public class User extends BaseModel {
+public class Menu extends BaseModel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7709547852204258949L;
+	private static final long serialVersionUID = 7624384562768692328L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +30,9 @@ public class User extends BaseModel {
 	private String name;
 	
 	@Nonnull
-    @Column(unique = true)
-	private String email;
+	@Column(unique = true)
+	private String code;
 	
 	@Nonnull
-	private String password;
+	private String path;
 }

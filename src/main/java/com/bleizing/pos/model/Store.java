@@ -1,26 +1,29 @@
 package com.bleizing.pos.model;
 
+import java.util.Set;
+
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "stores")
 @Getter
 @Setter
 @Builder
-public class User extends BaseModel {
+public class Store extends BaseModel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7709547852204258949L;
+	private static final long serialVersionUID = -7752266093594233164L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +33,9 @@ public class User extends BaseModel {
 	private String name;
 	
 	@Nonnull
-    @Column(unique = true)
-	private String email;
+	@Column(unique = true)
+	private String code;
 	
-	@Nonnull
-	private String password;
+	@OneToMany(mappedBy="store")
+    private Set<Product> products;
 }

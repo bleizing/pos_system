@@ -1,7 +1,6 @@
 package com.bleizing.pos.model;
 
 import jakarta.annotation.Nonnull;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,15 +11,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "roles")
 @Getter
 @Setter
 @Builder
-public class User extends BaseModel {
+public class Role extends BaseModel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7709547852204258949L;
+	private static final long serialVersionUID = 7229007623663113038L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +27,4 @@ public class User extends BaseModel {
 	
 	@Nonnull
 	private String name;
-	
-	@Nonnull
-    @Column(unique = true)
-	private String email;
-	
-	@Nonnull
-	private String password;
 }
