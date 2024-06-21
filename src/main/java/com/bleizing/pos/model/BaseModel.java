@@ -44,4 +44,7 @@ public class BaseModel implements Serializable {
     
     @Column(name = "updated_by", nullable = false)
     private Long updatedBy = 999999L;
+    
+    @Column(name = "is_active", nullable = false)
+    private boolean active = true;
 }
