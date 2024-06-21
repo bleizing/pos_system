@@ -71,7 +71,7 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 		productRepository.save(Product.builder()
 				.name("Test")
 				.code("T1")
-				.price(new BigDecimal(100))
+				.price(new BigDecimal(100.50))
 				.store(store)
 				.build());
 		
