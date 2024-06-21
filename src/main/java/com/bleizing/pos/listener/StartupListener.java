@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 import com.bleizing.pos.model.Menu;
+import com.bleizing.pos.model.MenuRolePermission;
 import com.bleizing.pos.model.Permission;
 import com.bleizing.pos.model.Product;
 import com.bleizing.pos.model.Role;
@@ -16,6 +17,7 @@ import com.bleizing.pos.model.User;
 import com.bleizing.pos.model.UserRole;
 import com.bleizing.pos.model.UserStore;
 import com.bleizing.pos.repository.MenuRepository;
+import com.bleizing.pos.repository.MenuRolePermissionRepository;
 import com.bleizing.pos.repository.PermissionRepository;
 import com.bleizing.pos.repository.ProductRepository;
 import com.bleizing.pos.repository.RoleRepository;
@@ -54,6 +56,9 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 	@Autowired
 	private UserRoleRepository userRoleRepository;
 	
+	@Autowired
+	private MenuRolePermissionRepository menuRolePermissionRepository;
+	
 	@Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
 		log.info("Startup Listener");
@@ -62,33 +67,39 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 	
 	private void initData() {
 		User user = User.builder()
-				.name("tes")
-				.email("tes@tes.com")
-				.password("tes")
+				.name("superadmin")
+				.email("superadmin@tes.com")
+				.password("superadmin")
 				.build();
 		user.setCreatedBy(1111L);
 		userRepository.save(user);
 		
 		User user1 = User.builder()
-				.name("tes1")
-				.email("tes1@tes.com")
-				.password("tes1")
+				.name("manager")
+				.email("manager@tes.com")
+				.password("manager")
 				.build();
 		userRepository.save(user1);
 		
 		Role role = Role.builder().name("SUPERADMIN").build();
 		roleRepository.save(role);
-		
 		userRoleRepository.save(UserRole.builder()
 				.role(role)
 				.user(user)
 				.build());
+		
+		Role role1 = Role.builder().name("MANAGER").build();
+		roleRepository.save(role1);
 		userRoleRepository.save(UserRole.builder()
-				.role(role)
+				.role(role1)
 				.user(user1)
 				.build());
 		
-		permissionRepository.save(Permission.builder().name("WRITE").build());
+		Permission permission = Permission.builder().name("WRITE").build();
+		permissionRepository.save(permission);
+		
+		Permission permission1 = Permission.builder().name("READ").build();
+		permissionRepository.save(permission1);
 		
 		Store store = Store.builder()
 				.name("Toko A")
@@ -103,29 +114,61 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 		storeRepository.save(store1);
 				
 		productRepository.save(Product.builder()
-				.name("Test")
+				.name("Test1")
 				.code("T1")
+				.price(new BigDecimal(100))
+				.store(store)
+				.build());
+		productRepository.save(Product.builder()
+				.name("Test2")
+				.code("T2")
 				.price(new BigDecimal(100.50))
 				.store(store)
 				.build());
 		
-		menuRepository.save(Menu.builder()
+		Menu menu = Menu.builder()
 				.name("Product")
 				.code("product")
 				.path("/product")
-				.build());
+				.build();
+		menuRepository.save(menu);
 		
-		userStoreRepository.save(UserStore.builder()
-				.store(store)
-				.user(user)
-				.build());
-		userStoreRepository.save(UserStore.builder()
-				.store(store1)
-				.user(user)
-				.build());
+		Menu menu1 = Menu.builder()
+				.name("Store")
+				.code("store")
+				.path("/store")
+				.build();
+		menuRepository.save(menu1);
+		
 		userStoreRepository.save(UserStore.builder()
 				.store(store1)
 				.user(user1)
+				.build());
+		
+		menuRolePermissionRepository.save(MenuRolePermission.builder()
+				.menu(menu)
+				.role(role)
+				.permission(permission)
+				.build());
+		menuRolePermissionRepository.save(MenuRolePermission.builder()
+				.menu(menu)
+				.role(role)
+				.permission(permission1)
+				.build());
+		menuRolePermissionRepository.save(MenuRolePermission.builder()
+				.menu(menu1)
+				.role(role)
+				.permission(permission)
+				.build());
+		menuRolePermissionRepository.save(MenuRolePermission.builder()
+				.menu(menu1)
+				.role(role)
+				.permission(permission1)
+				.build());
+		menuRolePermissionRepository.save(MenuRolePermission.builder()
+				.menu(menu1)
+				.role(role1)
+				.permission(permission1)
 				.build());
 	}
 }
