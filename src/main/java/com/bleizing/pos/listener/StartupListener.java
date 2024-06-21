@@ -66,6 +66,8 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
     }
 	
 	private void initData() {
+		log.info("Start initData");
+		
 		User user = User.builder()
 				.name("superadmin")
 				.email("superadmin@tes.com")
@@ -170,5 +172,7 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 				.role(role1)
 				.permission(permission1)
 				.build());
+		
+		log.info("End initData");
 	}
 }
