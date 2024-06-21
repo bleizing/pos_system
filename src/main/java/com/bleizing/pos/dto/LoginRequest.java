@@ -2,7 +2,7 @@ package com.bleizing.pos.dto;
 
 import java.io.Serializable;
 
-import jakarta.annotation.Nonnull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 
@@ -14,9 +14,9 @@ public class LoginRequest implements Serializable {
 	 */
 	private static final long serialVersionUID = -5893080609203621147L;
 
-	@Nonnull
+	@NotBlank
 	private String email;
 	
-	@Nonnull
+	@NotBlank
 	private String password;
 }
