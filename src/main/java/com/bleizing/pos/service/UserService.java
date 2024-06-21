@@ -19,12 +19,8 @@ public class UserService {
 	
 	public LoginResponse login(LoginRequest request) throws Exception {
 		log.info("req = {}", request);
-		User user;
-		try {
-			user = userRepository.findByEmail(request.getEmail());
-			return LoginResponse.builder().id(user.getId()).build();
-		} catch (Exception e) {
-			throw new Exception("Not found");
-		}
+		
+		User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new Exception("Not found"));
+		return LoginResponse.builder().id(user.getId()).build();
 	}
 }

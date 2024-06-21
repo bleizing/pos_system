@@ -2901,3 +2901,897 @@ java.lang.Error: Unresolved compilation problem:
 2024-06-21 14:21:26,042 INFO c.b.p.s.UserService [http-nio-8080-exec-1] req = LoginRequest(email=superadmin@tes.com, password=a)
 2024-06-21 14:21:32,556 INFO c.b.p.c.UserController [http-nio-8080-exec-2] req = LoginRequest(email=superadmin@tes.co, password=a)
 2024-06-21 14:21:32,556 INFO c.b.p.s.UserService [http-nio-8080-exec-2] req = LoginRequest(email=superadmin@tes.co, password=a)
+2024-06-21 14:24:55,709 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 20316 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 14:24:55,710 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 14:24:55,711 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 14:24:56,241 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 14:24:56,304 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 58 ms. Found 9 JPA repository interfaces.
+2024-06-21 14:24:56,770 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 14:24:56,779 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 14:24:56,780 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 14:24:56,781 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 14:24:56,825 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 14:24:56,826 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1073 ms
+2024-06-21 14:24:56,941 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 14:24:56,975 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 14:24:56,996 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 14:24:57,202 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 14:24:57,220 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 14:24:57,311 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4a453f8d
+2024-06-21 14:24:57,313 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 14:24:57,337 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 14:24:58,156 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 14:24:58,261 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 14:24:58,520 WARN o.s.c.s.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'swagger2Controller': Lookup method resolution failed
+2024-06-21 14:24:58,521 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 14:24:58,555 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Shutdown initiated...
+2024-06-21 14:24:58,558 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Shutdown completed.
+2024-06-21 14:24:58,560 INFO o.a.j.l.DirectJDKLog [main] Stopping service [Tomcat]
+2024-06-21 14:24:58,571 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-06-21 14:24:58,583 ERROR o.s.b.SpringApplication [main] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'swagger2Controller': Lookup method resolution failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:497)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:367)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1296)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.bleizing.pos.PosApplication.main(PosApplication.java:12)
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [springfox.documentation.swagger2.web.Swagger2Controller] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@c387f44]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483)
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:320)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:475)
+	... 19 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: javax/servlet/http/HttpServletRequest
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3458)
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2557)
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465)
+	... 21 common frames omitted
+Caused by: java.lang.ClassNotFoundException: javax.servlet.http.HttpServletRequest
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	... 25 common frames omitted
+2024-06-21 14:26:23,991 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 5904 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 14:26:23,993 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 14:26:23,993 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 14:26:24,500 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 14:26:24,560 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 54 ms. Found 9 JPA repository interfaces.
+2024-06-21 14:26:24,999 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 14:26:25,009 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 14:26:25,010 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 14:26:25,011 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 14:26:25,053 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 14:26:25,054 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1020 ms
+2024-06-21 14:26:25,163 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 14:26:25,195 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 14:26:25,215 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 14:26:25,413 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 14:26:25,429 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 14:26:25,516 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54234569
+2024-06-21 14:26:25,518 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 14:26:25,541 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 14:26:26,303 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 14:26:26,318 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,318 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "menu_role_permissions" does not exist, skipping
+2024-06-21 14:26:26,318 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,319 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "menu_role_permissions" does not exist, skipping
+2024-06-21 14:26:26,319 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,319 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "menu_role_permissions" does not exist, skipping
+2024-06-21 14:26:26,320 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,320 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "products" does not exist, skipping
+2024-06-21 14:26:26,320 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,320 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_roles" does not exist, skipping
+2024-06-21 14:26:26,321 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,321 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_roles" does not exist, skipping
+2024-06-21 14:26:26,321 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,321 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_stores" does not exist, skipping
+2024-06-21 14:26:26,322 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,322 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_stores" does not exist, skipping
+2024-06-21 14:26:26,323 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,323 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "menu_role_permissions" does not exist, skipping
+2024-06-21 14:26:26,323 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,323 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "menus" does not exist, skipping
+2024-06-21 14:26:26,324 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,324 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "permissions" does not exist, skipping
+2024-06-21 14:26:26,324 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,324 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "products" does not exist, skipping
+2024-06-21 14:26:26,325 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,325 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "roles" does not exist, skipping
+2024-06-21 14:26:26,325 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,325 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "stores" does not exist, skipping
+2024-06-21 14:26:26,326 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,326 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user_roles" does not exist, skipping
+2024-06-21 14:26:26,326 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,327 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user_stores" does not exist, skipping
+2024-06-21 14:26:26,327 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:26:26,327 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "users" does not exist, skipping
+2024-06-21 14:26:26,397 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 14:26:26,642 WARN o.s.c.s.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'swagger2Controller': Lookup method resolution failed
+2024-06-21 14:26:26,643 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 14:26:26,671 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Shutdown initiated...
+2024-06-21 14:26:26,674 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Shutdown completed.
+2024-06-21 14:26:26,676 INFO o.a.j.l.DirectJDKLog [main] Stopping service [Tomcat]
+2024-06-21 14:26:26,687 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-06-21 14:26:26,697 ERROR o.s.b.SpringApplication [main] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'swagger2Controller': Lookup method resolution failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:497)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:367)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1296)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.bleizing.pos.PosApplication.main(PosApplication.java:12)
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [springfox.documentation.swagger2.web.Swagger2Controller] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@c387f44]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483)
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:320)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:475)
+	... 19 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: javax/servlet/http/HttpServletRequest
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3458)
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2557)
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465)
+	... 21 common frames omitted
+Caused by: java.lang.ClassNotFoundException: javax.servlet.http.HttpServletRequest
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	... 25 common frames omitted
+2024-06-21 14:27:24,788 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 26508 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 14:27:24,790 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 14:27:24,790 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 14:27:25,314 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 14:27:25,382 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 62 ms. Found 9 JPA repository interfaces.
+2024-06-21 14:27:25,886 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 14:27:25,896 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 14:27:25,899 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 14:27:25,899 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 14:27:25,952 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 14:27:25,953 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1134 ms
+2024-06-21 14:27:26,076 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 14:27:26,111 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 14:27:26,132 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 14:27:26,373 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 14:27:26,398 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 14:27:26,529 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@58182b96
+2024-06-21 14:27:26,530 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 14:27:26,565 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 14:27:27,490 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 14:27:27,503 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,503 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "menu_role_permissions" does not exist, skipping
+2024-06-21 14:27:27,504 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,504 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "menu_role_permissions" does not exist, skipping
+2024-06-21 14:27:27,504 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,504 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "menu_role_permissions" does not exist, skipping
+2024-06-21 14:27:27,505 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,505 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "products" does not exist, skipping
+2024-06-21 14:27:27,505 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,505 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_roles" does not exist, skipping
+2024-06-21 14:27:27,506 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,506 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_roles" does not exist, skipping
+2024-06-21 14:27:27,506 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,506 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_stores" does not exist, skipping
+2024-06-21 14:27:27,507 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,507 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_stores" does not exist, skipping
+2024-06-21 14:27:27,507 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,507 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "menu_role_permissions" does not exist, skipping
+2024-06-21 14:27:27,508 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,508 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "menus" does not exist, skipping
+2024-06-21 14:27:27,508 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,508 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "permissions" does not exist, skipping
+2024-06-21 14:27:27,509 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,509 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "products" does not exist, skipping
+2024-06-21 14:27:27,509 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,509 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "roles" does not exist, skipping
+2024-06-21 14:27:27,510 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,510 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "stores" does not exist, skipping
+2024-06-21 14:27:27,510 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,511 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user_roles" does not exist, skipping
+2024-06-21 14:27:27,511 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,511 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user_stores" does not exist, skipping
+2024-06-21 14:27:27,511 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:27:27,511 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "users" does not exist, skipping
+2024-06-21 14:27:27,582 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 14:27:27,929 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-21 14:27:28,194 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-21 14:27:28,207 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/api'
+2024-06-21 14:27:28,215 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 3.822 seconds (process running for 4.069)
+2024-06-21 14:27:28,217 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-06-21 14:27:28,217 INFO c.b.p.l.StartupListener [main] Start initData
+2024-06-21 14:27:28,343 INFO c.b.p.l.StartupListener [main] End initData
+2024-06-21 14:27:42,137 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-21 14:27:42,137 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-06-21 14:27:42,140 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2024-06-21 14:27:58,538 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 16368 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 14:27:58,539 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 14:27:58,540 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 14:27:59,087 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 14:27:59,156 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 61 ms. Found 9 JPA repository interfaces.
+2024-06-21 14:27:59,600 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 14:27:59,606 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 14:27:59,608 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 14:27:59,609 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 14:27:59,650 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 14:27:59,651 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1072 ms
+2024-06-21 14:27:59,757 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 14:27:59,798 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 14:27:59,827 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 14:28:00,028 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 14:28:00,047 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 14:28:00,242 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@460eb276
+2024-06-21 14:28:00,243 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 14:28:00,267 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 14:28:01,101 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 14:28:01,202 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 14:28:01,483 WARN o.s.c.s.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'swagger2Controller': Lookup method resolution failed
+2024-06-21 14:28:01,483 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 14:28:01,511 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Shutdown initiated...
+2024-06-21 14:28:01,513 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Shutdown completed.
+2024-06-21 14:28:01,515 INFO o.a.j.l.DirectJDKLog [main] Stopping service [Tomcat]
+2024-06-21 14:28:01,526 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-06-21 14:28:01,536 ERROR o.s.b.SpringApplication [main] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'swagger2Controller': Lookup method resolution failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:497)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:367)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1296)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.bleizing.pos.PosApplication.main(PosApplication.java:12)
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [springfox.documentation.swagger2.web.Swagger2Controller] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@c387f44]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483)
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:320)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:475)
+	... 19 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: javax/servlet/http/HttpServletRequest
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3458)
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2557)
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465)
+	... 21 common frames omitted
+Caused by: java.lang.ClassNotFoundException: javax.servlet.http.HttpServletRequest
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	... 25 common frames omitted
+2024-06-21 14:28:59,477 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 28200 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 14:28:59,478 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 14:28:59,479 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 14:28:59,882 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 14:28:59,934 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 47 ms. Found 9 JPA repository interfaces.
+2024-06-21 14:29:00,382 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 14:29:00,389 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 14:29:00,390 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 14:29:00,391 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 14:29:00,438 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 14:29:00,439 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 919 ms
+2024-06-21 14:29:00,555 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 14:29:00,596 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 14:29:00,619 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 14:29:00,809 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 14:29:00,828 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 14:29:01,020 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@984de01
+2024-06-21 14:29:01,022 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 14:29:01,046 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 14:29:01,880 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 14:29:01,893 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,893 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "menu_role_permissions" does not exist, skipping
+2024-06-21 14:29:01,894 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,894 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "menu_role_permissions" does not exist, skipping
+2024-06-21 14:29:01,895 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,895 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "menu_role_permissions" does not exist, skipping
+2024-06-21 14:29:01,895 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,895 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "products" does not exist, skipping
+2024-06-21 14:29:01,896 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,896 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_roles" does not exist, skipping
+2024-06-21 14:29:01,896 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,896 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_roles" does not exist, skipping
+2024-06-21 14:29:01,897 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,897 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_stores" does not exist, skipping
+2024-06-21 14:29:01,897 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,898 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_stores" does not exist, skipping
+2024-06-21 14:29:01,898 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,898 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "menu_role_permissions" does not exist, skipping
+2024-06-21 14:29:01,899 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,899 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "menus" does not exist, skipping
+2024-06-21 14:29:01,899 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,899 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "permissions" does not exist, skipping
+2024-06-21 14:29:01,899 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,900 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "products" does not exist, skipping
+2024-06-21 14:29:01,900 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,900 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "roles" does not exist, skipping
+2024-06-21 14:29:01,901 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,901 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "stores" does not exist, skipping
+2024-06-21 14:29:01,901 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,901 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user_roles" does not exist, skipping
+2024-06-21 14:29:01,902 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,902 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user_stores" does not exist, skipping
+2024-06-21 14:29:01,902 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 14:29:01,902 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "users" does not exist, skipping
+2024-06-21 14:29:01,980 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 14:29:02,290 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-21 14:29:02,541 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-21 14:29:02,551 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/api'
+2024-06-21 14:29:02,558 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 3.411 seconds (process running for 3.644)
+2024-06-21 14:29:02,560 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-06-21 14:29:02,560 INFO c.b.p.l.StartupListener [main] Start initData
+2024-06-21 14:29:02,674 INFO c.b.p.l.StartupListener [main] End initData
+2024-06-21 14:29:08,540 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-21 14:29:08,540 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-06-21 14:29:08,541 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2024-06-21 14:30:24,490 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 28872 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 14:30:24,491 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 14:30:24,491 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 14:30:24,877 WARN o.s.c.s.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: java.lang.TypeNotPresentException: Type javax.servlet.http.HttpServletRequest not present
+2024-06-21 14:30:24,883 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-06-21 14:30:24,896 ERROR o.s.b.SpringApplication [main] Application run failed
+java.lang.TypeNotPresentException: Type javax.servlet.http.HttpServletRequest not present
+	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:117)
+	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:125)
+	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+	at java.base/sun.reflect.generics.visitor.Reifier.reifyTypeArguments(Reifier.java:68)
+	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:138)
+	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+	at java.base/sun.reflect.generics.repository.ClassRepository.computeSuperInterfaces(ClassRepository.java:117)
+	at java.base/sun.reflect.generics.repository.ClassRepository.getSuperInterfaces(ClassRepository.java:95)
+	at java.base/java.lang.Class.getGenericInterfaces(Class.java:1250)
+	at org.springframework.core.ResolvableType.getInterfaces(ResolvableType.java:517)
+	at org.springframework.core.ResolvableType.as(ResolvableType.java:465)
+	at org.springframework.core.ResolvableType.forClass(ResolvableType.java:1093)
+	at org.springframework.plugin.core.config.PluginRegistriesBeanDefinitionRegistrar.getTargetType(PluginRegistriesBeanDefinitionRegistrar.java:101)
+	at org.springframework.plugin.core.config.PluginRegistriesBeanDefinitionRegistrar.registerBeanDefinitions(PluginRegistriesBeanDefinitionRegistrar.java:71)
+	at org.springframework.context.annotation.ImportBeanDefinitionRegistrar.registerBeanDefinitions(ImportBeanDefinitionRegistrar.java:86)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.lambda$loadBeanDefinitionsFromRegistrars$1(ConfigurationClassBeanDefinitionReader.java:376)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:729)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsFromRegistrars(ConfigurationClassBeanDefinitionReader.java:375)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:148)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:429)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:788)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:606)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.bleizing.pos.PosApplication.main(PosApplication.java:12)
+Caused by: java.lang.ClassNotFoundException: javax.servlet.http.HttpServletRequest
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:495)
+	at java.base/java.lang.Class.forName(Class.java:474)
+	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:114)
+	... 32 common frames omitted
+2024-06-21 14:31:23,114 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 17072 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 14:31:23,116 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 14:31:23,116 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 14:31:23,614 WARN o.s.c.s.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: java.lang.TypeNotPresentException: Type javax.servlet.http.HttpServletRequest not present
+2024-06-21 14:31:23,621 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-06-21 14:31:23,653 ERROR o.s.b.SpringApplication [main] Application run failed
+java.lang.TypeNotPresentException: Type javax.servlet.http.HttpServletRequest not present
+	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:117)
+	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:125)
+	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+	at java.base/sun.reflect.generics.visitor.Reifier.reifyTypeArguments(Reifier.java:68)
+	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:138)
+	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+	at java.base/sun.reflect.generics.repository.ClassRepository.computeSuperInterfaces(ClassRepository.java:117)
+	at java.base/sun.reflect.generics.repository.ClassRepository.getSuperInterfaces(ClassRepository.java:95)
+	at java.base/java.lang.Class.getGenericInterfaces(Class.java:1250)
+	at org.springframework.core.ResolvableType.getInterfaces(ResolvableType.java:517)
+	at org.springframework.core.ResolvableType.as(ResolvableType.java:465)
+	at org.springframework.core.ResolvableType.forClass(ResolvableType.java:1093)
+	at org.springframework.plugin.core.config.PluginRegistriesBeanDefinitionRegistrar.getTargetType(PluginRegistriesBeanDefinitionRegistrar.java:101)
+	at org.springframework.plugin.core.config.PluginRegistriesBeanDefinitionRegistrar.registerBeanDefinitions(PluginRegistriesBeanDefinitionRegistrar.java:71)
+	at org.springframework.context.annotation.ImportBeanDefinitionRegistrar.registerBeanDefinitions(ImportBeanDefinitionRegistrar.java:86)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.lambda$loadBeanDefinitionsFromRegistrars$1(ConfigurationClassBeanDefinitionReader.java:376)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:729)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsFromRegistrars(ConfigurationClassBeanDefinitionReader.java:375)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:148)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:429)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:788)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:606)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.bleizing.pos.PosApplication.main(PosApplication.java:12)
+Caused by: java.lang.ClassNotFoundException: javax.servlet.http.HttpServletRequest
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:495)
+	at java.base/java.lang.Class.forName(Class.java:474)
+	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:114)
+	... 32 common frames omitted
+2024-06-21 14:34:28,897 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 7856 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 14:34:28,899 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 14:34:28,906 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 14:34:29,334 WARN o.s.c.s.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: java.lang.TypeNotPresentException: Type javax.servlet.http.HttpServletRequest not present
+2024-06-21 14:34:29,340 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-06-21 14:34:29,353 ERROR o.s.b.SpringApplication [main] Application run failed
+java.lang.TypeNotPresentException: Type javax.servlet.http.HttpServletRequest not present
+	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:117)
+	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:125)
+	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+	at java.base/sun.reflect.generics.visitor.Reifier.reifyTypeArguments(Reifier.java:68)
+	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:138)
+	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+	at java.base/sun.reflect.generics.repository.ClassRepository.computeSuperInterfaces(ClassRepository.java:117)
+	at java.base/sun.reflect.generics.repository.ClassRepository.getSuperInterfaces(ClassRepository.java:95)
+	at java.base/java.lang.Class.getGenericInterfaces(Class.java:1250)
+	at org.springframework.core.ResolvableType.getInterfaces(ResolvableType.java:517)
+	at org.springframework.core.ResolvableType.as(ResolvableType.java:465)
+	at org.springframework.core.ResolvableType.forClass(ResolvableType.java:1093)
+	at org.springframework.plugin.core.config.PluginRegistriesBeanDefinitionRegistrar.getTargetType(PluginRegistriesBeanDefinitionRegistrar.java:101)
+	at org.springframework.plugin.core.config.PluginRegistriesBeanDefinitionRegistrar.registerBeanDefinitions(PluginRegistriesBeanDefinitionRegistrar.java:71)
+	at org.springframework.context.annotation.ImportBeanDefinitionRegistrar.registerBeanDefinitions(ImportBeanDefinitionRegistrar.java:86)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.lambda$loadBeanDefinitionsFromRegistrars$1(ConfigurationClassBeanDefinitionReader.java:376)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:729)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsFromRegistrars(ConfigurationClassBeanDefinitionReader.java:375)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:148)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:429)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:788)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:606)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.bleizing.pos.PosApplication.main(PosApplication.java:12)
+Caused by: java.lang.ClassNotFoundException: javax.servlet.http.HttpServletRequest
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:495)
+	at java.base/java.lang.Class.forName(Class.java:474)
+	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:114)
+	... 32 common frames omitted
+2024-06-21 15:09:40,609 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 28764 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 15:09:40,610 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 15:09:40,611 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 15:09:41,078 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 15:09:41,127 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 42 ms. Found 9 JPA repository interfaces.
+2024-06-21 15:09:41,590 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 15:09:41,598 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 15:09:41,601 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 15:09:41,601 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 15:09:41,649 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 15:09:41,650 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 995 ms
+2024-06-21 15:09:41,752 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 15:09:41,784 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 15:09:41,805 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 15:09:42,019 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 15:09:42,039 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 15:09:42,132 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@63c99f7
+2024-06-21 15:09:42,135 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 15:09:42,161 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 15:09:42,977 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 15:09:43,110 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 15:09:43,354 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-21 15:09:43,572 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-21 15:09:43,582 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/api'
+2024-06-21 15:09:43,588 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 3.318 seconds (process running for 3.573)
+2024-06-21 15:09:43,590 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-06-21 15:09:43,590 INFO c.b.p.l.StartupListener [main] Start initData
+2024-06-21 15:09:43,699 INFO c.b.p.l.StartupListener [main] End initData
+2024-06-21 15:09:54,864 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-21 15:09:54,864 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Initializing Servlet 'dispatcherServlet'
+2024-06-21 15:09:54,864 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Completed initialization in 0 ms
+2024-06-21 15:09:54,864 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:09:54,881 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-3] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:10:05,317 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-4] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:10:05,317 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-4] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:10:28,283 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 29476 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 15:10:28,284 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 15:10:28,285 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 15:10:28,704 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 15:10:28,756 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 47 ms. Found 9 JPA repository interfaces.
+2024-06-21 15:10:29,271 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 15:10:29,282 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 15:10:29,284 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 15:10:29,285 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 15:10:29,336 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 15:10:29,337 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1016 ms
+2024-06-21 15:10:29,445 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 15:10:29,482 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 15:10:29,502 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 15:10:29,710 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 15:10:29,729 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 15:10:29,820 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@261275ae
+2024-06-21 15:10:29,821 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 15:10:29,846 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 15:10:30,683 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 15:10:30,795 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 15:10:31,047 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-21 15:10:31,281 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-21 15:10:31,292 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/api'
+2024-06-21 15:10:31,300 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 3.398 seconds (process running for 3.685)
+2024-06-21 15:10:31,302 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-06-21 15:10:31,302 INFO c.b.p.l.StartupListener [main] Start initData
+2024-06-21 15:10:31,427 INFO c.b.p.l.StartupListener [main] End initData
+2024-06-21 15:10:52,843 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-21 15:10:52,844 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-06-21 15:10:52,844 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2024-06-21 15:10:52,853 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:10:52,859 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-1] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:12:31,045 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 24284 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 15:12:31,046 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 15:12:31,047 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 15:12:31,477 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 15:12:31,532 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 49 ms. Found 9 JPA repository interfaces.
+2024-06-21 15:12:31,992 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 15:12:32,000 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 15:12:32,002 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 15:12:32,003 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 15:12:32,046 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 15:12:32,047 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 963 ms
+2024-06-21 15:12:32,142 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 15:12:32,178 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 15:12:32,197 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 15:12:32,419 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 15:12:32,439 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 15:12:32,527 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@25109608
+2024-06-21 15:12:32,528 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 15:12:32,552 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 15:12:33,348 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 15:12:33,440 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 15:12:33,730 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-21 15:12:33,948 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-21 15:12:33,963 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/api'
+2024-06-21 15:12:33,979 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 3.26 seconds (process running for 3.49)
+2024-06-21 15:12:33,979 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-06-21 15:12:33,979 INFO c.b.p.l.StartupListener [main] Start initData
+2024-06-21 15:12:34,089 INFO c.b.p.l.StartupListener [main] End initData
+2024-06-21 15:12:46,026 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-21 15:12:46,026 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-06-21 15:12:46,026 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2024-06-21 15:12:46,047 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:12:46,053 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-1] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:12:46,405 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-7] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:12:46,406 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-7] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:12:46,631 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-4] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:12:46,631 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-4] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:12:46,812 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:12:46,812 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-2] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:12:47,017 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-5] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:12:47,018 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-5] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:12:47,265 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:12:47,266 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-6] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:12:49,213 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:12:49,213 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-3] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:12:54,531 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-9] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:12:54,531 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-9] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:12:55,745 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-10] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:12:55,745 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-10] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:12:57,439 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-7] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:12:57,439 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-7] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:12:57,889 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:12:57,889 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-2] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:12:58,230 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:12:58,230 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-6] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:12:58,478 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-8] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:12:58,478 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-8] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:12:58,657 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-10] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:12:58,657 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-10] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:14:17,134 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 6528 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 15:14:17,136 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 15:14:17,136 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 15:14:17,570 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 15:14:17,628 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 52 ms. Found 9 JPA repository interfaces.
+2024-06-21 15:14:18,083 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 15:14:18,092 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 15:14:18,094 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 15:14:18,094 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 15:14:18,141 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 15:14:18,142 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 967 ms
+2024-06-21 15:14:18,245 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 15:14:18,282 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 15:14:18,306 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 15:14:18,519 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 15:14:18,541 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 15:14:18,637 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@18b40fe6
+2024-06-21 15:14:18,639 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 15:14:18,666 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 15:14:19,499 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 15:14:19,623 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 15:14:19,907 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-21 15:14:20,156 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-21 15:14:20,171 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/api'
+2024-06-21 15:14:20,178 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 3.394 seconds (process running for 3.667)
+2024-06-21 15:14:20,180 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-06-21 15:14:20,181 INFO c.b.p.l.StartupListener [main] Start initData
+2024-06-21 15:14:20,296 INFO c.b.p.l.StartupListener [main] End initData
+2024-06-21 15:14:28,047 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-21 15:14:28,047 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-06-21 15:14:28,047 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2024-06-21 15:14:28,067 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:14:28,071 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-1] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:14:30,405 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] No mapping for GET /api/swagger-ui/
+2024-06-21 15:14:30,405 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-2] No endpoint GET /api/swagger-ui/.
+2024-06-21 15:14:30,510 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] No mapping for GET /api/swagger-ui
+2024-06-21 15:14:30,510 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-3] No endpoint GET /api/swagger-ui.
+2024-06-21 15:14:30,602 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-4] No mapping for GET /api/swagger-ui
+2024-06-21 15:14:30,602 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-4] No endpoint GET /api/swagger-ui.
+2024-06-21 15:14:36,559 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-5] No mapping for GET /api/swagger-ui
+2024-06-21 15:14:36,559 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-5] No endpoint GET /api/swagger-ui.
+2024-06-21 15:15:09,394 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] No mapping for GET /api/api/swagger-ui
+2024-06-21 15:15:09,395 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-6] No endpoint GET /api/api/swagger-ui.
+2024-06-21 15:15:11,586 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-7] No mapping for GET /api/swagger-ui
+2024-06-21 15:15:11,586 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-7] No endpoint GET /api/swagger-ui.
+2024-06-21 15:15:58,050 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 27352 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 15:15:58,051 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 15:15:58,052 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 15:15:58,428 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 15:15:58,482 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 48 ms. Found 9 JPA repository interfaces.
+2024-06-21 15:15:58,925 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 15:15:58,931 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 15:15:58,933 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 15:15:58,934 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 15:15:58,974 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 15:15:58,975 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 883 ms
+2024-06-21 15:15:59,069 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 15:15:59,100 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 15:15:59,125 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 15:15:59,318 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 15:15:59,338 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 15:15:59,429 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1edf71d9
+2024-06-21 15:15:59,430 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 15:15:59,455 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 15:16:00,252 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 15:16:00,370 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 15:16:00,643 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-21 15:16:00,893 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-21 15:16:00,903 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/api'
+2024-06-21 15:16:00,911 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 3.198 seconds (process running for 3.42)
+2024-06-21 15:16:00,913 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-06-21 15:16:00,913 INFO c.b.p.l.StartupListener [main] Start initData
+2024-06-21 15:16:01,027 INFO c.b.p.l.StartupListener [main] End initData
+2024-06-21 15:16:03,370 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-21 15:16:03,370 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-06-21 15:16:03,372 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2024-06-21 15:16:03,381 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] No mapping for GET /api/swagger-ui
+2024-06-21 15:16:03,389 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-1] No endpoint GET /api/swagger-ui.
+2024-06-21 15:16:03,783 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] No mapping for GET /api/swagger-ui
+2024-06-21 15:16:03,784 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-3] No endpoint GET /api/swagger-ui.
+2024-06-21 15:16:03,951 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] No mapping for GET /api/swagger-ui
+2024-06-21 15:16:03,952 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-2] No endpoint GET /api/swagger-ui.
+2024-06-21 15:16:04,132 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-4] No mapping for GET /api/swagger-ui
+2024-06-21 15:16:04,132 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-4] No endpoint GET /api/swagger-ui.
+2024-06-21 15:16:04,324 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-5] No mapping for GET /api/swagger-ui
+2024-06-21 15:16:04,325 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-5] No endpoint GET /api/swagger-ui.
+2024-06-21 15:16:04,504 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] No mapping for GET /api/swagger-ui
+2024-06-21 15:16:04,504 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-6] No endpoint GET /api/swagger-ui.
+2024-06-21 15:16:04,705 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-7] No mapping for GET /api/swagger-ui
+2024-06-21 15:16:04,706 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-7] No endpoint GET /api/swagger-ui.
+2024-06-21 15:16:04,852 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-8] No mapping for GET /api/swagger-ui
+2024-06-21 15:16:04,852 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-8] No endpoint GET /api/swagger-ui.
+2024-06-21 15:16:05,033 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-9] No mapping for GET /api/swagger-ui
+2024-06-21 15:16:05,033 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-9] No endpoint GET /api/swagger-ui.
+2024-06-21 15:16:16,203 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] No mapping for GET /api/swagger-ui/
+2024-06-21 15:16:16,203 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-3] No endpoint GET /api/swagger-ui/.
+2024-06-21 15:16:16,309 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-2] No mapping for GET /api/swagger-ui/
+2024-06-21 15:16:16,310 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-2] No endpoint GET /api/swagger-ui/.
+2024-06-21 15:16:20,743 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-4] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:16:20,743 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-4] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:16:20,934 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-5] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:16:20,935 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-5] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:16:54,571 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-6] No mapping for GET /api/swagger-ui/
+2024-06-21 15:16:54,571 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-6] No endpoint GET /api/swagger-ui/.
+2024-06-21 15:16:54,626 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-7] No mapping for GET /api/swagger-ui
+2024-06-21 15:16:54,626 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-7] No endpoint GET /api/swagger-ui.
+2024-06-21 15:16:54,729 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-8] No mapping for GET /api/swagger-ui
+2024-06-21 15:16:54,729 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-8] No endpoint GET /api/swagger-ui.
+2024-06-21 15:17:05,907 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-1] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:17:05,907 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-1] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:17:06,094 WARN o.s.w.s.DispatcherServlet [http-nio-8080-exec-3] No mapping for GET /api/swagger-ui/index.html
+2024-06-21 15:17:06,094 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver [http-nio-8080-exec-3] No endpoint GET /api/swagger-ui/index.html.
+2024-06-21 15:18:14,287 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 14376 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 15:18:14,288 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 15:18:14,289 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 15:18:14,739 WARN o.s.c.s.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: java.lang.TypeNotPresentException: Type javax.servlet.http.HttpServletRequest not present
+2024-06-21 15:18:14,745 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-06-21 15:18:14,759 ERROR o.s.b.SpringApplication [main] Application run failed
+java.lang.TypeNotPresentException: Type javax.servlet.http.HttpServletRequest not present
+	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:117)
+	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:125)
+	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+	at java.base/sun.reflect.generics.visitor.Reifier.reifyTypeArguments(Reifier.java:68)
+	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:138)
+	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+	at java.base/sun.reflect.generics.repository.ClassRepository.computeSuperInterfaces(ClassRepository.java:117)
+	at java.base/sun.reflect.generics.repository.ClassRepository.getSuperInterfaces(ClassRepository.java:95)
+	at java.base/java.lang.Class.getGenericInterfaces(Class.java:1250)
+	at org.springframework.core.ResolvableType.getInterfaces(ResolvableType.java:517)
+	at org.springframework.core.ResolvableType.as(ResolvableType.java:465)
+	at org.springframework.core.ResolvableType.forClass(ResolvableType.java:1093)
+	at org.springframework.plugin.core.config.PluginRegistriesBeanDefinitionRegistrar.getTargetType(PluginRegistriesBeanDefinitionRegistrar.java:101)
+	at org.springframework.plugin.core.config.PluginRegistriesBeanDefinitionRegistrar.registerBeanDefinitions(PluginRegistriesBeanDefinitionRegistrar.java:71)
+	at org.springframework.context.annotation.ImportBeanDefinitionRegistrar.registerBeanDefinitions(ImportBeanDefinitionRegistrar.java:86)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.lambda$loadBeanDefinitionsFromRegistrars$1(ConfigurationClassBeanDefinitionReader.java:376)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:729)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsFromRegistrars(ConfigurationClassBeanDefinitionReader.java:375)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:148)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:429)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:788)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:606)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.bleizing.pos.PosApplication.main(PosApplication.java:17)
+Caused by: java.lang.ClassNotFoundException: javax.servlet.http.HttpServletRequest
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:495)
+	at java.base/java.lang.Class.forName(Class.java:474)
+	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:114)
+	... 32 common frames omitted
+2024-06-21 15:18:45,123 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 9320 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 15:18:45,124 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 15:18:45,125 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 15:18:45,568 WARN o.s.c.s.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: java.lang.TypeNotPresentException: Type javax.servlet.http.HttpServletRequest not present
+2024-06-21 15:18:45,573 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-06-21 15:18:45,587 ERROR o.s.b.SpringApplication [main] Application run failed
+java.lang.TypeNotPresentException: Type javax.servlet.http.HttpServletRequest not present
+	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:117)
+	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:125)
+	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+	at java.base/sun.reflect.generics.visitor.Reifier.reifyTypeArguments(Reifier.java:68)
+	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:138)
+	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+	at java.base/sun.reflect.generics.repository.ClassRepository.computeSuperInterfaces(ClassRepository.java:117)
+	at java.base/sun.reflect.generics.repository.ClassRepository.getSuperInterfaces(ClassRepository.java:95)
+	at java.base/java.lang.Class.getGenericInterfaces(Class.java:1250)
+	at org.springframework.core.ResolvableType.getInterfaces(ResolvableType.java:517)
+	at org.springframework.core.ResolvableType.as(ResolvableType.java:465)
+	at org.springframework.core.ResolvableType.forClass(ResolvableType.java:1093)
+	at org.springframework.plugin.core.config.PluginRegistriesBeanDefinitionRegistrar.getTargetType(PluginRegistriesBeanDefinitionRegistrar.java:101)
+	at org.springframework.plugin.core.config.PluginRegistriesBeanDefinitionRegistrar.registerBeanDefinitions(PluginRegistriesBeanDefinitionRegistrar.java:71)
+	at org.springframework.context.annotation.ImportBeanDefinitionRegistrar.registerBeanDefinitions(ImportBeanDefinitionRegistrar.java:86)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.lambda$loadBeanDefinitionsFromRegistrars$1(ConfigurationClassBeanDefinitionReader.java:376)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:729)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsFromRegistrars(ConfigurationClassBeanDefinitionReader.java:375)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:148)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:429)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:788)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:606)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.bleizing.pos.PosApplication.main(PosApplication.java:17)
+Caused by: java.lang.ClassNotFoundException: javax.servlet.http.HttpServletRequest
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:495)
+	at java.base/java.lang.Class.forName(Class.java:474)
+	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:114)
+	... 32 common frames omitted
+2024-06-21 15:25:11,094 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 14192 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 15:25:11,096 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 15:25:11,097 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 15:25:11,761 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 15:25:11,837 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 69 ms. Found 9 JPA repository interfaces.
+2024-06-21 15:25:12,460 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 15:25:12,474 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 15:25:12,481 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 15:25:12,482 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 15:25:12,545 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 15:25:12,546 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1402 ms
+2024-06-21 15:25:12,704 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 15:25:12,758 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 15:25:12,804 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 15:25:13,101 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 15:25:13,130 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 15:25:13,251 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@202f054f
+2024-06-21 15:25:13,256 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 15:25:13,291 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 15:25:14,514 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 15:25:14,653 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 15:25:15,015 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-21 15:25:15,334 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-21 15:25:15,349 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/api'
+2024-06-21 15:25:15,357 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 4.849 seconds (process running for 5.167)
+2024-06-21 15:25:15,360 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-06-21 15:25:15,360 INFO c.b.p.l.StartupListener [main] Start initData
+2024-06-21 15:25:15,510 INFO c.b.p.l.StartupListener [main] End initData
+2024-06-21 15:25:18,890 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-21 15:25:18,891 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2024-06-21 15:25:18,892 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 1 ms
+2024-06-21 15:25:18,973 INFO c.b.p.c.UserController [http-nio-8080-exec-2] req = LoginRequest(email=superadmin@tes.co, password=a)
+2024-06-21 15:25:18,974 INFO c.b.p.s.UserService [http-nio-8080-exec-2] req = LoginRequest(email=superadmin@tes.co, password=a)
+2024-06-21 15:25:33,649 INFO c.b.p.c.UserController [http-nio-8080-exec-3] req = LoginRequest(email=superadmin@tes.com, password=a)
+2024-06-21 15:25:33,649 INFO c.b.p.s.UserService [http-nio-8080-exec-3] req = LoginRequest(email=superadmin@tes.com, password=a)
