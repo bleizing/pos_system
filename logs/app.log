@@ -62,3 +62,658 @@
 2024-06-21 08:55:58,135 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
 2024-06-21 08:55:58,143 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 2.896 seconds (process running for 3.115)
 2024-06-21 08:55:58,150 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-06-21 09:03:51,485 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 6232 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 09:03:51,486 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 09:03:51,487 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 09:03:51,875 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 09:03:51,923 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 43 ms. Found 7 JPA repository interfaces.
+2024-06-21 09:03:52,345 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 09:03:52,352 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:03:52,354 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 09:03:52,354 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 09:03:52,396 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 09:03:52,397 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 871 ms
+2024-06-21 09:03:52,493 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 09:03:52,531 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 09:03:52,554 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 09:03:52,761 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 09:03:52,779 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 09:03:52,872 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3193e21d
+2024-06-21 09:03:52,873 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 09:03:52,898 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 09:03:53,052 ERROR o.s.o.j.AbstractEntityManagerFactoryBean [main] Failed to initialize JPA EntityManagerFactory: Property 'com.bleizing.pos.model.UserStore.store' is not a collection and may not be a '@OneToMany', '@ManyToMany', or '@ElementCollection'
+2024-06-21 09:03:53,053 WARN o.s.c.s.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Property 'com.bleizing.pos.model.UserStore.store' is not a collection and may not be a '@OneToMany', '@ManyToMany', or '@ElementCollection'
+2024-06-21 09:03:53,053 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Shutdown initiated...
+2024-06-21 09:03:53,110 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Shutdown completed.
+2024-06-21 09:03:53,113 INFO o.a.j.l.DirectJDKLog [main] Stopping service [Tomcat]
+2024-06-21 09:03:53,122 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-06-21 09:03:53,136 ERROR o.s.b.SpringApplication [main] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Property 'com.bleizing.pos.model.UserStore.store' is not a collection and may not be a '@OneToMany', '@ManyToMany', or '@ElementCollection'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.bleizing.pos.PosApplication.main(PosApplication.java:12)
+Caused by: org.hibernate.AnnotationException: Property 'com.bleizing.pos.model.UserStore.store' is not a collection and may not be a '@OneToMany', '@ManyToMany', or '@ElementCollection'
+	at org.hibernate.boot.model.internal.CollectionBinder.determineSemanticJavaType(CollectionBinder.java:1123)
+	at org.hibernate.boot.model.internal.CollectionBinder.determineCollectionClassification(CollectionBinder.java:1015)
+	at org.hibernate.boot.model.internal.CollectionBinder.createBinderAutomatically(CollectionBinder.java:857)
+	at org.hibernate.boot.model.internal.CollectionBinder.getCollectionBinder(CollectionBinder.java:850)
+	at org.hibernate.boot.model.internal.CollectionBinder.bindCollection(CollectionBinder.java:286)
+	at org.hibernate.boot.model.internal.PropertyBinder.bindProperty(PropertyBinder.java:887)
+	at org.hibernate.boot.model.internal.PropertyBinder.buildProperty(PropertyBinder.java:801)
+	at org.hibernate.boot.model.internal.PropertyBinder.processElementAnnotations(PropertyBinder.java:722)
+	at org.hibernate.boot.model.internal.EntityBinder.processIdPropertiesIfNotAlready(EntityBinder.java:1083)
+	at org.hibernate.boot.model.internal.EntityBinder.handleIdentifier(EntityBinder.java:416)
+	at org.hibernate.boot.model.internal.EntityBinder.bindEntityClass(EntityBinder.java:248)
+	at org.hibernate.boot.model.internal.AnnotationBinder.bindClass(AnnotationBinder.java:399)
+	at org.hibernate.boot.model.source.internal.annotations.AnnotationMetadataSourceProcessorImpl.processEntityHierarchies(AnnotationMetadataSourceProcessorImpl.java:259)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess$1.processEntityHierarchies(MetadataBuildingProcess.java:281)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:324)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1431)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1502)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1835)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1784)
+	... 15 common frames omitted
+2024-06-21 09:06:19,943 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 8672 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 09:06:19,944 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 09:06:19,945 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 09:06:20,358 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 09:06:20,410 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 44 ms. Found 7 JPA repository interfaces.
+2024-06-21 09:06:20,828 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 09:06:20,837 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:06:20,839 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 09:06:20,840 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 09:06:20,883 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 09:06:20,883 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 896 ms
+2024-06-21 09:06:21,002 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 09:06:21,039 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 09:06:21,068 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 09:06:21,276 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 09:06:21,295 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 09:06:21,396 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5834198f
+2024-06-21 09:06:21,398 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 09:06:21,422 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 09:06:21,986 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.User (class must be instantiated by Interceptor)
+2024-06-21 09:06:22,013 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Role (class must be instantiated by Interceptor)
+2024-06-21 09:06:22,026 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Menu (class must be instantiated by Interceptor)
+2024-06-21 09:06:22,039 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Product (class must be instantiated by Interceptor)
+2024-06-21 09:06:22,047 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.UserStore (class must be instantiated by Interceptor)
+2024-06-21 09:06:22,057 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Permission (class must be instantiated by Interceptor)
+2024-06-21 09:06:22,071 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Store (class must be instantiated by Interceptor)
+2024-06-21 09:06:22,208 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 09:06:22,223 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:06:22,224 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_stores" does not exist, skipping
+2024-06-21 09:06:22,224 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:06:22,224 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_stores" does not exist, skipping
+2024-06-21 09:06:22,237 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:06:22,238 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user_stores" does not exist, skipping
+2024-06-21 09:06:22,305 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 09:06:22,507 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-21 09:06:22,705 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:06:22,723 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2024-06-21 09:06:22,735 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 3.142 seconds (process running for 3.364)
+2024-06-21 09:06:22,737 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-06-21 09:07:59,021 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 17192 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 09:07:59,022 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 09:07:59,023 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 09:07:59,413 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 09:07:59,454 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 37 ms. Found 7 JPA repository interfaces.
+2024-06-21 09:07:59,854 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 09:07:59,864 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:07:59,866 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 09:07:59,866 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 09:07:59,904 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 09:07:59,905 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 839 ms
+2024-06-21 09:08:00,001 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 09:08:00,035 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 09:08:00,055 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 09:08:00,249 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 09:08:00,266 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 09:08:00,350 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6f2d3391
+2024-06-21 09:08:00,352 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 09:08:00,374 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 09:08:00,868 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.User (class must be instantiated by Interceptor)
+2024-06-21 09:08:00,892 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Role (class must be instantiated by Interceptor)
+2024-06-21 09:08:00,906 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Menu (class must be instantiated by Interceptor)
+2024-06-21 09:08:00,920 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Product (class must be instantiated by Interceptor)
+2024-06-21 09:08:00,928 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.UserStore (class must be instantiated by Interceptor)
+2024-06-21 09:08:00,936 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Permission (class must be instantiated by Interceptor)
+2024-06-21 09:08:00,949 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Store (class must be instantiated by Interceptor)
+2024-06-21 09:08:01,094 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 09:08:01,170 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 09:08:01,377 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-21 09:08:01,572 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:08:01,588 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2024-06-21 09:08:01,596 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 2.897 seconds (process running for 3.112)
+2024-06-21 09:08:01,598 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-06-21 09:08:01,692 INFO o.h.e.i.DefaultLoadEventListener [main] HHH000327: Error performing load command
+org.hibernate.InstantiationException: No default constructor for entity 'com.bleizing.pos.model.Store'
+	at org.hibernate.metamodel.internal.EntityInstantiatorPojoStandard.instantiate(EntityInstantiatorPojoStandard.java:93)
+	at org.hibernate.persister.entity.AbstractEntityPersister.instantiate(AbstractEntityPersister.java:4569)
+	at org.hibernate.internal.SessionImpl.instantiate(SessionImpl.java:1485)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityInitializer.instantiateEntity(AbstractEntityInitializer.java:693)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityInitializer.resolveEntityInstance(AbstractEntityInitializer.java:686)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityInitializer.resolveInstance(AbstractEntityInitializer.java:637)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityInitializer.resolveEntityInstance(AbstractEntityInitializer.java:559)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityInitializer.resolveInstance(AbstractEntityInitializer.java:458)
+	at org.hibernate.sql.results.internal.InitializersList.resolveInstances(InitializersList.java:97)
+	at org.hibernate.sql.results.internal.StandardRowReader.coordinateInitializers(StandardRowReader.java:112)
+	at org.hibernate.sql.results.internal.StandardRowReader.readRow(StandardRowReader.java:87)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:183)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:211)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:83)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:76)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:65)
+	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:145)
+	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:117)
+	at org.hibernate.loader.ast.internal.SingleIdEntityLoaderStandardImpl.load(SingleIdEntityLoaderStandardImpl.java:75)
+	at org.hibernate.persister.entity.AbstractEntityPersister.doLoad(AbstractEntityPersister.java:3726)
+	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:3715)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:604)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromCacheOrDatasource(DefaultLoadEventListener.java:590)
+	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:560)
+	at org.hibernate.event.internal.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:544)
+	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:207)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadWithRegularProxy(DefaultLoadEventListener.java:290)
+	at org.hibernate.event.internal.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:242)
+	at org.hibernate.event.internal.DefaultLoadEventListener.doOnLoad(DefaultLoadEventListener.java:111)
+	at org.hibernate.event.internal.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:68)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:138)
+	at org.hibernate.internal.SessionImpl.fireLoadNoChecks(SessionImpl.java:1225)
+	at org.hibernate.internal.SessionImpl.fireLoad(SessionImpl.java:1213)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:209)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.doLoad(IdentifierLoadAccessImpl.java:160)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.lambda$load$1(IdentifierLoadAccessImpl.java:149)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.perform(IdentifierLoadAccessImpl.java:112)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:149)
+	at org.hibernate.internal.SessionImpl.get(SessionImpl.java:1026)
+	at org.hibernate.event.internal.DefaultMergeEventListener.lambda$entityIsDetached$0(DefaultMergeEventListener.java:408)
+	at org.hibernate.engine.spi.LoadQueryInfluencers.fromInternalFetchProfile(LoadQueryInfluencers.java:106)
+	at org.hibernate.event.internal.DefaultMergeEventListener.entityIsDetached(DefaultMergeEventListener.java:406)
+	at org.hibernate.event.internal.DefaultMergeEventListener.merge(DefaultMergeEventListener.java:210)
+	at org.hibernate.event.internal.DefaultMergeEventListener.doMerge(DefaultMergeEventListener.java:148)
+	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:132)
+	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:86)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127)
+	at org.hibernate.internal.SessionImpl.fireMerge(SessionImpl.java:850)
+	at org.hibernate.internal.SessionImpl.merge(SessionImpl.java:836)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:319)
+	at jdk.proxy2/jdk.proxy2.$Proxy131.merge(Unknown Source)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:631)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:277)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:516)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:628)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:168)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:392)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:165)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223)
+	at jdk.proxy2/jdk.proxy2.$Proxy138.save(Unknown Source)
+	at com.bleizing.pos.listener.StartupListener.initData(StartupListener.java:87)
+	at com.bleizing.pos.listener.StartupListener.onApplicationEvent(StartupListener.java:55)
+	at com.bleizing.pos.listener.StartupListener.onApplicationEvent(StartupListener.java:1)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:451)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:384)
+	at org.springframework.boot.context.event.EventPublishingRunListener.ready(EventPublishingRunListener.java:109)
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$ready$6(SpringApplicationRunListeners.java:80)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:118)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:112)
+	at org.springframework.boot.SpringApplicationRunListeners.ready(SpringApplicationRunListeners.java:80)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:349)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.bleizing.pos.PosApplication.main(PosApplication.java:12)
+2024-06-21 09:08:01,710 ERROR o.s.b.SpringApplication [main] Application run failed
+org.springframework.orm.jpa.JpaSystemException: No default constructor for entity 'com.bleizing.pos.model.Store'
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:341)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:335)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:165)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223)
+	at jdk.proxy2/jdk.proxy2.$Proxy138.save(Unknown Source)
+	at com.bleizing.pos.listener.StartupListener.initData(StartupListener.java:87)
+	at com.bleizing.pos.listener.StartupListener.onApplicationEvent(StartupListener.java:55)
+	at com.bleizing.pos.listener.StartupListener.onApplicationEvent(StartupListener.java:1)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:451)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:384)
+	at org.springframework.boot.context.event.EventPublishingRunListener.ready(EventPublishingRunListener.java:109)
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$ready$6(SpringApplicationRunListeners.java:80)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:118)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:112)
+	at org.springframework.boot.SpringApplicationRunListeners.ready(SpringApplicationRunListeners.java:80)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:349)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.bleizing.pos.PosApplication.main(PosApplication.java:12)
+Caused by: org.hibernate.InstantiationException: No default constructor for entity 'com.bleizing.pos.model.Store'
+	at org.hibernate.metamodel.internal.EntityInstantiatorPojoStandard.instantiate(EntityInstantiatorPojoStandard.java:93)
+	at org.hibernate.persister.entity.AbstractEntityPersister.instantiate(AbstractEntityPersister.java:4569)
+	at org.hibernate.internal.SessionImpl.instantiate(SessionImpl.java:1485)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityInitializer.instantiateEntity(AbstractEntityInitializer.java:693)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityInitializer.resolveEntityInstance(AbstractEntityInitializer.java:686)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityInitializer.resolveInstance(AbstractEntityInitializer.java:637)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityInitializer.resolveEntityInstance(AbstractEntityInitializer.java:559)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityInitializer.resolveInstance(AbstractEntityInitializer.java:458)
+	at org.hibernate.sql.results.internal.InitializersList.resolveInstances(InitializersList.java:97)
+	at org.hibernate.sql.results.internal.StandardRowReader.coordinateInitializers(StandardRowReader.java:112)
+	at org.hibernate.sql.results.internal.StandardRowReader.readRow(StandardRowReader.java:87)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:183)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:211)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:83)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:76)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:65)
+	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:145)
+	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:117)
+	at org.hibernate.loader.ast.internal.SingleIdEntityLoaderStandardImpl.load(SingleIdEntityLoaderStandardImpl.java:75)
+	at org.hibernate.persister.entity.AbstractEntityPersister.doLoad(AbstractEntityPersister.java:3726)
+	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:3715)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:604)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromCacheOrDatasource(DefaultLoadEventListener.java:590)
+	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:560)
+	at org.hibernate.event.internal.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:544)
+	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:207)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadWithRegularProxy(DefaultLoadEventListener.java:290)
+	at org.hibernate.event.internal.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:242)
+	at org.hibernate.event.internal.DefaultLoadEventListener.doOnLoad(DefaultLoadEventListener.java:111)
+	at org.hibernate.event.internal.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:68)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:138)
+	at org.hibernate.internal.SessionImpl.fireLoadNoChecks(SessionImpl.java:1225)
+	at org.hibernate.internal.SessionImpl.fireLoad(SessionImpl.java:1213)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:209)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.doLoad(IdentifierLoadAccessImpl.java:160)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.lambda$load$1(IdentifierLoadAccessImpl.java:149)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.perform(IdentifierLoadAccessImpl.java:112)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:149)
+	at org.hibernate.internal.SessionImpl.get(SessionImpl.java:1026)
+	at org.hibernate.event.internal.DefaultMergeEventListener.lambda$entityIsDetached$0(DefaultMergeEventListener.java:408)
+	at org.hibernate.engine.spi.LoadQueryInfluencers.fromInternalFetchProfile(LoadQueryInfluencers.java:106)
+	at org.hibernate.event.internal.DefaultMergeEventListener.entityIsDetached(DefaultMergeEventListener.java:406)
+	at org.hibernate.event.internal.DefaultMergeEventListener.merge(DefaultMergeEventListener.java:210)
+	at org.hibernate.event.internal.DefaultMergeEventListener.doMerge(DefaultMergeEventListener.java:148)
+	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:132)
+	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:86)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127)
+	at org.hibernate.internal.SessionImpl.fireMerge(SessionImpl.java:850)
+	at org.hibernate.internal.SessionImpl.merge(SessionImpl.java:836)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:319)
+	at jdk.proxy2/jdk.proxy2.$Proxy131.merge(Unknown Source)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:631)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:277)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:516)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:628)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:168)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:392)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	... 25 common frames omitted
+2024-06-21 09:08:01,713 INFO o.a.j.l.DirectJDKLog [main] Stopping ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:08:01,720 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 09:08:01,742 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Shutdown initiated...
+2024-06-21 09:08:01,744 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Shutdown completed.
+2024-06-21 09:08:28,150 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 7868 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 09:08:28,151 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 09:08:28,152 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 09:08:28,539 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 09:08:28,581 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 36 ms. Found 7 JPA repository interfaces.
+2024-06-21 09:08:28,986 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 09:08:28,994 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:08:28,996 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 09:08:28,996 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 09:08:29,033 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 09:08:29,034 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 840 ms
+2024-06-21 09:08:29,127 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 09:08:29,159 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 09:08:29,183 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 09:08:29,364 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 09:08:29,380 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 09:08:29,574 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@402d6012
+2024-06-21 09:08:29,575 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 09:08:29,599 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 09:08:30,072 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.User (class must be instantiated by Interceptor)
+2024-06-21 09:08:30,097 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Role (class must be instantiated by Interceptor)
+2024-06-21 09:08:30,109 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Menu (class must be instantiated by Interceptor)
+2024-06-21 09:08:30,121 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Product (class must be instantiated by Interceptor)
+2024-06-21 09:08:30,128 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.UserStore (class must be instantiated by Interceptor)
+2024-06-21 09:08:30,135 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Permission (class must be instantiated by Interceptor)
+2024-06-21 09:08:30,147 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Store (class must be instantiated by Interceptor)
+2024-06-21 09:08:30,289 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 09:08:30,302 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:08:30,302 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "products" does not exist, skipping
+2024-06-21 09:08:30,302 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:08:30,302 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_stores" does not exist, skipping
+2024-06-21 09:08:30,303 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:08:30,303 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_stores" does not exist, skipping
+2024-06-21 09:08:30,304 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:08:30,304 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "menus" does not exist, skipping
+2024-06-21 09:08:30,304 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:08:30,304 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "permissions" does not exist, skipping
+2024-06-21 09:08:30,305 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:08:30,305 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "products" does not exist, skipping
+2024-06-21 09:08:30,305 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:08:30,305 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "roles" does not exist, skipping
+2024-06-21 09:08:30,306 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:08:30,306 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "stores" does not exist, skipping
+2024-06-21 09:08:30,306 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:08:30,306 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user_stores" does not exist, skipping
+2024-06-21 09:08:30,307 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:08:30,307 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "users" does not exist, skipping
+2024-06-21 09:08:30,360 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 09:08:30,578 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-21 09:08:30,774 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:08:30,791 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2024-06-21 09:08:30,806 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 2.973 seconds (process running for 3.185)
+2024-06-21 09:08:30,808 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-06-21 09:09:40,885 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 22888 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 09:09:40,886 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 09:09:40,887 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 09:09:41,249 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 09:09:41,291 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 37 ms. Found 7 JPA repository interfaces.
+2024-06-21 09:09:41,683 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 09:09:41,692 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:09:41,692 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 09:09:41,693 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 09:09:41,732 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 09:09:41,733 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 813 ms
+2024-06-21 09:09:41,834 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 09:09:41,866 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 09:09:41,885 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 09:09:42,073 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 09:09:42,091 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 09:09:42,285 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@78eafad
+2024-06-21 09:09:42,287 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 09:09:42,311 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 09:09:42,806 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.User (class must be instantiated by Interceptor)
+2024-06-21 09:09:42,838 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Role (class must be instantiated by Interceptor)
+2024-06-21 09:09:42,848 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Menu (class must be instantiated by Interceptor)
+2024-06-21 09:09:42,858 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Product (class must be instantiated by Interceptor)
+2024-06-21 09:09:42,867 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.UserStore (class must be instantiated by Interceptor)
+2024-06-21 09:09:42,879 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Permission (class must be instantiated by Interceptor)
+2024-06-21 09:09:42,895 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Store (class must be instantiated by Interceptor)
+2024-06-21 09:09:43,042 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 09:09:43,116 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 09:09:43,315 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-21 09:09:43,511 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:09:43,528 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2024-06-21 09:09:43,535 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 2.965 seconds (process running for 3.181)
+2024-06-21 09:09:43,541 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-06-21 09:23:13,605 WARN c.z.h.p.HikariPool$HouseKeeper [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m31s14ms959µs).
+2024-06-21 09:27:36,709 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 11488 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 09:27:36,710 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 09:27:36,710 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 09:27:37,088 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 09:27:37,138 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 44 ms. Found 8 JPA repository interfaces.
+2024-06-21 09:27:37,589 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 09:27:37,597 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:27:37,602 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 09:27:37,602 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 09:27:37,643 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 09:27:37,644 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 895 ms
+2024-06-21 09:27:37,750 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 09:27:37,797 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 09:27:37,828 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 09:27:38,060 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 09:27:38,082 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 09:27:38,187 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@77bb916f
+2024-06-21 09:27:38,188 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 09:27:38,220 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 09:27:38,827 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.User (class must be instantiated by Interceptor)
+2024-06-21 09:27:38,856 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Role (class must be instantiated by Interceptor)
+2024-06-21 09:27:38,866 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.UserRole (class must be instantiated by Interceptor)
+2024-06-21 09:27:38,875 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Menu (class must be instantiated by Interceptor)
+2024-06-21 09:27:38,883 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Product (class must be instantiated by Interceptor)
+2024-06-21 09:27:38,892 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.UserStore (class must be instantiated by Interceptor)
+2024-06-21 09:27:38,900 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Permission (class must be instantiated by Interceptor)
+2024-06-21 09:27:38,911 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Store (class must be instantiated by Interceptor)
+2024-06-21 09:27:39,087 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 09:27:39,104 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:27:39,104 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_roles" does not exist, skipping
+2024-06-21 09:27:39,104 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:27:39,104 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_roles" does not exist, skipping
+2024-06-21 09:27:39,125 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:27:39,125 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user_roles" does not exist, skipping
+2024-06-21 09:27:39,183 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 09:27:39,397 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-21 09:27:39,631 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:27:39,648 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2024-06-21 09:27:39,657 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 3.26 seconds (process running for 3.483)
+2024-06-21 09:27:39,659 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-06-21 09:27:39,732 WARN o.h.e.j.s.SqlExceptionHelper [main] SQL Error: 0, SQLState: 23505
+2024-06-21 09:27:39,732 ERROR o.h.e.j.s.SqlExceptionHelper [main] ERROR: duplicate key value violates unique constraint "user_roles_role_id_key"
+  Detail: Key (role_id)=(1) already exists.
+2024-06-21 09:27:39,753 ERROR o.s.b.SpringApplication [main] Application run failed
+org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: duplicate key value violates unique constraint "user_roles_role_id_key"
+  Detail: Key (role_id)=(1) already exists.] [insert into user_roles (created_at,created_by,role_id,updated_at,updated_by,user_id) values (?,?,?,?,?,?) returning id]; SQL [insert into user_roles (created_at,created_by,role_id,updated_at,updated_by,user_id) values (?,?,?,?,?,?) returning id]; constraint [user_roles_role_id_key]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:290)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:335)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:165)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223)
+	at jdk.proxy2/jdk.proxy2.$Proxy143.save(Unknown Source)
+	at com.bleizing.pos.listener.StartupListener.initData(StartupListener.java:86)
+	at com.bleizing.pos.listener.StartupListener.onApplicationEvent(StartupListener.java:60)
+	at com.bleizing.pos.listener.StartupListener.onApplicationEvent(StartupListener.java:29)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:451)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:384)
+	at org.springframework.boot.context.event.EventPublishingRunListener.ready(EventPublishingRunListener.java:109)
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$ready$6(SpringApplicationRunListeners.java:80)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:118)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:112)
+	at org.springframework.boot.SpringApplicationRunListeners.ready(SpringApplicationRunListeners.java:80)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:349)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.bleizing.pos.PosApplication.main(PosApplication.java:12)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement [ERROR: duplicate key value violates unique constraint "user_roles_role_id_key"
+  Detail: Key (role_id)=(1) already exists.] [insert into user_roles (created_at,created_by,role_id,updated_at,updated_by,user_id) values (?,?,?,?,?,?) returning id]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:97)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.execute(ResultSetReturnImpl.java:145)
+	at org.hibernate.id.insert.InsertReturningDelegate.executeAndExtractReturning(InsertReturningDelegate.java:96)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performMutation(AbstractReturningDelegate.java:58)
+	at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorSingleNonBatched.performNonBatchedOperations(MutationExecutorSingleNonBatched.java:47)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:55)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.doStaticInserts(InsertCoordinatorStandard.java:194)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.coordinateInsert(InsertCoordinatorStandard.java:132)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.insert(InsertCoordinatorStandard.java:95)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:85)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:670)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:291)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:272)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:322)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:391)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:305)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:224)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:137)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:175)
+	at org.hibernate.event.internal.DefaultPersistEventListener.persist(DefaultPersistEventListener.java:93)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:77)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:54)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:757)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:741)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:319)
+	at jdk.proxy2/jdk.proxy2.$Proxy132.persist(Unknown Source)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:628)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:277)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:516)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:628)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:168)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:392)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	... 25 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "user_roles_role_id_key"
+  Detail: Key (role_id)=(1) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2725)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2412)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:371)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:502)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:419)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:180)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.execute(ResultSetReturnImpl.java:129)
+	... 73 common frames omitted
+2024-06-21 09:27:39,757 INFO o.a.j.l.DirectJDKLog [main] Stopping ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:27:39,765 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 09:27:39,788 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Shutdown initiated...
+2024-06-21 09:27:39,791 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Shutdown completed.
+2024-06-21 09:28:13,014 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 2832 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-06-21 09:28:13,015 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-06-21 09:28:13,016 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-21 09:28:13,380 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-21 09:28:13,424 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 40 ms. Found 8 JPA repository interfaces.
+2024-06-21 09:28:13,835 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-21 09:28:13,843 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:28:13,845 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-21 09:28:13,845 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-21 09:28:13,885 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-21 09:28:13,886 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 836 ms
+2024-06-21 09:28:13,981 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-21 09:28:14,014 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-21 09:28:14,034 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-21 09:28:14,226 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-21 09:28:14,244 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-21 09:28:14,333 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@e07b4db
+2024-06-21 09:28:14,334 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-21 09:28:14,359 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-21 09:28:14,851 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.User (class must be instantiated by Interceptor)
+2024-06-21 09:28:14,877 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Role (class must be instantiated by Interceptor)
+2024-06-21 09:28:14,887 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.UserRole (class must be instantiated by Interceptor)
+2024-06-21 09:28:14,899 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Menu (class must be instantiated by Interceptor)
+2024-06-21 09:28:14,910 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Product (class must be instantiated by Interceptor)
+2024-06-21 09:28:14,922 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.UserStore (class must be instantiated by Interceptor)
+2024-06-21 09:28:14,931 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Permission (class must be instantiated by Interceptor)
+2024-06-21 09:28:14,942 INFO o.h.m.i.EntityInstantiatorPojoStandard [main] HHH000182: No default (no-argument) constructor for class: com.bleizing.pos.model.Store (class must be instantiated by Interceptor)
+2024-06-21 09:28:15,075 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-21 09:28:15,091 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:28:15,091 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "products" does not exist, skipping
+2024-06-21 09:28:15,092 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:28:15,092 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_roles" does not exist, skipping
+2024-06-21 09:28:15,093 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:28:15,093 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_roles" does not exist, skipping
+2024-06-21 09:28:15,094 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:28:15,094 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_stores" does not exist, skipping
+2024-06-21 09:28:15,094 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:28:15,094 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "user_stores" does not exist, skipping
+2024-06-21 09:28:15,095 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:28:15,095 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "menus" does not exist, skipping
+2024-06-21 09:28:15,095 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:28:15,095 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "permissions" does not exist, skipping
+2024-06-21 09:28:15,096 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:28:15,096 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "products" does not exist, skipping
+2024-06-21 09:28:15,096 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:28:15,096 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "roles" does not exist, skipping
+2024-06-21 09:28:15,097 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:28:15,097 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "stores" does not exist, skipping
+2024-06-21 09:28:15,097 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:28:15,097 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user_roles" does not exist, skipping
+2024-06-21 09:28:15,097 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:28:15,097 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user_stores" does not exist, skipping
+2024-06-21 09:28:15,098 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2024-06-21 09:28:15,098 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "users" does not exist, skipping
+2024-06-21 09:28:15,154 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-21 09:28:15,366 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-21 09:28:15,561 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-21 09:28:15,577 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2024-06-21 09:28:15,590 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 2.891 seconds (process running for 3.116)
+2024-06-21 09:28:15,592 INFO c.b.p.l.StartupListener [main] Startup Listener

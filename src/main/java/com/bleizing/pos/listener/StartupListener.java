@@ -13,12 +13,16 @@ import com.bleizing.pos.model.Product;
 import com.bleizing.pos.model.Role;
 import com.bleizing.pos.model.Store;
 import com.bleizing.pos.model.User;
+import com.bleizing.pos.model.UserRole;
+import com.bleizing.pos.model.UserStore;
 import com.bleizing.pos.repository.MenuRepository;
 import com.bleizing.pos.repository.PermissionRepository;
 import com.bleizing.pos.repository.ProductRepository;
 import com.bleizing.pos.repository.RoleRepository;
 import com.bleizing.pos.repository.StoreRepository;
 import com.bleizing.pos.repository.UserRepository;
+import com.bleizing.pos.repository.UserRoleRepository;
+import com.bleizing.pos.repository.UserStoreRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,6 +48,12 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 	@Autowired
 	private MenuRepository menuRepository;
 	
+	@Autowired
+	private UserStoreRepository userStoreRepository;
+	
+	@Autowired
+	private UserRoleRepository userRoleRepository;
+	
 	@Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
 		log.info("Startup Listener");
@@ -59,7 +69,25 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 		user.setCreatedBy(1111L);
 		userRepository.save(user);
 		
-		roleRepository.save(Role.builder().name("SUPERADMIN").build());
+		User user1 = User.builder()
+				.name("tes1")
+				.email("tes1@tes.com")
+				.password("tes1")
+				.build();
+		userRepository.save(user1);
+		
+		Role role = Role.builder().name("SUPERADMIN").build();
+		roleRepository.save(role);
+		
+		userRoleRepository.save(UserRole.builder()
+				.role(role)
+				.user(user)
+				.build());
+		userRoleRepository.save(UserRole.builder()
+				.role(role)
+				.user(user1)
+				.build());
+		
 		permissionRepository.save(Permission.builder().name("WRITE").build());
 		
 		Store store = Store.builder()
@@ -67,6 +95,12 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 				.code("S1")
 				.build();
 		storeRepository.save(store);
+		
+		Store store1 = Store.builder()
+				.name("Toko B")
+				.code("S2")
+				.build();
+		storeRepository.save(store1);
 				
 		productRepository.save(Product.builder()
 				.name("Test")
@@ -79,6 +113,19 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 				.name("Product")
 				.code("product")
 				.path("/product")
+				.build());
+		
+		userStoreRepository.save(UserStore.builder()
+				.store(store)
+				.user(user)
+				.build());
+		userStoreRepository.save(UserStore.builder()
+				.store(store1)
+				.user(user)
+				.build());
+		userStoreRepository.save(UserStore.builder()
+				.store(store1)
+				.user(user1)
 				.build());
 	}
 }
