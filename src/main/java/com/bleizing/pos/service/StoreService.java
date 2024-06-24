@@ -19,7 +19,7 @@ public class StoreService {
 	public GetStoreByCodeResponse getStoreByCode(GetStoreByCodeRequest request) throws Exception {
 		log.info("req = {}", request);
 		
-		Store store = storeRepository.findByCode(request.getCode()).orElseThrow(() -> new Exception("Not found"));
+		Store store = storeRepository.findByCodeAndActiveTrue(request.getCode()).orElseThrow(() -> new Exception("Not found"));
 		return GetStoreByCodeResponse.builder().name(store.getName()).build();
 	}
 }
