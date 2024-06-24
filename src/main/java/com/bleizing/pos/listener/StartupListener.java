@@ -1,6 +1,8 @@
 package com.bleizing.pos.listener;
 
 import java.math.BigDecimal;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -25,6 +27,7 @@ import com.bleizing.pos.repository.StoreRepository;
 import com.bleizing.pos.repository.UserRepository;
 import com.bleizing.pos.repository.UserRoleRepository;
 import com.bleizing.pos.repository.UserStoreRepository;
+import com.bleizing.pos.util.PasswordUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -68,110 +71,118 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 	private void initData() {
 		log.info("Start initData");
 		
-		User user = User.builder()
-				.name("superadmin")
-				.email("superadmin@tes.com")
-				.password("superadmin")
-				.build();
-		user.setCreatedBy(1111L);
-		userRepository.save(user);
-		
-		User user1 = User.builder()
-				.name("manager")
-				.email("manager@tes.com")
-				.password("manager")
-				.build();
-		userRepository.save(user1);
-		
-		Role role = Role.builder().name("SUPERADMIN").build();
-		roleRepository.save(role);
-		userRoleRepository.save(UserRole.builder()
-				.role(role)
-				.user(user)
-				.build());
-		
-		Role role1 = Role.builder().name("MANAGER").build();
-		roleRepository.save(role1);
-		userRoleRepository.save(UserRole.builder()
-				.role(role1)
-				.user(user1)
-				.build());
-		
-		Permission permission = Permission.builder().name("WRITE").build();
-		permissionRepository.save(permission);
-		
-		Permission permission1 = Permission.builder().name("READ").build();
-		permissionRepository.save(permission1);
-		
-		Store store = Store.builder()
-				.name("Toko A")
-				.code("S1")
-				.build();
-		storeRepository.save(store);
-		
-		Store store1 = Store.builder()
-				.name("Toko B")
-				.code("S2")
-				.build();
-		storeRepository.save(store1);
-				
-		productRepository.save(Product.builder()
-				.name("Test1")
-				.code("T1")
-				.price(new BigDecimal(100))
-				.store(store)
-				.build());
-		productRepository.save(Product.builder()
-				.name("Test2")
-				.code("T2")
-				.price(new BigDecimal(100.50))
-				.store(store)
-				.build());
-		
-		Menu menu = Menu.builder()
-				.name("Product")
-				.code("product")
-				.path("/product")
-				.build();
-		menuRepository.save(menu);
-		
-		Menu menu1 = Menu.builder()
-				.name("Store")
-				.code("store")
-				.path("/store")
-				.build();
-		menuRepository.save(menu1);
-		
-		userStoreRepository.save(UserStore.builder()
-				.store(store1)
-				.user(user1)
-				.build());
-		
-		menuRolePermissionRepository.save(MenuRolePermission.builder()
-				.menu(menu)
-				.role(role)
-				.permission(permission)
-				.build());
-		menuRolePermissionRepository.save(MenuRolePermission.builder()
-				.menu(menu)
-				.role(role)
-				.permission(permission1)
-				.build());
-		menuRolePermissionRepository.save(MenuRolePermission.builder()
-				.menu(menu1)
-				.role(role)
-				.permission(permission)
-				.build());
-		menuRolePermissionRepository.save(MenuRolePermission.builder()
-				.menu(menu1)
-				.role(role)
-				.permission(permission1)
-				.build());
-		menuRolePermissionRepository.save(MenuRolePermission.builder()
-				.menu(menu1)
-				.role(role1)
-				.permission(permission1)
-				.build());
+		User user;
+		try {
+			user = User.builder()
+					.name("superadmin")
+					.email("superadmin@tes.com")
+					.password(PasswordUtil.createHash("superadmin"))
+					.build();
+			
+			user.setCreatedBy(1111L);
+			userRepository.save(user);
+			
+			User user1 = User.builder()
+					.name("manager")
+					.email("manager@tes.com")
+					.password(PasswordUtil.createHash("manager"))
+					.build();
+			userRepository.save(user1);
+			
+			Role role = Role.builder().name("SUPERADMIN").build();
+			roleRepository.save(role);
+			userRoleRepository.save(UserRole.builder()
+					.role(role)
+					.user(user)
+					.build());
+			
+			Role role1 = Role.builder().name("MANAGER").build();
+			roleRepository.save(role1);
+			userRoleRepository.save(UserRole.builder()
+					.role(role1)
+					.user(user1)
+					.build());
+			
+			Permission permission = Permission.builder().name("WRITE").build();
+			permissionRepository.save(permission);
+			
+			Permission permission1 = Permission.builder().name("READ").build();
+			permissionRepository.save(permission1);
+			
+			Store store = Store.builder()
+					.name("Toko A")
+					.code("S1")
+					.build();
+			storeRepository.save(store);
+			
+			Store store1 = Store.builder()
+					.name("Toko B")
+					.code("S2")
+					.build();
+			storeRepository.save(store1);
+					
+			productRepository.save(Product.builder()
+					.name("Test1")
+					.code("T1")
+					.price(new BigDecimal(100))
+					.store(store)
+					.build());
+			productRepository.save(Product.builder()
+					.name("Test2")
+					.code("T2")
+					.price(new BigDecimal(100.50))
+					.store(store)
+					.build());
+			
+			Menu menu = Menu.builder()
+					.name("Product")
+					.code("product")
+					.path("/product")
+					.build();
+			menuRepository.save(menu);
+			
+			Menu menu1 = Menu.builder()
+					.name("Store")
+					.code("store")
+					.path("/store")
+					.build();
+			menuRepository.save(menu1);
+			
+			userStoreRepository.save(UserStore.builder()
+					.store(store1)
+					.user(user1)
+					.build());
+			
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.menu(menu)
+					.role(role)
+					.permission(permission)
+					.build());
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.menu(menu)
+					.role(role)
+					.permission(permission1)
+					.build());
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.menu(menu1)
+					.role(role)
+					.permission(permission)
+					.build());
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.menu(menu1)
+					.role(role)
+					.permission(permission1)
+					.build());
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.menu(menu1)
+					.role(role1)
+					.permission(permission1)
+					.build());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (InvalidKeySpecException e) {
+			e.printStackTrace();
+		}
 		
 		log.info("End initData");
 	}
