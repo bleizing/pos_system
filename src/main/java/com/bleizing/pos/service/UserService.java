@@ -20,7 +20,7 @@ public class UserService {
 	public LoginResponse login(LoginRequest request) throws Exception {
 		log.info("req = {}", request);
 		
-		User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new Exception("Not found"));
+		User user = userRepository.findByEmailAndActiveTrue(request.getEmail()).orElseThrow(() -> new Exception("Not found"));
 		return LoginResponse.builder().id(user.getId()).build();
 	}
 }
