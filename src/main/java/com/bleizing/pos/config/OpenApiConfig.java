@@ -1,4 +1,4 @@
-package com.bleizing.pos;
+package com.bleizing.pos.config;
 
 import org.springframework.context.annotation.Configuration;
 
