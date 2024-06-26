@@ -16,6 +16,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.bleizing.pos.constant.PermissionContstant;
+import com.bleizing.pos.error.TokenRequiredException;
 import com.bleizing.pos.model.Menu;
 import com.bleizing.pos.repository.MenuRepository;
 import com.bleizing.pos.repository.MenuRolePermissionRepository;
@@ -56,46 +57,40 @@ public class FilterAspect  {
         Object retObject = null;
         Method method = getMethod(pjp);
         
-        try {
-        	for(Annotation anno : method.getAnnotations()){
-                if (anno.annotationType().toString().contains("pos.annotation.Authenticated")) {
-                	needAuth = true;
-                }
-                
-                if (anno.annotationType().toString().contains("pos.annotation.AccessControl")) {
-                	needAccessControl = true;
-                }
+        for(Annotation anno : method.getAnnotations()){
+            if (anno.annotationType().toString().contains("pos.annotation.Authenticated")) {
+            	needAuth = true;
             }
             
-            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-            
-            if (needAuth) {
-            	String token = authProcess(request.getHeader("Authorization"));
+            if (anno.annotationType().toString().contains("pos.annotation.AccessControl")) {
+            	needAccessControl = true;
+            }
+        }
+        
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        
+        if (needAuth) {
+        	String token = authProcess(request.getHeader("Authorization"));
+    		
+    		Long userId = Long.valueOf(jwtService.extractClaim(token, "id").toString());
+    		
+    		if (needAccessControl) {
+    			String permission = convertReqMethod(request.getMethod());
+				
+        		String[] paths = request.getServletPath().split("/");
+        		String path = "/" + paths[paths.length - 2] + "/" + paths[paths.length - 1];
         		
-        		Long userId = Long.valueOf(jwtService.extractClaim(token, "id").toString());
-        		
-        		if (needAccessControl) {
-        			String permission = convertReqMethod(request.getMethod());
-    				
-            		String[] paths = request.getServletPath().split("/");
-            		String path = "/" + paths[paths.length - 2] + "/" + paths[paths.length - 1];
-            		
-            		if (!hasAccessControl(userId, permission, path)) {
-            			throw new Exception("Forbidden Access");
-            		}
+        		if (!hasAccessControl(userId, permission, path)) {
+        			throw new Exception("Forbidden Access");
         		}
-        		
-        		request.setAttribute("userId", userId);
-            }
-        } catch (Exception e) {
-        	e.printStackTrace();
-        	throw new Exception(e.getMessage());
-		}
+    		}
+    		
+    		request.setAttribute("userId", userId);
+        }
         
         try {            
             retObject = pjp.proceed();
         } catch (Throwable e) {
-//        	e.printStackTrace();
         	throw new Exception(e.getMessage());
         }
         
@@ -104,7 +99,7 @@ public class FilterAspect  {
     
     private String authProcess(String bearer) throws Exception {
     	if (bearer == null || bearer.isBlank()) {
-    		throw new Exception("Bearer must be filled");
+    		throw new TokenRequiredException("Bearer must be filled");
     	}
     	String token = bearer.substring(7);
 		
