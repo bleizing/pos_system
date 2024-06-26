@@ -35,6 +35,7 @@ public class Product extends BaseModel {
 	private Long id;
 	
 	@Nonnull
+	@Column
 	private String name;
 	
 	@Nonnull

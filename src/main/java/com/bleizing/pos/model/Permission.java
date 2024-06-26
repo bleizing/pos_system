@@ -1,6 +1,7 @@
 package com.bleizing.pos.model;
 
 import jakarta.annotation.Nonnull;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,5 +31,6 @@ public class Permission extends BaseModel {
 	private Long id;
 	
 	@Nonnull
+	@Column(unique = true)
 	private String name;
 }

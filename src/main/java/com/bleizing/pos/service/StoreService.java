@@ -3,7 +3,7 @@ package com.bleizing.pos.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bleizing.pos.dto.GetStoreByCodeRequest;
+import com.bleizing.pos.annotation.Logged;
 import com.bleizing.pos.dto.GetStoreByCodeResponse;
 import com.bleizing.pos.model.Store;
 import com.bleizing.pos.repository.StoreRepository;
@@ -16,10 +16,9 @@ public class StoreService {
 	@Autowired
 	private StoreRepository storeRepository;
 	
-	public GetStoreByCodeResponse getStoreByCode(GetStoreByCodeRequest request) throws Exception {
-		log.info("req = {}", request);
-		
-		Store store = storeRepository.findByCodeAndActiveTrue(request.getCode()).orElseThrow(() -> new Exception("Not found"));
+	@Logged
+	public GetStoreByCodeResponse getStoreByCode(String code) throws Exception {
+		Store store = storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new Exception("Not found"));
 		return GetStoreByCodeResponse.builder().name(store.getName()).build();
 	}
 }

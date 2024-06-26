@@ -26,7 +26,6 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
-		log.info("req = {}", request);
 		try {
 			return new ResponseEntity<>(userService.login(request), HttpStatus.OK);
 		} catch (Exception e) {

@@ -34,6 +34,7 @@ public class Store extends BaseModel {
 	private Long id;
 	
 	@Nonnull
+	@Column
 	private String name;
 	
 	@Nonnull

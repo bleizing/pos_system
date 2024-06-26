@@ -31,6 +31,7 @@ public class Menu extends BaseModel {
 	private Long id;
 	
 	@Nonnull
+	@Column
 	private String name;
 	
 	@Nonnull
@@ -38,5 +39,6 @@ public class Menu extends BaseModel {
 	private String code;
 	
 	@Nonnull
+	@Column
 	private String path;
 }

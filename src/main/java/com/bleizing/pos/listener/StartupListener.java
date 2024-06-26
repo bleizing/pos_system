@@ -9,6 +9,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+import com.bleizing.pos.constant.PermissionContstant;
 import com.bleizing.pos.model.Menu;
 import com.bleizing.pos.model.MenuRolePermission;
 import com.bleizing.pos.model.Permission;
@@ -69,8 +70,6 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
     }
 	
 	private void initData() {
-		log.info("Start initData");
-		
 		User user;
 		try {
 			user = User.builder()
@@ -103,10 +102,10 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.user(user1)
 					.build());
 			
-			Permission permission = Permission.builder().name("WRITE").build();
+			Permission permission = Permission.builder().name(PermissionContstant.CREATE.toString()).build();
 			permissionRepository.save(permission);
 			
-			Permission permission1 = Permission.builder().name("READ").build();
+			Permission permission1 = Permission.builder().name(PermissionContstant.READ.toString()).build();
 			permissionRepository.save(permission1);
 			
 			Store store = Store.builder()
@@ -148,6 +147,13 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build();
 			menuRepository.save(menu1);
 			
+			Menu menu2 = Menu.builder()
+					.name("Store")
+					.code("getStoreByCode")
+					.path("/store/getByCode")
+					.build();
+			menuRepository.save(menu2);
+			
 			userStoreRepository.save(UserStore.builder()
 					.store(store1)
 					.user(user1)
@@ -178,12 +184,15 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.role(role1)
 					.permission(permission1)
 					.build());
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.menu(menu2)
+					.role(role)
+					.permission(permission1)
+					.build());
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (InvalidKeySpecException e) {
 			e.printStackTrace();
 		}
-		
-		log.info("End initData");
 	}
 }

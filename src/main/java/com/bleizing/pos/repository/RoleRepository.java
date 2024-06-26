@@ -7,5 +7,4 @@ import com.bleizing.pos.model.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
-
 }

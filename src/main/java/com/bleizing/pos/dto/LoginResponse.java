@@ -17,5 +17,6 @@ public class LoginResponse implements Serializable {
 	 */
 	private static final long serialVersionUID = 1119226738511373466L;
 	
-	private Long id;
+	private String accessToken;
+	private Long expiredIn;
 }

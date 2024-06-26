@@ -33,6 +33,7 @@ public class User extends BaseModel implements Serializable {
 	private Long id;
 	
 	@Nonnull
+	@Column
 	private String name;
 	
 	@Nonnull
@@ -40,5 +41,6 @@ public class User extends BaseModel implements Serializable {
 	private String email;
 	
 	@Nonnull
+	@Column
 	private String password;
 }
