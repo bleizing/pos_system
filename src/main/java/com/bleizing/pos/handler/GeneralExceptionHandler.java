@@ -19,6 +19,7 @@ import com.bleizing.pos.error.ForbiddenAccessException;
 import com.bleizing.pos.error.PathInvalidException;
 import com.bleizing.pos.error.TokenInvalidException;
 import com.bleizing.pos.error.TokenRequiredException;
+import com.bleizing.pos.error.UserStoreUnmatchException;
 
 @Order(Ordered.LOWEST_PRECEDENCE)
 @ControllerAdvice
@@ -38,6 +39,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Object> exception(Exception ex) {
+		ex.printStackTrace();
 		return buildResponseEntity(ApiError.builder()
 				.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.code(ErrorList.SYS_EXCEPTION.getCode())
@@ -49,7 +51,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(TokenRequiredException.class)
 	public ResponseEntity<Object> tokenRequiredException(TokenRequiredException ex) {
 		return buildResponseEntity(ApiError.builder()
-				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.status(HttpStatus.BAD_REQUEST)
 				.code(ErrorList.TOKEN_REQUIRED.getCode())
 				.message(ErrorList.TOKEN_REQUIRED.getDescription())
 				.debugMessage(ex.getMessage())
@@ -59,7 +61,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(TokenInvalidException.class)
 	public ResponseEntity<Object> tokenInvalidException(TokenInvalidException ex) {
 		return buildResponseEntity(ApiError.builder()
-				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.status(HttpStatus.BAD_REQUEST)
 				.code(ErrorList.TOKEN_INVALID.getCode())
 				.message(ErrorList.TOKEN_INVALID.getDescription())
 				.debugMessage(ex.getMessage())
@@ -69,7 +71,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(PathInvalidException.class)
 	public ResponseEntity<Object> pathInvalidException(PathInvalidException ex) {
 		return buildResponseEntity(ApiError.builder()
-				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.status(HttpStatus.BAD_REQUEST)
 				.code(ErrorList.PATH_INVALID.getCode())
 				.message(ErrorList.PATH_INVALID.getDescription())
 				.debugMessage(ex.getMessage())
@@ -79,7 +81,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(ForbiddenAccessException.class)
 	public ResponseEntity<Object> forbiddenAccessException(ForbiddenAccessException ex) {
 		return buildResponseEntity(ApiError.builder()
-				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.status(HttpStatus.FORBIDDEN)
 				.code(ErrorList.FORBIDDEN_ACCESS.getCode())
 				.message(ErrorList.FORBIDDEN_ACCESS.getDescription())
 				.debugMessage(ex.getMessage())
@@ -102,6 +104,16 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 				.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.code(ErrorList.EMAIL_PASSWORD_INVALID.getCode())
 				.message(ErrorList.EMAIL_PASSWORD_INVALID.getDescription())
+				.debugMessage(ex.getMessage())
+				.build());
+    }
+	
+	@ExceptionHandler(UserStoreUnmatchException.class)
+	public ResponseEntity<Object> userStoreUnmatchException(UserStoreUnmatchException ex) {
+		return buildResponseEntity(ApiError.builder()
+				.status(HttpStatus.FORBIDDEN)
+				.code(ErrorList.USER_STORE_UNMATCH.getCode())
+				.message(ErrorList.USER_STORE_UNMATCH.getDescription())
 				.debugMessage(ex.getMessage())
 				.build());
     }

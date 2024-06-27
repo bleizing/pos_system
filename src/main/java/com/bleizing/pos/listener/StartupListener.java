@@ -179,38 +179,15 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build());
 			
 			menuRolePermissionRepository.save(MenuRolePermission.builder()
-					.menu(menu)
-					.role(role)
-					.permission(permission)
-					.build());
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
-					.menu(menu)
-					.role(role)
-					.permission(permission1)
-					.build());
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
-					.menu(menu1)
-					.role(role)
-					.permission(permission)
-					.build());
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
-					.menu(menu1)
-					.role(role)
-					.permission(permission1)
-					.build());
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
 					.menu(menu1)
 					.role(role1)
 					.permission(permission1)
 					.build());
-			
-			MenuRolePermission menuRolePermission = MenuRolePermission.builder()
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
 					.menu(menu2)
-					.role(role)
+					.role(role1)
 					.permission(permission1)
-					.build();
-			menuRolePermission.setActive(true);
-			menuRolePermissionRepository.save(menuRolePermission);
+					.build());
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (InvalidKeySpecException e) {

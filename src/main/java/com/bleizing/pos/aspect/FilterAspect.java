@@ -21,13 +21,16 @@ import com.bleizing.pos.error.ForbiddenAccessException;
 import com.bleizing.pos.error.PathInvalidException;
 import com.bleizing.pos.error.TokenInvalidException;
 import com.bleizing.pos.error.TokenRequiredException;
+import com.bleizing.pos.error.UserStoreUnmatchException;
 import com.bleizing.pos.model.Menu;
+import com.bleizing.pos.model.Role;
 import com.bleizing.pos.model.SysParam;
 import com.bleizing.pos.repository.MenuRepository;
 import com.bleizing.pos.repository.MenuRolePermissionRepository;
 import com.bleizing.pos.repository.PermissionRepository;
 import com.bleizing.pos.repository.SysParamRepository;
 import com.bleizing.pos.repository.UserRoleRepository;
+import com.bleizing.pos.repository.UserStoreRepository;
 import com.bleizing.pos.service.JwtService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -52,6 +55,9 @@ public class FilterAspect  {
 	private MenuRolePermissionRepository menuRolePermissionRepository;
 	
 	@Autowired
+	private UserStoreRepository userStoreRepository;
+	
+	@Autowired
 	private SysParamRepository sysParamRepository;
 	
 	@Pointcut("execution(public * com.bleizing.pos.controller..*(..))")
@@ -60,7 +66,7 @@ public class FilterAspect  {
     }
     
     @Around("allControllerMethods()")
-    public Object checkAccess(ProceedingJoinPoint pjp) throws Exception {
+    public Object checkAccess(ProceedingJoinPoint pjp) throws Throwable {
         Object retObject = null;
         
     	boolean needAuth = false;
@@ -81,35 +87,35 @@ public class FilterAspect  {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         
         Long userId = 0L;
+        Long storeId = 0L;
         
         if (Boolean.valueOf(getSysParam("AUTH_REQUIRED").getValue())) {
 	        if (needAuth) {
 	        	String token = authProcess(request.getHeader("Authorization"));
 	    		
 	    		userId = Long.valueOf(jwtService.extractClaim(token, "id").toString());
+	    		storeId = Long.parseLong(request.getHeader("store-id"));
 	    		
-	    		if (Boolean.valueOf(getSysParam("ACCESS_CONTROL_REQUIRED").getValue())) {
-		    		if (needAccessControl) {
-		    			String permission = convertReqMethod(request.getMethod());
-						
-		        		String[] paths = request.getServletPath().split("/");
-		        		String path = "/" + paths[paths.length - 2] + "/" + paths[paths.length - 1];
-		        		
-		        		if (!hasAccessControl(userId, permission, path)) {
-		        			throw new ForbiddenAccessException(ErrorList.FORBIDDEN_ACCESS.getDescription());
-		        		}
+	    		String[] paths = request.getServletPath().split("/");
+        		String path = "/" + paths[paths.length - 2] + "/" + paths[paths.length - 1];
+        		
+        		Role role = getRole(userId);
+	    		
+        		if (!role.getName().equals("SUPERADMIN")) {
+		    		if (Boolean.valueOf(getSysParam("ACCESS_CONTROL_REQUIRED").getValue())) {
+			    		if (needAccessControl) {						
+			        		checkAccessControl(role.getId(), convertReqMethod(request.getMethod()), path);
+			    		}
 		    		}
+		    		checkUserStore(userId, storeId);
 	    		}
 	        }
         }
 
 		request.setAttribute("userId", userId);
+		request.setAttribute("storeId", storeId);
         
-        try {            
-            retObject = pjp.proceed();
-        } catch (Throwable e) {
-        	throw new Exception(e.getMessage());
-        }
+        retObject = pjp.proceed();
         
         return retObject;
     }
@@ -150,10 +156,8 @@ public class FilterAspect  {
 		return permission;
 	}
 	
-	private boolean hasAccessControl(Long userId, String permission, String path) throws Exception {
-		menuRolePermissionRepository.findByRoleIdAndPermissionIdAndMenuIdAndActiveTrue(getRoleId(userId), getPermissionId(permission), getMenuId(path)).orElseThrow(() -> new ForbiddenAccessException(ErrorList.FORBIDDEN_ACCESS.getDescription()));
-		
-		return true;
+	private void checkAccessControl(Long roleId, String permission, String path) throws Exception {
+		menuRolePermissionRepository.findByRoleIdAndPermissionIdAndMenuIdAndActiveTrue(roleId, getPermissionId(permission), getMenuId(path)).orElseThrow(() -> new ForbiddenAccessException(ErrorList.FORBIDDEN_ACCESS.getDescription()));
 	}
 	
 	private Long getMenuId(String path) throws Exception {
@@ -168,8 +172,12 @@ public class FilterAspect  {
 		return permissionRepository.findByNameAndActiveTrue(name).orElseThrow(() -> new Exception("Permission Invalid")).getId();
 	}
 	
-	private Long getRoleId(Long userId) throws Exception {
-		return userRoleRepository.findByUserIdAndActiveTrue(userId).orElseThrow(() -> new Exception("Role Invalid")).getRole().getId();
+	private Role getRole(Long userId) throws Exception {
+		return userRoleRepository.findByUserIdAndActiveTrue(userId).orElseThrow(() -> new Exception("Role Invalid")).getRole();
+	}
+	
+	private void checkUserStore(Long userId, Long storeId) throws Exception {
+		userStoreRepository.findByUserIdAndStoreIdAndActiveTrue(userId, storeId).orElseThrow(() -> new UserStoreUnmatchException(ErrorList.USER_STORE_UNMATCH.getDescription()));
 	}
 	
 	private SysParam getSysParam(String code) throws Exception {

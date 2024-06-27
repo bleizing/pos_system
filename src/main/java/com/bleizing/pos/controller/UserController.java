@@ -14,23 +14,16 @@ import com.bleizing.pos.service.UserService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
 
 @Tag(name = "User", description = "User Controller")
 @RestController
-@Slf4j
 @RequestMapping("/user")
 public class UserController {
 	@Autowired
 	private UserService userService;
 	
 	@PostMapping("/login")
-	public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
-		try {
-			return new ResponseEntity<>(userService.login(request), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) throws Exception {
+		return new ResponseEntity<>(userService.login(request), HttpStatus.OK);
 	}
 }

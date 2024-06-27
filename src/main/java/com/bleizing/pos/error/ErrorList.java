@@ -5,6 +5,7 @@ public enum ErrorList {
 	TOKEN_REQUIRED("1001", "Token Must Be Filled"),
 	PATH_INVALID("1100", "Path Invalid"),
 	FORBIDDEN_ACCESS("1101", "Forbidden Access"),
+	USER_STORE_UNMATCH("1102", "User Unmatch with Store"),
 	DATA_NOT_FOUND("2001", "Data Not Found"),
 	EMAIL_PASSWORD_INVALID("5000", "Email or Password Wrong"),
 	SYS_EXCEPTION("9999", "System Exception");

@@ -10,17 +10,20 @@ import com.bleizing.pos.error.ErrorList;
 import com.bleizing.pos.model.Store;
 import com.bleizing.pos.repository.StoreRepository;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Service
-@Slf4j
 public class StoreService {
 	@Autowired
 	private StoreRepository storeRepository;
 	
 	@Logged
-	public GetStoreByCodeResponse getStoreByCode(String code) throws Exception {
-		Store store = storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new DataNotFoundException(ErrorList.DATA_NOT_FOUND.getDescription()));
+	public GetStoreByCodeResponse getStoreByIdAndCode(Long id, String code) {
+		Store store;
+		if (id != 0) {
+			store = storeRepository.findByIdAndCodeAndActiveTrue(id, code).orElseThrow(() -> new DataNotFoundException(ErrorList.DATA_NOT_FOUND.getDescription()));
+		} else {
+			store = storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new DataNotFoundException(ErrorList.DATA_NOT_FOUND.getDescription()));
+		}
+		
 		return GetStoreByCodeResponse.builder().name(store.getName()).build();
 	}
 }

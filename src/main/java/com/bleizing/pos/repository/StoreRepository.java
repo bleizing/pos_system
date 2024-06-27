@@ -9,5 +9,6 @@ import com.bleizing.pos.model.Store;
 
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Long> {
+	Optional<Store> findByIdAndCodeAndActiveTrue(Long id, String code);
 	Optional<Store> findByCodeAndActiveTrue(String code);
 }
