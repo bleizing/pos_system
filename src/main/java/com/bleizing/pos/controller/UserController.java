@@ -1,8 +1,6 @@
 package com.bleizing.pos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +21,7 @@ public class UserController {
 	private UserService userService;
 	
 	@PostMapping("/login")
-	public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) throws Exception {
-		return new ResponseEntity<>(userService.login(request), HttpStatus.OK);
+	public LoginResponse login(@Valid @RequestBody LoginRequest request) throws Exception {
+		return userService.login(request);
 	}
 }

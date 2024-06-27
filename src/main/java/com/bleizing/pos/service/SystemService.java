@@ -1,14 +1,13 @@
-package com.bleizing.pos.listener;
+package com.bleizing.pos.service;
 
 import java.math.BigDecimal;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.ApplicationListener;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import com.bleizing.pos.annotation.Logged;
 import com.bleizing.pos.constant.PermissionContstant;
 import com.bleizing.pos.model.Menu;
 import com.bleizing.pos.model.MenuRolePermission;
@@ -32,12 +31,8 @@ import com.bleizing.pos.repository.UserRoleRepository;
 import com.bleizing.pos.repository.UserStoreRepository;
 import com.bleizing.pos.util.PasswordUtil;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-@Component
-public class StartupListener implements ApplicationListener<ApplicationReadyEvent> {
-	
+@Service
+public class SystemService {
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -68,13 +63,21 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 	@Autowired
 	private SysParamRepository sysParamRepository;
 	
-	@Override
-    public void onApplicationEvent(ApplicationReadyEvent event) {
-		log.info("Startup Listener");
-		initData();
-    }
-	
-	private void initData() {
+	@Logged
+	public String initData() {
+		String returnString = "OK";
+		
+		sysParamRepository.deleteAll();
+		menuRolePermissionRepository.deleteAll();
+		userRoleRepository.deleteAll();
+		userStoreRepository.deleteAll();
+		menuRepository.deleteAll();
+		productRepository.deleteAll();
+		storeRepository.deleteAll();
+		permissionRepository.deleteAll();
+		roleRepository.deleteAll();
+		userRepository.deleteAll();
+		
 		try {
 			sysParamRepository.save(SysParam.builder()
 					.name("Auth Required")
@@ -197,8 +200,11 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build());
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
+			returnString = "ERROR";
 		} catch (InvalidKeySpecException e) {
 			e.printStackTrace();
+			returnString = "ERROR";
 		}
+		return returnString;
 	}
 }

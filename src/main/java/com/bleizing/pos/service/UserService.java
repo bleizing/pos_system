@@ -14,6 +14,7 @@ import com.bleizing.pos.error.ErrorList;
 import com.bleizing.pos.model.User;
 import com.bleizing.pos.model.UserStore;
 import com.bleizing.pos.repository.UserRepository;
+import com.bleizing.pos.repository.UserRoleRepository;
 import com.bleizing.pos.repository.UserStoreRepository;
 import com.bleizing.pos.util.PasswordUtil;
 
@@ -23,6 +24,8 @@ public class UserService {
 	private UserRepository userRepository;
 	@Autowired
 	private UserStoreRepository userStoreRepository;
+	@Autowired
+	private UserRoleRepository userRoleRepository;
 	
 	@Autowired
 	private JwtService jwtService;
@@ -33,7 +36,12 @@ public class UserService {
 		if (!PasswordUtil.validatePassword(request.getPassword(), user.getPassword())) {
 			throw new EmailPasswordInvalid(ErrorList.EMAIL_PASSWORD_INVALID.getDescription());
 		}
-		UserStore userStore = userStoreRepository.findByUserIdAndActiveTrue(user.getId()).orElseThrow(() -> new DataNotFoundException("User Store Not Found"));
+		
+		String storeCode = "0";
+		if (!userRoleRepository.findByUserIdAndActiveTrue(user.getId()).orElseThrow(() -> new DataNotFoundException("User Role Not Found")).getRole().getName().equals("SUPERADMIN")) {
+			UserStore userStore = userStoreRepository.findByUserIdAndActiveTrue(user.getId()).orElseThrow(() -> new DataNotFoundException("User Store Not Found"));
+			storeCode = userStore.getStore().getCode();
+		}
 		
 		HashMap<String, Object> claims = new HashMap<>();
 		claims.put("id", Long.valueOf(user.getId()));
@@ -43,7 +51,7 @@ public class UserService {
 		return LoginResponse.builder()
 				.accessToken(token)
 				.expiredIn(jwtService.getExpirationTime())
-				.storeCode(userStore.getStore().getCode())
+				.storeCode(storeCode)
 				.build();
 	}
 }

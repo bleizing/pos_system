@@ -98,7 +98,6 @@ public class FilterAspect  {
 	        	String token = authProcess(request.getHeader("Authorization"));
 	    		
 	    		userId = Long.valueOf(jwtService.extractClaim(token, "id").toString());
-	    		storeId = getStoreId(request.getHeader("store-code"));
 	    		
 	    		String[] paths = request.getServletPath().split("/");
         		String path = "/" + paths[paths.length - 2] + "/" + paths[paths.length - 1];
@@ -106,11 +105,12 @@ public class FilterAspect  {
         		Role role = getRole(userId);
 	    		
         		if (!role.getName().equals("SUPERADMIN")) {
-		    		if (Boolean.valueOf(getSysParam("ACCESS_CONTROL_REQUIRED").getValue())) {
-			    		if (needAccessControl) {						
+        			if (Boolean.valueOf(getSysParam("ACCESS_CONTROL_REQUIRED").getValue())) {
+			    		if (needAccessControl) {
 			        		checkAccessControl(role.getId(), convertReqMethod(request.getMethod()), path);
 			    		}
 		    		}
+        			storeId = getStoreId(request.getHeader("store-code"));
 		    		checkUserStore(userId, storeId);
 	    		}
 	        }
