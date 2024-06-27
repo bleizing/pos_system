@@ -2,8 +2,6 @@ package com.bleizing.pos.dto;
 
 import java.io.Serializable;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,13 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetStoreByCodeRequest implements Serializable {
+public class GetStoreByUserLoggedInResponse implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8789573953551512204L;
+	private static final long serialVersionUID = -7328368655937723502L;
 	
-	@NotBlank
-	@Schema(example = "S1")
+	private String name;
 	private String code;
 }

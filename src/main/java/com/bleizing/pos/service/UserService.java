@@ -10,7 +10,6 @@ import com.bleizing.pos.dto.LoginRequest;
 import com.bleizing.pos.dto.LoginResponse;
 import com.bleizing.pos.error.DataNotFoundException;
 import com.bleizing.pos.error.EmailPasswordInvalid;
-import com.bleizing.pos.error.ErrorList;
 import com.bleizing.pos.model.User;
 import com.bleizing.pos.model.UserStore;
 import com.bleizing.pos.repository.UserRepository;
@@ -32,9 +31,9 @@ public class UserService {
 	
 	@Logged
 	public LoginResponse login(LoginRequest request) throws Exception {
-		User user = userRepository.findByEmailAndActiveTrue(request.getEmail()).orElseThrow(() -> new EmailPasswordInvalid(ErrorList.EMAIL_PASSWORD_INVALID.getDescription()));
+		User user = userRepository.findByEmailAndActiveTrue(request.getEmail()).orElseThrow(() -> new EmailPasswordInvalid("Email or password incorrect"));
 		if (!PasswordUtil.validatePassword(request.getPassword(), user.getPassword())) {
-			throw new EmailPasswordInvalid(ErrorList.EMAIL_PASSWORD_INVALID.getDescription());
+			throw new EmailPasswordInvalid("Email or password incorrect");
 		}
 		
 		Long storeId = 0L;

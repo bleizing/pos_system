@@ -12,10 +12,10 @@ import com.bleizing.pos.annotation.AccessControl;
 import com.bleizing.pos.annotation.Authenticated;
 import com.bleizing.pos.dto.CreateStoreRequest;
 import com.bleizing.pos.dto.CreateStoreResponse;
-import com.bleizing.pos.dto.GetStoreByCodeResponse;
+import com.bleizing.pos.dto.GetStoreByUserLoggedInResponse;
 import com.bleizing.pos.service.StoreService;
 
-import io.swagger.v3.oas.annotations.Parameter;
+import io.micrometer.common.lang.Nullable;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,19 +29,20 @@ public class StoreController {
 	@Autowired
 	private StoreService storeService;
 	
-	@GetMapping("/getByCode")
+	@GetMapping("/get")
 	@Authenticated
 	@AccessControl
 //	@Parameters({
-//		@Parameter(in = ParameterIn.HEADER, name = "store-code", schema = @Schema(type = "string", defaultValue = "S2"), required = false)
+//		@Parameter(in = ParameterIn.QUERY, name = "code", schema = @Schema(type = "string", defaultValue = "S2"), required = false)
 //	})
-	public GetStoreByCodeResponse getStoreByCode(@Parameter(
+	public GetStoreByUserLoggedInResponse getStoreByUserLoggedIn(
+//			@Parameter(
 //            name =  "code",
 //            description  = "Store code",
-            example = "S2",
-            required = true)
-            @RequestParam String code, HttpServletRequest servletRequest) {
-		return storeService.getStoreByIdAndCode((Long) servletRequest.getAttribute("storeId"), code);
+//            example = "S2",
+//            required = false)
+            @Nullable @RequestParam(value = "code", required = false) String code, HttpServletRequest servletRequest) throws Exception {
+		return storeService.getStoreByUserLoggedIn((Long) servletRequest.getAttribute("storeId"), code);
 	}
 	
 	@PostMapping("/create")

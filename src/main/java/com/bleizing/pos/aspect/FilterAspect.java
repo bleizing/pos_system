@@ -116,12 +116,12 @@ public class FilterAspect  {
     
     private String authProcess(String bearer) throws Exception {
     	if (bearer == null || bearer.isBlank()) {
-    		throw new TokenRequiredException(ErrorList.TOKEN_REQUIRED.getDescription());
+    		throw new TokenRequiredException("Bearer token is null");
     	}
     	String token = bearer.substring(7);
 		
 		if (!jwtService.isTokenValid(token)) {
-			throw new TokenInvalidException(ErrorList.TOKEN_INVALID.getDescription());
+			throw new TokenInvalidException("Token is invalid");
 		}
 		return token;
     }
@@ -155,9 +155,9 @@ public class FilterAspect  {
 	}
 	
 	private Long getMenuId(String path) throws Exception {
-		List<Menu> menus = menuRepository.findByPathAndActiveTrue(path).orElseThrow(() -> new PathInvalidException(ErrorList.PATH_INVALID.getDescription()));
+		List<Menu> menus = menuRepository.findByPathAndActiveTrue(path).orElseThrow(() -> new PathInvalidException("Path is invalid"));
 		if (menus.isEmpty()) {
-			throw new PathInvalidException(ErrorList.PATH_INVALID.getDescription());
+			throw new PathInvalidException("Path is invalid");
 		}
 		return menus.get(0).getId();
 	}

@@ -152,24 +152,10 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.store(store)
 					.build());
 			
-			Menu menu = Menu.builder()
-					.name("Product")
-					.code("product")
-					.path("/product")
-					.build();
-			menuRepository.save(menu);
-			
-			Menu menu1 = Menu.builder()
-					.name("Store")
-					.code("store")
-					.path("/store")
-					.build();
-			menuRepository.save(menu1);
-			
 			Menu menu2 = Menu.builder()
 					.name("Store")
-					.code("getStoreByCode")
-					.path("/store/getByCode")
+					.code("getStore")
+					.path("/store/get")
 					.build();
 			menuRepository.save(menu2);
 			
@@ -192,11 +178,6 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.user(user1)
 					.build());
 			
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
-					.menu(menu1)
-					.role(role1)
-					.permission(permission1)
-					.build());
 			menuRolePermissionRepository.save(MenuRolePermission.builder()
 					.menu(menu2)
 					.role(role1)
