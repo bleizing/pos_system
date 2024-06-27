@@ -12,6 +12,7 @@ import com.bleizing.pos.annotation.AccessControl;
 import com.bleizing.pos.annotation.Authenticated;
 import com.bleizing.pos.dto.CreateStoreRequest;
 import com.bleizing.pos.dto.CreateStoreResponse;
+import com.bleizing.pos.dto.GetAllStoreResponse;
 import com.bleizing.pos.dto.GetStoreByUserLoggedInResponse;
 import com.bleizing.pos.service.StoreService;
 
@@ -50,5 +51,12 @@ public class StoreController {
 	@AccessControl
 	public CreateStoreResponse createStore(@Valid @RequestBody CreateStoreRequest request, HttpServletRequest servletRequest) {
 		return storeService.createStore(request, (Long) servletRequest.getAttribute("userId"));
+	}
+	
+	@GetMapping("/getAll")
+	@Authenticated
+	@AccessControl
+	public GetAllStoreResponse getAllStore() {
+		return storeService.getAllStore();
 	}
 }

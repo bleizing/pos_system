@@ -1,5 +1,7 @@
 package com.bleizing.pos.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.bleizing.pos.annotation.Logged;
 import com.bleizing.pos.dto.CreateStoreRequest;
 import com.bleizing.pos.dto.CreateStoreResponse;
+import com.bleizing.pos.dto.GetAllStoreResponse;
+import com.bleizing.pos.dto.GetAllStoreWrapper;
 import com.bleizing.pos.dto.GetStoreByUserLoggedInResponse;
 import com.bleizing.pos.error.DataExistsException;
 import com.bleizing.pos.error.DataNotFoundException;
@@ -47,5 +51,20 @@ public class StoreService {
 		store.setCreatedBy(userId);
 		store = storeRepository.saveAndFlush(store);
 		return CreateStoreResponse.builder().id(store.getId()).build();
+	}
+	
+	@Logged
+	public GetAllStoreResponse getAllStore() {
+		List<Store> stores = storeRepository.findByActiveTrue().orElseThrow(() -> new DataNotFoundException("Stores not found"));
+		List<GetAllStoreWrapper> wrapper = new ArrayList<>();
+		
+		stores.stream().forEach(store -> {
+			wrapper.add(GetAllStoreWrapper.builder()
+			.name(store.getName())
+			.code(store.getCode())
+			.build());
+		});
+		
+		return GetAllStoreResponse.builder().stores(wrapper).build();
 	}
 }
