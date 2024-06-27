@@ -180,6 +180,13 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build();
 			menuRepository.save(menu3);
 			
+			Menu menu4 = Menu.builder()
+					.name("Create Store")
+					.code("createStore")
+					.path("/store/create")
+					.build();
+			menuRepository.save(menu4);
+			
 			userStoreRepository.save(UserStore.builder()
 					.store(store1)
 					.user(user1)

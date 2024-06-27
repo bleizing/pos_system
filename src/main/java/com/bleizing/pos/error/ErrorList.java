@@ -7,6 +7,7 @@ public enum ErrorList {
 	FORBIDDEN_ACCESS("1101", "Forbidden Access"),
 	USER_STORE_UNMATCH("1102", "User Unmatch with Store"),
 	DATA_NOT_FOUND("2001", "Data Not Found"),
+	DATA_EXISTS("2002", "Data Already Exists"),
 	EMAIL_PASSWORD_INVALID("5000", "Email or Password Wrong"),
 	SYS_EXCEPTION("9999", "System Exception");
 	

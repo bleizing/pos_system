@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bleizing.pos.annotation.Logged;
+import com.bleizing.pos.dto.CreateStoreRequest;
+import com.bleizing.pos.dto.CreateStoreResponse;
 import com.bleizing.pos.dto.GetStoreByCodeResponse;
+import com.bleizing.pos.error.DataExistsException;
 import com.bleizing.pos.error.DataNotFoundException;
 import com.bleizing.pos.error.ErrorList;
 import com.bleizing.pos.model.Store;
@@ -25,5 +28,20 @@ public class StoreService {
 		}
 		
 		return GetStoreByCodeResponse.builder().name(store.getName()).build();
+	}
+	
+	@Logged
+	public CreateStoreResponse createStore(CreateStoreRequest request, Long userId) {
+		if (storeRepository.findByCodeAndActiveTrue(request.getCode()).isPresent()) {
+			throw new DataExistsException("Toko sudah terdaftar");
+		}
+		
+		Store store = Store.builder()
+				.code(request.getCode())
+				.name(request.getName())
+				.build();
+		store.setCreatedBy(userId);
+		store = storeRepository.saveAndFlush(store);
+		return CreateStoreResponse.builder().id(store.getId()).build();
 	}
 }

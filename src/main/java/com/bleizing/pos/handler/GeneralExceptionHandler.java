@@ -12,6 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.bleizing.pos.error.ApiError;
+import com.bleizing.pos.error.DataExistsException;
 import com.bleizing.pos.error.DataNotFoundException;
 import com.bleizing.pos.error.EmailPasswordInvalid;
 import com.bleizing.pos.error.ErrorList;
@@ -50,6 +51,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(TokenRequiredException.class)
 	public ResponseEntity<Object> tokenRequiredException(TokenRequiredException ex) {
+		ex.printStackTrace();
 		return buildResponseEntity(ApiError.builder()
 				.status(HttpStatus.BAD_REQUEST)
 				.code(ErrorList.TOKEN_REQUIRED.getCode())
@@ -60,6 +62,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(TokenInvalidException.class)
 	public ResponseEntity<Object> tokenInvalidException(TokenInvalidException ex) {
+		ex.printStackTrace();
 		return buildResponseEntity(ApiError.builder()
 				.status(HttpStatus.BAD_REQUEST)
 				.code(ErrorList.TOKEN_INVALID.getCode())
@@ -70,6 +73,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(PathInvalidException.class)
 	public ResponseEntity<Object> pathInvalidException(PathInvalidException ex) {
+		ex.printStackTrace();
 		return buildResponseEntity(ApiError.builder()
 				.status(HttpStatus.BAD_REQUEST)
 				.code(ErrorList.PATH_INVALID.getCode())
@@ -80,6 +84,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(ForbiddenAccessException.class)
 	public ResponseEntity<Object> forbiddenAccessException(ForbiddenAccessException ex) {
+		ex.printStackTrace();
 		return buildResponseEntity(ApiError.builder()
 				.status(HttpStatus.FORBIDDEN)
 				.code(ErrorList.FORBIDDEN_ACCESS.getCode())
@@ -90,6 +95,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(DataNotFoundException.class)
 	public ResponseEntity<Object> dataNotFoundException(DataNotFoundException ex) {
+		ex.printStackTrace();
 		return buildResponseEntity(ApiError.builder()
 				.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.code(ErrorList.DATA_NOT_FOUND.getCode())
@@ -100,6 +106,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(EmailPasswordInvalid.class)
 	public ResponseEntity<Object> emailPasswordInvalid(EmailPasswordInvalid ex) {
+		ex.printStackTrace();
 		return buildResponseEntity(ApiError.builder()
 				.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.code(ErrorList.EMAIL_PASSWORD_INVALID.getCode())
@@ -110,10 +117,22 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(UserStoreUnmatchException.class)
 	public ResponseEntity<Object> userStoreUnmatchException(UserStoreUnmatchException ex) {
+		ex.printStackTrace();
 		return buildResponseEntity(ApiError.builder()
 				.status(HttpStatus.FORBIDDEN)
 				.code(ErrorList.USER_STORE_UNMATCH.getCode())
 				.message(ErrorList.USER_STORE_UNMATCH.getDescription())
+				.debugMessage(ex.getMessage())
+				.build());
+    }
+	
+	@ExceptionHandler(DataExistsException.class)
+	public ResponseEntity<Object> dataExistsException(DataExistsException ex) {
+		ex.printStackTrace();
+		return buildResponseEntity(ApiError.builder()
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.code(ErrorList.DATA_EXISTS.getCode())
+				.message(ErrorList.DATA_EXISTS.getDescription())
 				.debugMessage(ex.getMessage())
 				.build());
     }
