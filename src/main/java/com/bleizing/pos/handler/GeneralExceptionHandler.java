@@ -12,6 +12,12 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.bleizing.pos.error.ApiError;
+import com.bleizing.pos.error.DataNotFoundException;
+import com.bleizing.pos.error.EmailPasswordInvalid;
+import com.bleizing.pos.error.ErrorList;
+import com.bleizing.pos.error.ForbiddenAccessException;
+import com.bleizing.pos.error.PathInvalidException;
+import com.bleizing.pos.error.TokenInvalidException;
 import com.bleizing.pos.error.TokenRequiredException;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -34,8 +40,8 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> exception(Exception ex) {
 		return buildResponseEntity(ApiError.builder()
 				.status(HttpStatus.INTERNAL_SERVER_ERROR)
-				.code("9999")
-				.message("ERROR")
+				.code(ErrorList.SYS_EXCEPTION.getCode())
+				.message(ErrorList.SYS_EXCEPTION.getDescription())
 				.debugMessage(ex.getMessage())
 				.build());
     }
@@ -44,8 +50,58 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> tokenRequiredException(TokenRequiredException ex) {
 		return buildResponseEntity(ApiError.builder()
 				.status(HttpStatus.INTERNAL_SERVER_ERROR)
-				.code("1000")
-				.message("ERROR")
+				.code(ErrorList.TOKEN_REQUIRED.getCode())
+				.message(ErrorList.TOKEN_REQUIRED.getDescription())
+				.debugMessage(ex.getMessage())
+				.build());
+    }
+	
+	@ExceptionHandler(TokenInvalidException.class)
+	public ResponseEntity<Object> tokenInvalidException(TokenInvalidException ex) {
+		return buildResponseEntity(ApiError.builder()
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.code(ErrorList.TOKEN_INVALID.getCode())
+				.message(ErrorList.TOKEN_INVALID.getDescription())
+				.debugMessage(ex.getMessage())
+				.build());
+    }
+	
+	@ExceptionHandler(PathInvalidException.class)
+	public ResponseEntity<Object> pathInvalidException(PathInvalidException ex) {
+		return buildResponseEntity(ApiError.builder()
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.code(ErrorList.PATH_INVALID.getCode())
+				.message(ErrorList.PATH_INVALID.getDescription())
+				.debugMessage(ex.getMessage())
+				.build());
+    }
+	
+	@ExceptionHandler(ForbiddenAccessException.class)
+	public ResponseEntity<Object> forbiddenAccessException(ForbiddenAccessException ex) {
+		return buildResponseEntity(ApiError.builder()
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.code(ErrorList.FORBIDDEN_ACCESS.getCode())
+				.message(ErrorList.FORBIDDEN_ACCESS.getDescription())
+				.debugMessage(ex.getMessage())
+				.build());
+    }
+	
+	@ExceptionHandler(DataNotFoundException.class)
+	public ResponseEntity<Object> dataNotFoundException(DataNotFoundException ex) {
+		return buildResponseEntity(ApiError.builder()
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.code(ErrorList.DATA_NOT_FOUND.getCode())
+				.message(ErrorList.DATA_NOT_FOUND.getDescription())
+				.debugMessage(ex.getMessage())
+				.build());
+    }
+	
+	@ExceptionHandler(EmailPasswordInvalid.class)
+	public ResponseEntity<Object> emailPasswordInvalid(EmailPasswordInvalid ex) {
+		return buildResponseEntity(ApiError.builder()
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.code(ErrorList.EMAIL_PASSWORD_INVALID.getCode())
+				.message(ErrorList.EMAIL_PASSWORD_INVALID.getDescription())
 				.debugMessage(ex.getMessage())
 				.build());
     }

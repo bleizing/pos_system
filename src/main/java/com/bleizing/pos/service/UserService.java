@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.bleizing.pos.annotation.Logged;
 import com.bleizing.pos.dto.LoginRequest;
 import com.bleizing.pos.dto.LoginResponse;
+import com.bleizing.pos.error.EmailPasswordInvalid;
+import com.bleizing.pos.error.ErrorList;
 import com.bleizing.pos.model.User;
 import com.bleizing.pos.repository.UserRepository;
 import com.bleizing.pos.util.PasswordUtil;
@@ -25,9 +27,9 @@ public class UserService {
 	
 	@Logged
 	public LoginResponse login(LoginRequest request) throws Exception {
-		User user = userRepository.findByEmailAndActiveTrue(request.getEmail()).orElseThrow(() -> new Exception("Not found"));
+		User user = userRepository.findByEmailAndActiveTrue(request.getEmail()).orElseThrow(() -> new EmailPasswordInvalid(ErrorList.EMAIL_PASSWORD_INVALID.getDescription()));
 		if (!PasswordUtil.validatePassword(request.getPassword(), user.getPassword())) {
-			throw new Exception("Email or Password Invalid");
+			throw new EmailPasswordInvalid(ErrorList.EMAIL_PASSWORD_INVALID.getDescription());
 		}
 		
 		HashMap<String, Object> claims = new HashMap<>();

@@ -16,6 +16,10 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.bleizing.pos.constant.PermissionContstant;
+import com.bleizing.pos.error.ErrorList;
+import com.bleizing.pos.error.ForbiddenAccessException;
+import com.bleizing.pos.error.PathInvalidException;
+import com.bleizing.pos.error.TokenInvalidException;
 import com.bleizing.pos.error.TokenRequiredException;
 import com.bleizing.pos.model.Menu;
 import com.bleizing.pos.repository.MenuRepository;
@@ -81,7 +85,7 @@ public class FilterAspect  {
         		String path = "/" + paths[paths.length - 2] + "/" + paths[paths.length - 1];
         		
         		if (!hasAccessControl(userId, permission, path)) {
-        			throw new Exception("Forbidden Access");
+        			throw new ForbiddenAccessException(ErrorList.FORBIDDEN_ACCESS.getDescription());
         		}
     		}
     		
@@ -99,12 +103,12 @@ public class FilterAspect  {
     
     private String authProcess(String bearer) throws Exception {
     	if (bearer == null || bearer.isBlank()) {
-    		throw new TokenRequiredException("Bearer must be filled");
+    		throw new TokenRequiredException(ErrorList.TOKEN_REQUIRED.getDescription());
     	}
     	String token = bearer.substring(7);
 		
 		if (!jwtService.isTokenValid(token)) {
-			throw new Exception("Token invalid");
+			throw new TokenInvalidException(ErrorList.TOKEN_INVALID.getDescription());
 		}
 		return token;
     }
@@ -142,7 +146,7 @@ public class FilterAspect  {
 	private Long getMenuId(String path) throws Exception {
 		List<Menu> menus = menuRepository.findByPathAndActiveTrue(path).orElseThrow(() -> new Exception("Path Invalid"));
 		if (menus.isEmpty()) {
-			throw new Exception("Path Invalid");
+			throw new PathInvalidException(ErrorList.PATH_INVALID.getDescription());
 		}
 		return menus.get(0).getId();
 	}

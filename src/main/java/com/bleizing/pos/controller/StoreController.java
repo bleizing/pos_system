@@ -13,6 +13,7 @@ import com.bleizing.pos.annotation.Authenticated;
 import com.bleizing.pos.dto.GetStoreByCodeResponse;
 import com.bleizing.pos.service.StoreService;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,7 +31,12 @@ public class StoreController {
 	@GetMapping("/getByCode")
 	@Authenticated
 	@AccessControl
-	public ResponseEntity<GetStoreByCodeResponse> getStoreByCode(@RequestParam String code, HttpServletRequest servletRequest) {
+	public ResponseEntity<GetStoreByCodeResponse> getStoreByCode(@Parameter(
+            name =  "code",
+            description  = "Store code",
+            example = "S1",
+            required = true)
+            @RequestParam String code, HttpServletRequest servletRequest) {
 		try {
 			return new ResponseEntity<>(storeService.getStoreByCode(code), HttpStatus.OK);
 		} catch (Exception e) {
