@@ -12,9 +12,6 @@ import com.bleizing.pos.dto.GetStoreByCodeResponse;
 import com.bleizing.pos.service.StoreService;
 
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,9 +27,9 @@ public class StoreController {
 	@GetMapping("/getByCode")
 	@Authenticated
 	@AccessControl
-	@Parameters({
-		@Parameter(in = ParameterIn.HEADER, name = "store-code", schema = @Schema(type = "string", defaultValue = "S2"), required = false)
-	})
+//	@Parameters({
+//		@Parameter(in = ParameterIn.HEADER, name = "store-code", schema = @Schema(type = "string", defaultValue = "S2"), required = false)
+//	})
 	public GetStoreByCodeResponse getStoreByCode(@Parameter(
 //            name =  "code",
 //            description  = "Store code",

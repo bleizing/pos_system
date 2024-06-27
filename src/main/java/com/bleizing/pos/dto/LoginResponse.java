@@ -19,5 +19,4 @@ public class LoginResponse implements Serializable {
 	
 	private String accessToken;
 	private Long expiredIn;
-	private String storeCode;
 }

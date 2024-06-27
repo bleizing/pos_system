@@ -37,21 +37,21 @@ public class UserService {
 			throw new EmailPasswordInvalid(ErrorList.EMAIL_PASSWORD_INVALID.getDescription());
 		}
 		
-		String storeCode = "0";
+		Long storeId = 0L;
 		if (!userRoleRepository.findByUserIdAndActiveTrue(user.getId()).orElseThrow(() -> new DataNotFoundException("User Role Not Found")).getRole().getName().equals("SUPERADMIN")) {
 			UserStore userStore = userStoreRepository.findByUserIdAndActiveTrue(user.getId()).orElseThrow(() -> new DataNotFoundException("User Store Not Found"));
-			storeCode = userStore.getStore().getCode();
+			storeId = userStore.getStore().getId();
 		}
 		
 		HashMap<String, Object> claims = new HashMap<>();
 		claims.put("id", Long.valueOf(user.getId()));
+		claims.put("storeId", Long.valueOf(storeId));
 		
 		String token = jwtService.generateToken(claims, user.getEmail());
 		
 		return LoginResponse.builder()
 				.accessToken(token)
 				.expiredIn(jwtService.getExpirationTime())
-				.storeCode(storeCode)
 				.build();
 	}
 }

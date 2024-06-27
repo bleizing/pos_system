@@ -21,17 +21,14 @@ import com.bleizing.pos.error.ForbiddenAccessException;
 import com.bleizing.pos.error.PathInvalidException;
 import com.bleizing.pos.error.TokenInvalidException;
 import com.bleizing.pos.error.TokenRequiredException;
-import com.bleizing.pos.error.UserStoreUnmatchException;
 import com.bleizing.pos.model.Menu;
 import com.bleizing.pos.model.Role;
 import com.bleizing.pos.model.SysParam;
 import com.bleizing.pos.repository.MenuRepository;
 import com.bleizing.pos.repository.MenuRolePermissionRepository;
 import com.bleizing.pos.repository.PermissionRepository;
-import com.bleizing.pos.repository.StoreRepository;
 import com.bleizing.pos.repository.SysParamRepository;
 import com.bleizing.pos.repository.UserRoleRepository;
-import com.bleizing.pos.repository.UserStoreRepository;
 import com.bleizing.pos.service.JwtService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -54,12 +51,6 @@ public class FilterAspect  {
 
 	@Autowired
 	private MenuRolePermissionRepository menuRolePermissionRepository;
-	
-	@Autowired
-	private UserStoreRepository userStoreRepository;
-	
-	@Autowired
-	private StoreRepository storeRepository;
 	
 	@Autowired
 	private SysParamRepository sysParamRepository;
@@ -97,7 +88,8 @@ public class FilterAspect  {
 	        if (needAuth) {
 	        	String token = authProcess(request.getHeader("Authorization"));
 	    		
-	    		userId = Long.valueOf(jwtService.extractClaim(token, "id").toString());
+	        	userId = Long.valueOf(jwtService.extractClaim(token, "id").toString());
+	        	storeId = Long.valueOf(jwtService.extractClaim(token, "storeId").toString());
 	    		
 	    		String[] paths = request.getServletPath().split("/");
         		String path = "/" + paths[paths.length - 2] + "/" + paths[paths.length - 1];
@@ -110,8 +102,6 @@ public class FilterAspect  {
 			        		checkAccessControl(role.getId(), convertReqMethod(request.getMethod()), path);
 			    		}
 		    		}
-        			storeId = getStoreId(request.getHeader("store-code"));
-		    		checkUserStore(userId, storeId);
 	    		}
 	        }
         }
@@ -178,14 +168,6 @@ public class FilterAspect  {
 	
 	private Role getRole(Long userId) throws Exception {
 		return userRoleRepository.findByUserIdAndActiveTrue(userId).orElseThrow(() -> new Exception("Role Invalid")).getRole();
-	}
-	
-	private void checkUserStore(Long userId, Long storeId) throws Exception {
-		userStoreRepository.findByUserIdAndStoreIdAndActiveTrue(userId, storeId).orElseThrow(() -> new UserStoreUnmatchException(ErrorList.USER_STORE_UNMATCH.getDescription()));
-	}
-	
-	private Long getStoreId(String code) throws Exception {
-		return storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new Exception("Store Invalid")).getId();
 	}
 	
 	private SysParam getSysParam(String code) throws Exception {
