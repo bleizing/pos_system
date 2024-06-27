@@ -28,6 +28,7 @@ import com.bleizing.pos.model.SysParam;
 import com.bleizing.pos.repository.MenuRepository;
 import com.bleizing.pos.repository.MenuRolePermissionRepository;
 import com.bleizing.pos.repository.PermissionRepository;
+import com.bleizing.pos.repository.StoreRepository;
 import com.bleizing.pos.repository.SysParamRepository;
 import com.bleizing.pos.repository.UserRoleRepository;
 import com.bleizing.pos.repository.UserStoreRepository;
@@ -56,6 +57,9 @@ public class FilterAspect  {
 	
 	@Autowired
 	private UserStoreRepository userStoreRepository;
+	
+	@Autowired
+	private StoreRepository storeRepository;
 	
 	@Autowired
 	private SysParamRepository sysParamRepository;
@@ -94,7 +98,7 @@ public class FilterAspect  {
 	        	String token = authProcess(request.getHeader("Authorization"));
 	    		
 	    		userId = Long.valueOf(jwtService.extractClaim(token, "id").toString());
-	    		storeId = Long.parseLong(request.getHeader("store-id"));
+	    		storeId = getStoreId(request.getHeader("store-code"));
 	    		
 	    		String[] paths = request.getServletPath().split("/");
         		String path = "/" + paths[paths.length - 2] + "/" + paths[paths.length - 1];
@@ -178,6 +182,10 @@ public class FilterAspect  {
 	
 	private void checkUserStore(Long userId, Long storeId) throws Exception {
 		userStoreRepository.findByUserIdAndStoreIdAndActiveTrue(userId, storeId).orElseThrow(() -> new UserStoreUnmatchException(ErrorList.USER_STORE_UNMATCH.getDescription()));
+	}
+	
+	private Long getStoreId(String code) throws Exception {
+		return storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new Exception("Store Invalid")).getId();
 	}
 	
 	private SysParam getSysParam(String code) throws Exception {

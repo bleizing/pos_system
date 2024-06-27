@@ -9,5 +9,6 @@ import com.bleizing.pos.model.UserStore;
 
 @Repository
 public interface UserStoreRepository extends JpaRepository<UserStore, Long> {
+	Optional<UserStore> findByUserIdAndActiveTrue(Long userId);
 	Optional<UserStore> findByUserIdAndStoreIdAndActiveTrue(Long userId, Long storeId);
 }

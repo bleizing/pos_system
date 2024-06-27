@@ -35,7 +35,7 @@ public class StoreController {
 	@Authenticated
 	@AccessControl
 	@Parameters({
-		@Parameter(in = ParameterIn.HEADER, name = "store-id", schema = @Schema(type = "string", defaultValue = "2", required = false))
+		@Parameter(in = ParameterIn.HEADER, name = "store-code", schema = @Schema(type = "string", defaultValue = "S2"), required = false)
 	})
 	public ResponseEntity<GetStoreByCodeResponse> getStoreByCode(@Parameter(
 //            name =  "code",
