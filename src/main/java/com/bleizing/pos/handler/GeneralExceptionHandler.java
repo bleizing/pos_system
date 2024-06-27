@@ -20,7 +20,7 @@ import com.bleizing.pos.error.PathInvalidException;
 import com.bleizing.pos.error.TokenInvalidException;
 import com.bleizing.pos.error.TokenRequiredException;
 
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(Ordered.LOWEST_PRECEDENCE)
 @ControllerAdvice
 public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {

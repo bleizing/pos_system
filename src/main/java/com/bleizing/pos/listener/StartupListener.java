@@ -16,6 +16,7 @@ import com.bleizing.pos.model.Permission;
 import com.bleizing.pos.model.Product;
 import com.bleizing.pos.model.Role;
 import com.bleizing.pos.model.Store;
+import com.bleizing.pos.model.SysParam;
 import com.bleizing.pos.model.User;
 import com.bleizing.pos.model.UserRole;
 import com.bleizing.pos.model.UserStore;
@@ -25,6 +26,7 @@ import com.bleizing.pos.repository.PermissionRepository;
 import com.bleizing.pos.repository.ProductRepository;
 import com.bleizing.pos.repository.RoleRepository;
 import com.bleizing.pos.repository.StoreRepository;
+import com.bleizing.pos.repository.SysParamRepository;
 import com.bleizing.pos.repository.UserRepository;
 import com.bleizing.pos.repository.UserRoleRepository;
 import com.bleizing.pos.repository.UserStoreRepository;
@@ -63,6 +65,9 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 	@Autowired
 	private MenuRolePermissionRepository menuRolePermissionRepository;
 	
+	@Autowired
+	private SysParamRepository sysParamRepository;
+	
 	@Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
 		log.info("Startup Listener");
@@ -70,8 +75,22 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
     }
 	
 	private void initData() {
-		User user;
 		try {
+			sysParamRepository.save(SysParam.builder()
+					.name("Auth Required")
+					.code("AUTH_REQUIRED")
+					.description("Auth Required for Each API")
+					.value("true")
+					.build());
+			
+			sysParamRepository.save(SysParam.builder()
+					.name("Access Control Required")
+					.code("ACCESS_CONTROL_REQUIRED")
+					.description("Access Control Required for Each API")
+					.value("true")
+					.build());
+			
+			User user;
 			user = User.builder()
 					.name("superadmin")
 					.email("superadmin@tes.com")
@@ -184,11 +203,14 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.role(role1)
 					.permission(permission1)
 					.build());
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
+			
+			MenuRolePermission menuRolePermission = MenuRolePermission.builder()
 					.menu(menu2)
 					.role(role)
 					.permission(permission1)
-					.build());
+					.build();
+			menuRolePermission.setActive(true);
+			menuRolePermissionRepository.save(menuRolePermission);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (InvalidKeySpecException e) {

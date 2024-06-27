@@ -22,9 +22,11 @@ import com.bleizing.pos.error.PathInvalidException;
 import com.bleizing.pos.error.TokenInvalidException;
 import com.bleizing.pos.error.TokenRequiredException;
 import com.bleizing.pos.model.Menu;
+import com.bleizing.pos.model.SysParam;
 import com.bleizing.pos.repository.MenuRepository;
 import com.bleizing.pos.repository.MenuRolePermissionRepository;
 import com.bleizing.pos.repository.PermissionRepository;
+import com.bleizing.pos.repository.SysParamRepository;
 import com.bleizing.pos.repository.UserRoleRepository;
 import com.bleizing.pos.service.JwtService;
 
@@ -49,6 +51,9 @@ public class FilterAspect  {
 	@Autowired
 	private MenuRolePermissionRepository menuRolePermissionRepository;
 	
+	@Autowired
+	private SysParamRepository sysParamRepository;
+	
 	@Pointcut("execution(public * com.bleizing.pos.controller..*(..))")
     public void allControllerMethods() {
         
@@ -56,9 +61,11 @@ public class FilterAspect  {
     
     @Around("allControllerMethods()")
     public Object checkAccess(ProceedingJoinPoint pjp) throws Exception {
+        Object retObject = null;
+        
     	boolean needAuth = false;
     	boolean needAccessControl = false;
-        Object retObject = null;
+    	
         Method method = getMethod(pjp);
         
         for(Annotation anno : method.getAnnotations()){
@@ -73,24 +80,30 @@ public class FilterAspect  {
         
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         
-        if (needAuth) {
-        	String token = authProcess(request.getHeader("Authorization"));
-    		
-    		Long userId = Long.valueOf(jwtService.extractClaim(token, "id").toString());
-    		
-    		if (needAccessControl) {
-    			String permission = convertReqMethod(request.getMethod());
-				
-        		String[] paths = request.getServletPath().split("/");
-        		String path = "/" + paths[paths.length - 2] + "/" + paths[paths.length - 1];
-        		
-        		if (!hasAccessControl(userId, permission, path)) {
-        			throw new ForbiddenAccessException(ErrorList.FORBIDDEN_ACCESS.getDescription());
-        		}
-    		}
-    		
-    		request.setAttribute("userId", userId);
+        Long userId = 0L;
+        
+        if (Boolean.valueOf(getSysParam("AUTH_REQUIRED").getValue())) {
+	        if (needAuth) {
+	        	String token = authProcess(request.getHeader("Authorization"));
+	    		
+	    		userId = Long.valueOf(jwtService.extractClaim(token, "id").toString());
+	    		
+	    		if (Boolean.valueOf(getSysParam("ACCESS_CONTROL_REQUIRED").getValue())) {
+		    		if (needAccessControl) {
+		    			String permission = convertReqMethod(request.getMethod());
+						
+		        		String[] paths = request.getServletPath().split("/");
+		        		String path = "/" + paths[paths.length - 2] + "/" + paths[paths.length - 1];
+		        		
+		        		if (!hasAccessControl(userId, permission, path)) {
+		        			throw new ForbiddenAccessException(ErrorList.FORBIDDEN_ACCESS.getDescription());
+		        		}
+		    		}
+	    		}
+	        }
         }
+
+		request.setAttribute("userId", userId);
         
         try {            
             retObject = pjp.proceed();
@@ -138,13 +151,13 @@ public class FilterAspect  {
 	}
 	
 	private boolean hasAccessControl(Long userId, String permission, String path) throws Exception {
-		menuRolePermissionRepository.findByRoleIdAndPermissionIdAndMenuIdAndActiveTrue(getRoleId(userId), getPermissionId(permission), getMenuId(path)).orElseThrow(() -> new Exception("No Access"));
+		menuRolePermissionRepository.findByRoleIdAndPermissionIdAndMenuIdAndActiveTrue(getRoleId(userId), getPermissionId(permission), getMenuId(path)).orElseThrow(() -> new ForbiddenAccessException(ErrorList.FORBIDDEN_ACCESS.getDescription()));
 		
 		return true;
 	}
 	
 	private Long getMenuId(String path) throws Exception {
-		List<Menu> menus = menuRepository.findByPathAndActiveTrue(path).orElseThrow(() -> new Exception("Path Invalid"));
+		List<Menu> menus = menuRepository.findByPathAndActiveTrue(path).orElseThrow(() -> new PathInvalidException(ErrorList.PATH_INVALID.getDescription()));
 		if (menus.isEmpty()) {
 			throw new PathInvalidException(ErrorList.PATH_INVALID.getDescription());
 		}
@@ -157,5 +170,9 @@ public class FilterAspect  {
 	
 	private Long getRoleId(Long userId) throws Exception {
 		return userRoleRepository.findByUserIdAndActiveTrue(userId).orElseThrow(() -> new Exception("Role Invalid")).getRole().getId();
+	}
+	
+	private SysParam getSysParam(String code) throws Exception {
+		return sysParamRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new Exception("Sys Param Invalid"));
 	}
 }

@@ -32,8 +32,8 @@ public class StoreController {
 	@Authenticated
 	@AccessControl
 	public ResponseEntity<GetStoreByCodeResponse> getStoreByCode(@Parameter(
-            name =  "code",
-            description  = "Store code",
+//            name =  "code",
+//            description  = "Store code",
             example = "S1",
             required = true)
             @RequestParam String code, HttpServletRequest servletRequest) {
