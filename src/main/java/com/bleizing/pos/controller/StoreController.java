@@ -1,6 +1,7 @@
 package com.bleizing.pos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +14,8 @@ import com.bleizing.pos.annotation.AccessControl;
 import com.bleizing.pos.annotation.Authenticated;
 import com.bleizing.pos.dto.CreateStoreRequest;
 import com.bleizing.pos.dto.CreateStoreResponse;
+import com.bleizing.pos.dto.DeleteStoreRequest;
+import com.bleizing.pos.dto.DeleteStoreResponse;
 import com.bleizing.pos.dto.GetAllStoreResponse;
 import com.bleizing.pos.dto.GetStoreByUserLoggedInResponse;
 import com.bleizing.pos.dto.UpdateStoreRequest;
@@ -52,21 +55,28 @@ public class StoreController {
 	@PostMapping("/create")
 	@Authenticated
 	@AccessControl
-	public CreateStoreResponse createStore(@Valid @RequestBody CreateStoreRequest request, HttpServletRequest servletRequest) {
-		return storeService.createStore(request, (Long) servletRequest.getAttribute("userId"));
+	public CreateStoreResponse create(@Valid @RequestBody CreateStoreRequest request, HttpServletRequest servletRequest) {
+		return storeService.create(request, (Long) servletRequest.getAttribute("userId"));
 	}
 	
 	@GetMapping("/getAll")
 	@Authenticated
 	@AccessControl
-	public GetAllStoreResponse getAllStore() {
-		return storeService.getAllStore();
+	public GetAllStoreResponse getAll() {
+		return storeService.getAll();
 	}
 	
 	@PutMapping("/update")
 	@Authenticated
 	@AccessControl
-	public UpdateStoreResponse updateStore(@Valid @RequestBody UpdateStoreRequest request,  @Nullable @RequestParam(value = "code", required = false) String code, HttpServletRequest servletRequest) throws Exception {
-		return storeService.updateStore(request, code, (Long) servletRequest.getAttribute("storeId"));
+	public UpdateStoreResponse update(@Valid @RequestBody UpdateStoreRequest request,  @Nullable @RequestParam(value = "code", required = false) String code, HttpServletRequest servletRequest) throws Exception {
+		return storeService.update(request, code, (Long) servletRequest.getAttribute("storeId"));
+	}
+	
+	@DeleteMapping("/delete")
+	@Authenticated
+	@AccessControl
+	public DeleteStoreResponse delete(@Valid @RequestBody DeleteStoreRequest request) {
+		return storeService.delete(request);
 	}
 }

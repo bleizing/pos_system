@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.bleizing.pos.annotation.Logged;
 import com.bleizing.pos.dto.CreateStoreRequest;
 import com.bleizing.pos.dto.CreateStoreResponse;
+import com.bleizing.pos.dto.DeleteStoreRequest;
+import com.bleizing.pos.dto.DeleteStoreResponse;
 import com.bleizing.pos.dto.GetAllStoreResponse;
 import com.bleizing.pos.dto.GetAllStoreWrapper;
 import com.bleizing.pos.dto.GetStoreByUserLoggedInResponse;
@@ -41,7 +43,7 @@ public class StoreService {
 	}
 	
 	@Logged
-	public CreateStoreResponse createStore(CreateStoreRequest request, Long userId) {
+	public CreateStoreResponse create(CreateStoreRequest request, Long userId) {
 		if (storeRepository.findByCodeAndActiveTrue(request.getCode()).isPresent()) {
 			throw new DataExistsException("Store code already exists");
 		}
@@ -56,7 +58,7 @@ public class StoreService {
 	}
 	
 	@Logged
-	public GetAllStoreResponse getAllStore() {
+	public GetAllStoreResponse getAll() {
 		List<Store> stores = storeRepository.findByActiveTrue().orElseThrow(() -> new DataNotFoundException("Stores not found"));
 		List<GetAllStoreWrapper> wrapper = new ArrayList<>();
 		
@@ -71,7 +73,7 @@ public class StoreService {
 	}
 	
 	@Logged
-	public UpdateStoreResponse updateStore(UpdateStoreRequest request, String code, Long storeId) throws Exception {
+	public UpdateStoreResponse update(UpdateStoreRequest request, String code, Long storeId) throws Exception {
 		Store store;
 		if (storeId != 0) {
 			store = storeRepository.findByIdAndActiveTrue(storeId).orElseThrow(() -> new DataNotFoundException("Store not found"));
@@ -85,5 +87,14 @@ public class StoreService {
 		storeRepository.save(store);
 		
 		return UpdateStoreResponse.builder().success(true).build();
+	}
+	
+	@Logged
+	public DeleteStoreResponse delete(DeleteStoreRequest request) {
+		Store store = storeRepository.findByCodeAndActiveTrue(request.getCode()).orElseThrow(() -> new DataNotFoundException("Store not found"));
+		store.setActive(false);
+		storeRepository.save(store);
+		
+		return DeleteStoreResponse.builder().success(true).build();
 	}
 }

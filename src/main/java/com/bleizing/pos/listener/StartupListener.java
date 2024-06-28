@@ -193,6 +193,13 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build();
 			menuRepository.save(menu6);
 			
+			Menu menu7 = Menu.builder()
+					.name("Delete Store")
+					.code("deleteStore")
+					.path("/store/delete")
+					.build();
+			menuRepository.save(menu7);
+			
 			userStoreRepository.save(UserStore.builder()
 					.store(store1)
 					.user(user1)
