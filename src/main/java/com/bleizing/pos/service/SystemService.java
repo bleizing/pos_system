@@ -130,6 +130,12 @@ public class SystemService {
 			Permission permission1 = Permission.builder().name(PermissionContstant.READ.toString()).build();
 			permissionRepository.save(permission1);
 			
+			Permission permission2 = Permission.builder().name(PermissionContstant.UPDATE.toString()).build();
+			permissionRepository.save(permission2);
+			
+			Permission permission3 = Permission.builder().name(PermissionContstant.DELETE.toString()).build();
+			permissionRepository.save(permission3);
+			
 			Store store = Store.builder()
 					.name("Toko A")
 					.code("S1")
@@ -183,6 +189,13 @@ public class SystemService {
 					.build();
 			menuRepository.save(menu5);
 			
+			Menu menu6 = Menu.builder()
+					.name("Update Store")
+					.code("updateStore")
+					.path("/store/update")
+					.build();
+			menuRepository.save(menu6);
+			
 			userStoreRepository.save(UserStore.builder()
 					.store(store1)
 					.user(user1)
@@ -192,6 +205,16 @@ public class SystemService {
 					.menu(menu2)
 					.role(role1)
 					.permission(permission1)
+					.build());
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.menu(menu6)
+					.role(role1)
+					.permission(permission1)
+					.build());
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.menu(menu6)
+					.role(role1)
+					.permission(permission2)
 					.build());
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();

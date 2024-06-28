@@ -13,6 +13,8 @@ import com.bleizing.pos.dto.CreateStoreResponse;
 import com.bleizing.pos.dto.GetAllStoreResponse;
 import com.bleizing.pos.dto.GetAllStoreWrapper;
 import com.bleizing.pos.dto.GetStoreByUserLoggedInResponse;
+import com.bleizing.pos.dto.UpdateStoreRequest;
+import com.bleizing.pos.dto.UpdateStoreResponse;
 import com.bleizing.pos.error.DataExistsException;
 import com.bleizing.pos.error.DataNotFoundException;
 import com.bleizing.pos.model.Store;
@@ -66,5 +68,22 @@ public class StoreService {
 		});
 		
 		return GetAllStoreResponse.builder().stores(wrapper).build();
+	}
+	
+	@Logged
+	public UpdateStoreResponse updateStore(UpdateStoreRequest request, String code, Long storeId) throws Exception {
+		Store store;
+		if (storeId != 0) {
+			store = storeRepository.findByIdAndActiveTrue(storeId).orElseThrow(() -> new DataNotFoundException("Store not found"));
+		} else {
+			if (Objects.isNull(code) || code.isBlank()) {
+				throw new Exception("Code must be filled");
+			}
+			store = storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new DataNotFoundException("Store not found"));
+		}
+		store.setName(request.getName());
+		storeRepository.save(store);
+		
+		return UpdateStoreResponse.builder().success(true).build();
 	}
 }

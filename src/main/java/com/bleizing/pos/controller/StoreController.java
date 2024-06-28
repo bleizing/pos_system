@@ -3,6 +3,7 @@ package com.bleizing.pos.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,8 @@ import com.bleizing.pos.dto.CreateStoreRequest;
 import com.bleizing.pos.dto.CreateStoreResponse;
 import com.bleizing.pos.dto.GetAllStoreResponse;
 import com.bleizing.pos.dto.GetStoreByUserLoggedInResponse;
+import com.bleizing.pos.dto.UpdateStoreRequest;
+import com.bleizing.pos.dto.UpdateStoreResponse;
 import com.bleizing.pos.service.StoreService;
 
 import io.micrometer.common.lang.Nullable;
@@ -58,5 +61,12 @@ public class StoreController {
 	@AccessControl
 	public GetAllStoreResponse getAllStore() {
 		return storeService.getAllStore();
+	}
+	
+	@PutMapping("/update")
+	@Authenticated
+	@AccessControl
+	public UpdateStoreResponse updateStore(@Valid @RequestBody UpdateStoreRequest request,  @Nullable @RequestParam(value = "code", required = false) String code, HttpServletRequest servletRequest) throws Exception {
+		return storeService.updateStore(request, code, (Long) servletRequest.getAttribute("storeId"));
 	}
 }
