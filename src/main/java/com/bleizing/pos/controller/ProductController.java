@@ -1,8 +1,10 @@
 package com.bleizing.pos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +14,11 @@ import com.bleizing.pos.annotation.AccessControl;
 import com.bleizing.pos.annotation.Authenticated;
 import com.bleizing.pos.dto.CreateProductRequest;
 import com.bleizing.pos.dto.CreateProductReseponse;
+import com.bleizing.pos.dto.DeleteProductRequest;
+import com.bleizing.pos.dto.DeleteProductResponse;
 import com.bleizing.pos.dto.GetProductResponse;
+import com.bleizing.pos.dto.UpdateProductRequest;
+import com.bleizing.pos.dto.UpdateProductResponse;
 import com.bleizing.pos.service.ProductService;
 
 import io.micrometer.common.lang.Nullable;
@@ -41,5 +47,19 @@ public class ProductController {
 	@AccessControl
 	public CreateProductReseponse create(@Valid @RequestBody CreateProductRequest request, HttpServletRequest servletRequest) throws Exception {
 		return productService.create(request, (Long) servletRequest.getAttribute("storeId"), (Long) servletRequest.getAttribute("userId"));
+	}
+	
+	@PutMapping("/update")
+	@Authenticated
+	@AccessControl
+	public UpdateProductResponse update(@Valid @RequestBody UpdateProductRequest request, HttpServletRequest servletRequest) {
+		return productService.update(request, (Long) servletRequest.getAttribute("storeId"), (Long) servletRequest.getAttribute("userId"));
+	}
+	
+	@DeleteMapping("/delete")
+	@Authenticated
+	@AccessControl
+	public DeleteProductResponse delete(@Valid @RequestBody DeleteProductRequest request, HttpServletRequest servletRequest) {
+		return productService.delete(request, (Long) servletRequest.getAttribute("storeId"), (Long) servletRequest.getAttribute("userId"));
 	}
 }
