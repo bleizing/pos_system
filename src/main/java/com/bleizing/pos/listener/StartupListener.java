@@ -158,61 +158,26 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.store(store)
 					.build());
 			
-			Menu menu2 = Menu.builder()
+			Menu menu = Menu.builder()
+					.name("System")
+					.code("System")
+					.path("/sys")
+					.build();
+			menuRepository.save(menu);
+			
+			Menu menu1 = Menu.builder()
 					.name("Store")
-					.code("getStore")
-					.path("/store/get")
+					.code("store")
+					.path("/store")
+					.build();
+			menuRepository.save(menu1);
+			
+			Menu menu2 = Menu.builder()
+					.name("Product")
+					.code("product")
+					.path("/product")
 					.build();
 			menuRepository.save(menu2);
-			
-			Menu menu3 = Menu.builder()
-					.name("Init Data System")
-					.code("sysInitData")
-					.path("/sys/initData")
-					.build();
-			menuRepository.save(menu3);
-			
-			Menu menu4 = Menu.builder()
-					.name("Create Store")
-					.code("createStore")
-					.path("/store/create")
-					.build();
-			menuRepository.save(menu4);
-			
-			Menu menu5 = Menu.builder()
-					.name("Create Store")
-					.code("getallStore")
-					.path("/store/getAll")
-					.build();
-			menuRepository.save(menu5);
-			
-			Menu menu6 = Menu.builder()
-					.name("Update Store")
-					.code("updateStore")
-					.path("/store/update")
-					.build();
-			menuRepository.save(menu6);
-			
-			Menu menu7 = Menu.builder()
-					.name("Delete Store")
-					.code("deleteStore")
-					.path("/store/delete")
-					.build();
-			menuRepository.save(menu7);
-			
-			Menu menu8 = Menu.builder()
-					.name("Get Product")
-					.code("getProduct")
-					.path("/product/get")
-					.build();
-			menuRepository.save(menu8);
-			
-			Menu menu9 = Menu.builder()
-					.name("Create Product")
-					.code("createProduct")
-					.path("/product/create")
-					.build();
-			menuRepository.save(menu9);
 			
 			userStoreRepository.save(UserStore.builder()
 					.store(store1)
@@ -220,29 +185,34 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build());
 			
 			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.menu(menu1)
+					.role(role1)
+					.permission(permission1)
+					.build());
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.menu(menu1)
+					.role(role1)
+					.permission(permission2)
+					.build());
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.menu(menu2)
+					.role(role1)
+					.permission(permission)
+					.build());
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
 					.menu(menu2)
 					.role(role1)
 					.permission(permission1)
 					.build());
 			menuRolePermissionRepository.save(MenuRolePermission.builder()
-					.menu(menu6)
-					.role(role1)
-					.permission(permission1)
-					.build());
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
-					.menu(menu6)
+					.menu(menu2)
 					.role(role1)
 					.permission(permission2)
 					.build());
 			menuRolePermissionRepository.save(MenuRolePermission.builder()
-					.menu(menu8)
+					.menu(menu2)
 					.role(role1)
-					.permission(permission1)
-					.build());
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
-					.menu(menu9)
-					.role(role1)
-					.permission(permission)
+					.permission(permission3)
 					.build());
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();

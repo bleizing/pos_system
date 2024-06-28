@@ -92,7 +92,7 @@ public class FilterAspect  {
 	        	storeId = Long.valueOf(jwtService.extractClaim(token, "storeId").toString());
 	    		
 	    		String[] paths = request.getServletPath().split("/");
-        		String path = "/" + paths[paths.length - 2] + "/" + paths[paths.length - 1];
+        		String path = "/" + paths[paths.length - 2];
         		
         		Role role = getRole(userId);
 	    		
