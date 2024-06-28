@@ -7,10 +7,14 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bleizing.pos.dto.CreateProductRequest;
+import com.bleizing.pos.dto.CreateProductReseponse;
 import com.bleizing.pos.dto.GetProductResponse;
 import com.bleizing.pos.dto.GetProductWrapper;
+import com.bleizing.pos.error.DataExistsException;
 import com.bleizing.pos.error.DataNotFoundException;
 import com.bleizing.pos.model.Product;
+import com.bleizing.pos.model.Store;
 import com.bleizing.pos.repository.ProductRepository;
 import com.bleizing.pos.repository.StoreRepository;
 
@@ -27,7 +31,7 @@ public class ProductService {
 			if (Objects.isNull(code) || code.isBlank()) {
 				throw new Exception("Code must be filled");
 			}
-			id = storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new DataNotFoundException("Products not found")).getId();
+			id = storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new DataNotFoundException("Store not found")).getId();
 		}
 		products = productRepository.findByStoreIdAndActiveTrue(id).orElseThrow(() -> new DataNotFoundException("Products not found"));
 		
@@ -41,5 +45,32 @@ public class ProductService {
 		});
 		
 		return GetProductResponse.builder().products(wrapper).build();
+	}
+	
+	public CreateProductReseponse create(CreateProductRequest request, Long id, Long userId) throws Exception {
+		Store store;
+		if (id == 0) {
+			if (Objects.isNull(request.getStoreCode()) || request.getStoreCode().isBlank()) {
+				throw new Exception("Code must be filled");
+			}
+			store = storeRepository.findByCodeAndActiveTrue(request.getStoreCode()).orElseThrow(() -> new DataNotFoundException("Store not found"));
+		} else {
+			store = storeRepository.findByIdAndActiveTrue(id).orElseThrow(() -> new DataNotFoundException("Store not found"));
+		}
+		
+		if (productRepository.findByCodeAndActiveTrue(request.getCode()).isPresent()) {
+			throw new DataExistsException("Product code already exists");
+		}
+		
+		Product product = Product.builder()
+				.code(request.getCode())
+				.name(request.getName())
+				.price(request.getPrice())
+				.store(store)
+				.build();
+		product.setCreatedBy(userId);
+		product = productRepository.saveAndFlush(product);
+		
+		return CreateProductReseponse.builder().id(product.getId()).build();
 	}
 }

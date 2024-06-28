@@ -70,13 +70,13 @@ public class StoreController {
 	@Authenticated
 	@AccessControl
 	public UpdateStoreResponse update(@Valid @RequestBody UpdateStoreRequest request,  @Nullable @RequestParam(value = "code", required = false) String code, HttpServletRequest servletRequest) throws Exception {
-		return storeService.update(request, code, (Long) servletRequest.getAttribute("storeId"));
+		return storeService.update(request, code, (Long) servletRequest.getAttribute("storeId"), (Long) servletRequest.getAttribute("userId"));
 	}
 	
 	@DeleteMapping("/delete")
 	@Authenticated
 	@AccessControl
-	public DeleteStoreResponse delete(@Valid @RequestBody DeleteStoreRequest request) {
-		return storeService.delete(request);
+	public DeleteStoreResponse delete(@Valid @RequestBody DeleteStoreRequest request, HttpServletRequest servletRequest) {
+		return storeService.delete(request, (Long) servletRequest.getAttribute("userId"));
 	}
 }

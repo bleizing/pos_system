@@ -73,7 +73,7 @@ public class StoreService {
 	}
 	
 	@Logged
-	public UpdateStoreResponse update(UpdateStoreRequest request, String code, Long storeId) throws Exception {
+	public UpdateStoreResponse update(UpdateStoreRequest request, String code, Long storeId, Long userId) throws Exception {
 		Store store;
 		if (storeId != 0) {
 			store = storeRepository.findByIdAndActiveTrue(storeId).orElseThrow(() -> new DataNotFoundException("Store not found"));
@@ -84,15 +84,17 @@ public class StoreService {
 			store = storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new DataNotFoundException("Store not found"));
 		}
 		store.setName(request.getName());
+		store.setUpdatedBy(userId);
 		storeRepository.save(store);
 		
 		return UpdateStoreResponse.builder().success(true).build();
 	}
 	
 	@Logged
-	public DeleteStoreResponse delete(DeleteStoreRequest request) {
+	public DeleteStoreResponse delete(DeleteStoreRequest request, Long userId) {
 		Store store = storeRepository.findByCodeAndActiveTrue(request.getCode()).orElseThrow(() -> new DataNotFoundException("Store not found"));
 		store.setActive(false);
+		store.setUpdatedBy(userId);
 		storeRepository.save(store);
 		
 		return DeleteStoreResponse.builder().success(true).build();
