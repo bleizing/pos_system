@@ -200,6 +200,13 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build();
 			menuRepository.save(menu7);
 			
+			Menu menu8 = Menu.builder()
+					.name("Get Product")
+					.code("getProduct")
+					.path("/product/get")
+					.build();
+			menuRepository.save(menu8);
+			
 			userStoreRepository.save(UserStore.builder()
 					.store(store1)
 					.user(user1)
@@ -219,6 +226,11 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.menu(menu6)
 					.role(role1)
 					.permission(permission2)
+					.build());
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.menu(menu8)
+					.role(role1)
+					.permission(permission1)
 					.build());
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
