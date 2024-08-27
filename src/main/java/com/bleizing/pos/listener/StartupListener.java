@@ -179,6 +179,13 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build();
 			menuRepository.save(menu2);
 			
+			Menu menu3 = Menu.builder()
+					.name("Storage")
+					.code("storage")
+					.path("/storage")
+					.build();
+			menuRepository.save(menu3);
+			
 			userStoreRepository.save(UserStore.builder()
 					.store(store1)
 					.user(user1)
@@ -194,6 +201,7 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.role(role1)
 					.permission(permission2)
 					.build());
+			
 			menuRolePermissionRepository.save(MenuRolePermission.builder()
 					.menu(menu2)
 					.role(role1)
@@ -211,6 +219,17 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build());
 			menuRolePermissionRepository.save(MenuRolePermission.builder()
 					.menu(menu2)
+					.role(role1)
+					.permission(permission3)
+					.build());
+			
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.menu(menu3)
+					.role(role1)
+					.permission(permission1)
+					.build());
+			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.menu(menu3)
 					.role(role1)
 					.permission(permission3)
 					.build());
