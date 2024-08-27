@@ -2,6 +2,7 @@ package com.bleizing.pos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bleizing.pos.annotation.AccessControl;
 import com.bleizing.pos.annotation.Authenticated;
+import com.bleizing.pos.dto.DeleteStorageResponse;
 import com.bleizing.pos.dto.UploadStorageResponse;
 import com.bleizing.pos.service.StorageService;
 
@@ -18,7 +20,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.servlet.http.HttpServletRequest;
 
 @Tag(name = "Storage", description = "Storage Controller")
 @RestController
@@ -38,7 +39,14 @@ public class StorageController {
 		            description  = "File",
 		            schema = @Schema(type = "file"),
 		            required = true) @RequestPart("file") MultipartFile file, 
-			@RequestParam(value = "category") String category, HttpServletRequest servletRequest) throws Exception {
+			@RequestParam(value = "category") String category) throws Exception {
 		return UploadStorageResponse.builder().filename(storageService.uploadFile(category, file)).build();
+	}
+	
+	@DeleteMapping("/delete")
+	@Authenticated
+	@AccessControl
+	public DeleteStorageResponse delete(@RequestParam(value = "filename") String filename) throws Exception {
+		return DeleteStorageResponse.builder().success(storageService.deletFile(filename)).build();
 	}
 }

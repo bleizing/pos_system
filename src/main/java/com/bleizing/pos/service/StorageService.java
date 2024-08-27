@@ -14,6 +14,7 @@ import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
+import io.minio.RemoveObjectArgs;
 
 @Service
 public class StorageService {
@@ -27,22 +28,23 @@ public class StorageService {
 		return uploadFile(defaultBucketName, file);
     }
 	
-	public String uploadFile(String bucketName, MultipartFile file) throws IOException {
-        return uploadFile(bucketName, file.getOriginalFilename(), file.getInputStream(), file.getContentType());
+	public String uploadFile(String subfolder, MultipartFile file) throws IOException {
+        return uploadFile(subfolder, file.getOriginalFilename(), file.getInputStream(), file.getContentType());
     }
 	
-    private String uploadFile(String bucketName, String objectName, InputStream inputStream, String contentType) {
+    private String uploadFile(String subfolder, String objectName, InputStream inputStream, String contentType) {
         try {
-            boolean found = minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
+            boolean found = minioClient.bucketExists(BucketExistsArgs.builder().bucket(defaultBucketName).build());
             if (!found) {
-                minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
+                minioClient.makeBucket(MakeBucketArgs.builder().bucket(defaultBucketName).build());
             }
             
             Long currentMillis = LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-            objectName = currentMillis + "_" + objectName;
+            objectName = objectName.replaceAll("\\s+", "_").toLowerCase();
+            objectName = subfolder + "/" + currentMillis + "_" + objectName;
             
             minioClient.putObject(
-                PutObjectArgs.builder().bucket(bucketName).object(objectName).stream(
+                PutObjectArgs.builder().bucket(defaultBucketName).object(objectName).stream(
                         inputStream, inputStream.available(), -1)
                         .contentType(contentType)
                         .build());
@@ -51,5 +53,18 @@ public class StorageService {
         } catch (Exception e) {
             throw new RuntimeException("uploadFile Error: " + e.getMessage());
         }
+    }
+    
+    public boolean deletFile(String objectName) throws Exception {
+    	if (!objectName.contains("/")) {
+    		throw new Exception("Invalid file name");
+    	}
+    	
+    	try {
+    		minioClient.removeObject(RemoveObjectArgs.builder().bucket(defaultBucketName).object(objectName).build());
+    	} catch (Exception e) {
+			throw new Exception("deleteFile Error: " + e.getMessage());
+		}
+    	return true;
     }
 }
