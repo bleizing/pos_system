@@ -9,7 +9,10 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+import com.bleizing.pos.constant.MenuConstant;
 import com.bleizing.pos.constant.PermissionContstant;
+import com.bleizing.pos.constant.RoleConstant;
+import com.bleizing.pos.constant.SysParamConstant;
 import com.bleizing.pos.model.Menu;
 import com.bleizing.pos.model.MenuRolePermission;
 import com.bleizing.pos.model.Permission;
@@ -78,14 +81,14 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 		try {
 			sysParamRepository.save(SysParam.builder()
 					.name("Auth Required")
-					.code("AUTH_REQUIRED")
+					.code(SysParamConstant.AUTH_REQUIRED.toString())
 					.description("Auth Required for Each API")
 					.value("true")
 					.build());
 			
 			sysParamRepository.save(SysParam.builder()
 					.name("Access Control Required")
-					.code("ACCESS_CONTROL_REQUIRED")
+					.code(SysParamConstant.ACCESS_CONTROL_REQUIRED.toString())
 					.description("Access Control Required for Each API")
 					.value("true")
 					.build());
@@ -107,14 +110,14 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build();
 			userRepository.save(user1);
 			
-			Role role = Role.builder().name("SUPERADMIN").build();
+			Role role = Role.builder().name(RoleConstant.SUPERADMIN.toString()).build();
 			roleRepository.save(role);
 			userRoleRepository.save(UserRole.builder()
 					.role(role)
 					.user(user)
 					.build());
 			
-			Role role1 = Role.builder().name("MANAGER").build();
+			Role role1 = Role.builder().name(RoleConstant.MANAGER.toString()).build();
 			roleRepository.save(role1);
 			userRoleRepository.save(UserRole.builder()
 					.role(role1)
@@ -159,30 +162,30 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build());
 			
 			Menu menu = Menu.builder()
-					.name("System")
-					.code("System")
-					.path("/sys")
+					.name(MenuConstant.SYSTEM.getName())
+					.code(MenuConstant.SYSTEM.getCode())
+					.path(MenuConstant.SYSTEM.getPath())
 					.build();
 			menuRepository.save(menu);
 			
 			Menu menu1 = Menu.builder()
-					.name("Store")
-					.code("store")
-					.path("/store")
+					.name(MenuConstant.STORE.getName())
+					.code(MenuConstant.STORE.getCode())
+					.path(MenuConstant.STORE.getPath())
 					.build();
 			menuRepository.save(menu1);
 			
 			Menu menu2 = Menu.builder()
-					.name("Product")
-					.code("product")
-					.path("/product")
+					.name(MenuConstant.PRODUCT.getName())
+					.code(MenuConstant.PRODUCT.getCode())
+					.path(MenuConstant.PRODUCT.getPath())
 					.build();
 			menuRepository.save(menu2);
 			
 			Menu menu3 = Menu.builder()
-					.name("Storage")
-					.code("storage")
-					.path("/storage")
+					.name(MenuConstant.STORAGE.getName())
+					.code(MenuConstant.STORAGE.getCode())
+					.path(MenuConstant.STORAGE.getPath())
 					.build();
 			menuRepository.save(menu3);
 			

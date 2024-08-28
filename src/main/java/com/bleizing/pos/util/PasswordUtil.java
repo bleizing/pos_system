@@ -1,6 +1,7 @@
 package com.bleizing.pos.util;
 
 import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
@@ -156,6 +157,22 @@ public class PasswordUtil {
             return String.format("%0" + paddingLength + "d", 0) + hex;
         else
             return hex;
+    }
+    
+    public static String hashString(String string) throws Exception {
+    	char[] hexChars = "0123456789ABCDEF".toCharArray();
+    	
+    	MessageDigest digest = MessageDigest.getInstance("SHA-256");
+    	digest.update(string.getBytes("UTF-8"));
+    	byte[] hash = digest.digest();
+
+    	StringBuilder sb = new StringBuilder(hash.length * 2);
+    	for (byte b : hash) {
+    	    sb.append(hexChars[(b & 0xF0) >> 4]);
+    	    sb.append(hexChars[b & 0x0F]);
+    	}
+    	String hex = sb.toString();
+    	return hex;
     }
 
     /**

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bleizing.pos.annotation.Logged;
+import com.bleizing.pos.constant.VariableConstant;
 import com.bleizing.pos.dto.LoginRequest;
 import com.bleizing.pos.dto.LoginResponse;
 import com.bleizing.pos.error.DataNotFoundException;
@@ -43,8 +44,8 @@ public class UserService {
 		}
 		
 		HashMap<String, Object> claims = new HashMap<>();
-		claims.put("id", Long.valueOf(user.getId()));
-		claims.put("storeId", Long.valueOf(storeId));
+		claims.put(VariableConstant.USER_ID.getValue(), Long.valueOf(user.getId()));
+		claims.put(VariableConstant.STORE_ID.getValue(), Long.valueOf(storeId));
 		
 		String token = jwtService.generateToken(claims, user.getEmail());
 		

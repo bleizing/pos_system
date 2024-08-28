@@ -16,6 +16,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.bleizing.pos.constant.PermissionContstant;
+import com.bleizing.pos.constant.RoleConstant;
+import com.bleizing.pos.constant.SysParamConstant;
+import com.bleizing.pos.constant.VariableConstant;
 import com.bleizing.pos.error.ErrorList;
 import com.bleizing.pos.error.ForbiddenAccessException;
 import com.bleizing.pos.error.PathInvalidException;
@@ -84,20 +87,20 @@ public class FilterAspect  {
         Long userId = 0L;
         Long storeId = 0L;
         
-        if (Boolean.valueOf(getSysParam("AUTH_REQUIRED").getValue())) {
+        if (Boolean.valueOf(getSysParam(SysParamConstant.AUTH_REQUIRED.toString()).getValue())) {
 	        if (needAuth) {
 	        	String token = authProcess(request.getHeader("Authorization"));
 	    		
-	        	userId = Long.valueOf(jwtService.extractClaim(token, "id").toString());
-	        	storeId = Long.valueOf(jwtService.extractClaim(token, "storeId").toString());
+	        	userId = Long.valueOf(jwtService.extractClaim(token, VariableConstant.USER_ID.getValue()).toString());
+	        	storeId = Long.valueOf(jwtService.extractClaim(token, VariableConstant.STORE_ID.getValue()).toString());
 	    		
 	    		String[] paths = request.getServletPath().split("/");
         		String path = "/" + paths[paths.length - 2];
         		
         		Role role = getRole(userId);
 	    		
-        		if (!role.getName().equals("SUPERADMIN")) {
-        			if (Boolean.valueOf(getSysParam("ACCESS_CONTROL_REQUIRED").getValue())) {
+        		if (!role.getName().equals(RoleConstant.SUPERADMIN.toString())) {
+        			if (Boolean.valueOf(getSysParam(SysParamConstant.ACCESS_CONTROL_REQUIRED.toString()).getValue())) {
 			    		if (needAccessControl) {
 			        		checkAccessControl(role.getId(), convertReqMethod(request.getMethod()), path);
 			    		}
@@ -106,8 +109,8 @@ public class FilterAspect  {
 	        }
         }
 
-		request.setAttribute("userId", userId);
-		request.setAttribute("storeId", storeId);
+		request.setAttribute(VariableConstant.USER_ID.getValue(), userId);
+		request.setAttribute(VariableConstant.STORE_ID.getValue(), storeId);
         
         retObject = pjp.proceed();
         

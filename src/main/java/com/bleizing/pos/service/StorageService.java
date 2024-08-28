@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bleizing.pos.util.PasswordUtil;
+
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
@@ -41,7 +43,8 @@ public class StorageService {
             
             Long currentMillis = LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
             objectName = objectName.replaceAll("\\s+", "_").toLowerCase();
-            objectName = subfolder + "/" + currentMillis + "_" + objectName;
+            objectName = PasswordUtil.hashString(currentMillis + "_" + objectName);
+            objectName = subfolder + "/" + objectName;
             
             minioClient.putObject(
                 PutObjectArgs.builder().bucket(defaultBucketName).object(objectName).stream(

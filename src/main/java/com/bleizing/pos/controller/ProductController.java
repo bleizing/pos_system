@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bleizing.pos.annotation.AccessControl;
 import com.bleizing.pos.annotation.Authenticated;
+import com.bleizing.pos.constant.VariableConstant;
 import com.bleizing.pos.dto.CreateProductRequest;
 import com.bleizing.pos.dto.CreateProductReseponse;
 import com.bleizing.pos.dto.DeleteProductRequest;
@@ -39,27 +40,27 @@ public class ProductController {
 	@Authenticated
 	@AccessControl
 	public GetProductResponse get(@Nullable @RequestParam(value = "code", required = false) String code, HttpServletRequest servletRequest) throws Exception {
-		return productService.get((Long) servletRequest.getAttribute("storeId"), code);
+		return productService.get((Long) servletRequest.getAttribute(VariableConstant.STORE_ID.getValue()), code);
 	}
 	
 	@PostMapping("/create")
 	@Authenticated
 	@AccessControl
 	public CreateProductReseponse create(@Valid @RequestBody CreateProductRequest request, HttpServletRequest servletRequest) throws Exception {
-		return productService.create(request, (Long) servletRequest.getAttribute("storeId"), (Long) servletRequest.getAttribute("userId"));
+		return productService.create(request, (Long) servletRequest.getAttribute(VariableConstant.STORE_ID.getValue()), (Long) servletRequest.getAttribute(VariableConstant.USER_ID.getValue()));
 	}
 	
 	@PutMapping("/update")
 	@Authenticated
 	@AccessControl
 	public UpdateProductResponse update(@Valid @RequestBody UpdateProductRequest request, HttpServletRequest servletRequest) {
-		return productService.update(request, (Long) servletRequest.getAttribute("storeId"), (Long) servletRequest.getAttribute("userId"));
+		return productService.update(request, (Long) servletRequest.getAttribute(VariableConstant.STORE_ID.getValue()), (Long) servletRequest.getAttribute(VariableConstant.USER_ID.getValue()));
 	}
 	
 	@DeleteMapping("/delete")
 	@Authenticated
 	@AccessControl
 	public DeleteProductResponse delete(@Valid @RequestBody DeleteProductRequest request, HttpServletRequest servletRequest) {
-		return productService.delete(request, (Long) servletRequest.getAttribute("storeId"), (Long) servletRequest.getAttribute("userId"));
+		return productService.delete(request, (Long) servletRequest.getAttribute(VariableConstant.STORE_ID.getValue()), (Long) servletRequest.getAttribute(VariableConstant.USER_ID.getValue()));
 	}
 }

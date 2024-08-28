@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bleizing.pos.annotation.AccessControl;
 import com.bleizing.pos.annotation.Authenticated;
+import com.bleizing.pos.constant.VariableConstant;
 import com.bleizing.pos.dto.CreateStoreRequest;
 import com.bleizing.pos.dto.CreateStoreResponse;
 import com.bleizing.pos.dto.DeleteStoreRequest;
@@ -49,14 +50,14 @@ public class StoreController {
 //            example = "S2",
 //            required = false)
             @Nullable @RequestParam(value = "code", required = false) String code, HttpServletRequest servletRequest) throws Exception {
-		return storeService.getStoreByUserLoggedIn((Long) servletRequest.getAttribute("storeId"), code);
+		return storeService.getStoreByUserLoggedIn((Long) servletRequest.getAttribute(VariableConstant.STORE_ID.getValue()), code);
 	}
 	
 	@PostMapping("/create")
 	@Authenticated
 	@AccessControl
 	public CreateStoreResponse create(@Valid @RequestBody CreateStoreRequest request, HttpServletRequest servletRequest) {
-		return storeService.create(request, (Long) servletRequest.getAttribute("userId"));
+		return storeService.create(request, (Long) servletRequest.getAttribute(VariableConstant.USER_ID.getValue()));
 	}
 	
 	@GetMapping("/getAll")
@@ -70,13 +71,13 @@ public class StoreController {
 	@Authenticated
 	@AccessControl
 	public UpdateStoreResponse update(@Valid @RequestBody UpdateStoreRequest request,  @Nullable @RequestParam(value = "code", required = false) String code, HttpServletRequest servletRequest) throws Exception {
-		return storeService.update(request, code, (Long) servletRequest.getAttribute("storeId"), (Long) servletRequest.getAttribute("userId"));
+		return storeService.update(request, code, (Long) servletRequest.getAttribute(VariableConstant.STORE_ID.getValue()), (Long) servletRequest.getAttribute(VariableConstant.USER_ID.getValue()));
 	}
 	
 	@DeleteMapping("/delete")
 	@Authenticated
 	@AccessControl
 	public DeleteStoreResponse delete(@Valid @RequestBody DeleteStoreRequest request, HttpServletRequest servletRequest) {
-		return storeService.delete(request, (Long) servletRequest.getAttribute("userId"));
+		return storeService.delete(request, (Long) servletRequest.getAttribute(VariableConstant.USER_ID.getValue()));
 	}
 }
