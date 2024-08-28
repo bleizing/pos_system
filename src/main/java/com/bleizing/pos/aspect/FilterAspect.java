@@ -3,6 +3,7 @@ package com.bleizing.pos.aspect;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Optional;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -178,6 +179,6 @@ public class FilterAspect  {
 	}
 	
 	private SysParam getSysParam(String code) throws Exception {
-		return (SysParam) redisUtil.getOps("SysParam", code);
+		return Optional.ofNullable((SysParam) redisUtil.getOps("SysParam", code)).orElse(sysParamRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new Exception("Sys Param Invalid")));
 	}
 }
