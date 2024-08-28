@@ -33,6 +33,7 @@ import com.bleizing.pos.repository.PermissionRepository;
 import com.bleizing.pos.repository.SysParamRepository;
 import com.bleizing.pos.repository.UserRoleRepository;
 import com.bleizing.pos.service.JwtService;
+import com.bleizing.pos.util.RedisUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -57,6 +58,9 @@ public class FilterAspect  {
 	
 	@Autowired
 	private SysParamRepository sysParamRepository;
+	
+	@Autowired
+	private RedisUtil redisUtil;
 	
 	@Pointcut("execution(public * com.bleizing.pos.controller..*(..))")
     public void allControllerMethods() {
@@ -174,6 +178,6 @@ public class FilterAspect  {
 	}
 	
 	private SysParam getSysParam(String code) throws Exception {
-		return sysParamRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new Exception("Sys Param Invalid"));
+		return (SysParam) redisUtil.getOps("SysParam", code);
 	}
 }

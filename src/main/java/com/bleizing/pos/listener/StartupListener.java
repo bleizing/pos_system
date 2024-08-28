@@ -34,6 +34,7 @@ import com.bleizing.pos.repository.UserRepository;
 import com.bleizing.pos.repository.UserRoleRepository;
 import com.bleizing.pos.repository.UserStoreRepository;
 import com.bleizing.pos.util.PasswordUtil;
+import com.bleizing.pos.util.RedisUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -71,6 +72,9 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 	@Autowired
 	private SysParamRepository sysParamRepository;
 	
+	@Autowired
+	private RedisUtil redisUtil;
+	
 	@Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
 		log.info("Startup Listener");
@@ -79,19 +83,23 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 	
 	private void initData() {
 		try {
-			sysParamRepository.save(SysParam.builder()
+			SysParam sysParam = SysParam.builder()
 					.name("Auth Required")
 					.code(SysParamConstant.AUTH_REQUIRED.toString())
 					.description("Auth Required for Each API")
 					.value("true")
-					.build());
+					.build();
+			sysParamRepository.save(sysParam);
+			redisUtil.setOps("SysParam", SysParamConstant.AUTH_REQUIRED.toString(), sysParam);
 			
-			sysParamRepository.save(SysParam.builder()
+			SysParam sysParam2 = SysParam.builder()
 					.name("Access Control Required")
 					.code(SysParamConstant.ACCESS_CONTROL_REQUIRED.toString())
 					.description("Access Control Required for Each API")
 					.value("true")
-					.build());
+					.build();
+			sysParamRepository.save(sysParam2);
+			redisUtil.setOps("SysParam", SysParamConstant.ACCESS_CONTROL_REQUIRED.toString(), sysParam2);
 			
 			User user;
 			user = User.builder()
