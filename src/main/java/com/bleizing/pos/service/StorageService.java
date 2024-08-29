@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bleizing.pos.constant.ErrorConstant;
 import com.bleizing.pos.constant.SysParamConstant;
 import com.bleizing.pos.constant.VariableConstant;
 import com.bleizing.pos.model.SysParam;
@@ -61,19 +62,19 @@ public class StorageService {
             
             return objectName;
         } catch (Exception e) {
-            throw new RuntimeException("uploadFile Error: " + e.getMessage());
+            throw new RuntimeException(ErrorConstant.UPLOAD_FAILED.getDescription() + e.getMessage());
         }
     }
     
     public boolean deletFile(String objectName) throws Exception {
     	if (!objectName.contains("/")) {
-    		throw new Exception("Invalid file name");
+    		throw new Exception(ErrorConstant.INVALID_NAME.getDescription());
     	}
     	
     	try {
     		minioClient.removeObject(RemoveObjectArgs.builder().bucket(defaultBucketName).object(objectName).build());
     	} catch (Exception e) {
-			throw new Exception("deleteFile Error: " + e.getMessage());
+			throw new Exception(ErrorConstant.DELETE_FAILED.getDescription() + e.getMessage());
 		}
     	return true;
     }

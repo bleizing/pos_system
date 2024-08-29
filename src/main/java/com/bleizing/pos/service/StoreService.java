@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bleizing.pos.annotation.Logged;
+import com.bleizing.pos.constant.ErrorConstant;
 import com.bleizing.pos.dto.CreateStoreRequest;
 import com.bleizing.pos.dto.CreateStoreResponse;
 import com.bleizing.pos.dto.DeleteStoreRequest;
@@ -31,12 +32,12 @@ public class StoreService {
 	public GetStoreByUserLoggedInResponse getStoreByUserLoggedIn(Long id, String code) throws Exception {
 		Store store;
 		if (id != 0) {
-			store = storeRepository.findByIdAndActiveTrue(id).orElseThrow(() -> new DataNotFoundException("Store not found"));
+			store = storeRepository.findByIdAndActiveTrue(id).orElseThrow(() -> new DataNotFoundException(ErrorConstant.STORE_NOT_FOUND.getDescription()));
 		} else {
 			if (Objects.isNull(code) || code.isBlank()) {
-				throw new Exception("Code must be filled");
+				throw new Exception(ErrorConstant.CODE_EMPTY.getDescription());
 			}
-			store = storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new DataNotFoundException("Store not found"));
+			store = storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new DataNotFoundException(ErrorConstant.STORE_NOT_FOUND.getDescription()));
 		}
 		
 		return GetStoreByUserLoggedInResponse.builder().name(store.getName()).code(store.getCode()).build();
@@ -45,7 +46,7 @@ public class StoreService {
 	@Logged
 	public CreateStoreResponse create(CreateStoreRequest request, Long userId) {
 		if (storeRepository.findByCodeAndActiveTrue(request.getCode()).isPresent()) {
-			throw new DataExistsException("Store code already exists");
+			throw new DataExistsException(ErrorConstant.STORE_EXISTS.getDescription());
 		}
 		
 		Store store = Store.builder()
@@ -59,7 +60,7 @@ public class StoreService {
 	
 	@Logged
 	public GetAllStoreResponse getAll() {
-		List<Store> stores = storeRepository.findByActiveTrue().orElseThrow(() -> new DataNotFoundException("Stores not found"));
+		List<Store> stores = storeRepository.findByActiveTrue().orElseThrow(() -> new DataNotFoundException(ErrorConstant.STORES_NOT_FOUND.getDescription()));
 		List<GetAllStoreWrapper> wrapper = new ArrayList<>();
 		
 		stores.stream().forEach(store -> {
@@ -76,12 +77,12 @@ public class StoreService {
 	public UpdateStoreResponse update(UpdateStoreRequest request, String code, Long storeId, Long userId) throws Exception {
 		Store store;
 		if (storeId != 0) {
-			store = storeRepository.findByIdAndActiveTrue(storeId).orElseThrow(() -> new DataNotFoundException("Store not found"));
+			store = storeRepository.findByIdAndActiveTrue(storeId).orElseThrow(() -> new DataNotFoundException(ErrorConstant.STORE_NOT_FOUND.getDescription()));
 		} else {
 			if (Objects.isNull(code) || code.isBlank()) {
-				throw new Exception("Code must be filled");
+				throw new Exception(ErrorConstant.CODE_EMPTY.getDescription());
 			}
-			store = storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new DataNotFoundException("Store not found"));
+			store = storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new DataNotFoundException(ErrorConstant.STORE_NOT_FOUND.getDescription()));
 		}
 		store.setName(request.getName());
 		store.setUpdatedBy(userId);
@@ -92,7 +93,7 @@ public class StoreService {
 	
 	@Logged
 	public DeleteStoreResponse delete(DeleteStoreRequest request, Long userId) {
-		Store store = storeRepository.findByCodeAndActiveTrue(request.getCode()).orElseThrow(() -> new DataNotFoundException("Store not found"));
+		Store store = storeRepository.findByCodeAndActiveTrue(request.getCode()).orElseThrow(() -> new DataNotFoundException(ErrorConstant.STORE_NOT_FOUND.getDescription()));
 		store.setActive(false);
 		store.setUpdatedBy(userId);
 		storeRepository.save(store);

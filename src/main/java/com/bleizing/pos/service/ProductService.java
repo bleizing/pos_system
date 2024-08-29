@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bleizing.pos.annotation.Logged;
+import com.bleizing.pos.constant.ErrorConstant;
 import com.bleizing.pos.dto.CreateProductRequest;
 import com.bleizing.pos.dto.CreateProductReseponse;
 import com.bleizing.pos.dto.DeleteProductRequest;
@@ -39,11 +40,11 @@ public class ProductService {
 		List<Product> products;
 		if (id == 0) {
 			if (Objects.isNull(code) || code.isBlank()) {
-				throw new Exception("Code must be filled");
+				throw new Exception(ErrorConstant.CODE_EMPTY.getDescription());
 			}
-			id = storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new DataNotFoundException("Store not found")).getId();
+			id = storeRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new DataNotFoundException(ErrorConstant.STORE_NOT_FOUND.getDescription())).getId();
 		}
-		products = productRepository.findByStoreIdAndActiveTrue(id).orElseThrow(() -> new DataNotFoundException("Products not found"));
+		products = productRepository.findByStoreIdAndActiveTrue(id).orElseThrow(() -> new DataNotFoundException(ErrorConstant.PRODUCTS_NOT_FOUND.getDescription()));
 		
 		List<GetProductWrapper> wrapper = new ArrayList<>();
 		products.stream().forEach(product -> {			
@@ -63,15 +64,15 @@ public class ProductService {
 		Store store;
 		if (id == 0) {
 			if (Objects.isNull(request.getStoreCode()) || request.getStoreCode().isBlank()) {
-				throw new Exception("Code must be filled");
+				throw new Exception(ErrorConstant.CODE_EMPTY.getDescription());
 			}
-			store = storeRepository.findByCodeAndActiveTrue(request.getStoreCode()).orElseThrow(() -> new DataNotFoundException("Store not found"));
+			store = storeRepository.findByCodeAndActiveTrue(request.getStoreCode()).orElseThrow(() -> new DataNotFoundException(ErrorConstant.STORE_NOT_FOUND.getDescription()));
 		} else {
-			store = storeRepository.findByIdAndActiveTrue(id).orElseThrow(() -> new DataNotFoundException("Store not found"));
+			store = storeRepository.findByIdAndActiveTrue(id).orElseThrow(() -> new DataNotFoundException(ErrorConstant.STORE_NOT_FOUND.getDescription()));
 		}
 		
 		if (productRepository.findByCodeAndActiveTrue(request.getCode()).isPresent()) {
-			throw new DataExistsException("Product code already exists");
+			throw new DataExistsException(ErrorConstant.PRODUCT_EXISTS.getDescription());
 		}
 		
 		Product product = Product.builder()
@@ -91,9 +92,9 @@ public class ProductService {
 	public UpdateProductResponse update(UpdateProductRequest request, Long storeId, Long userId) {
 		Product product;
 		if (storeId != 0) {
-			product = productRepository.findByCodeAndStoreIdAndActiveTrue(request.getCode(), storeId).orElseThrow(() -> new DataNotFoundException("Product not found"));
+			product = productRepository.findByCodeAndStoreIdAndActiveTrue(request.getCode(), storeId).orElseThrow(() -> new DataNotFoundException(ErrorConstant.PRODUCT_NOT_FOUND.getDescription()));
 		} else {
-			product = productRepository.findByCodeAndActiveTrue(request.getCode()).orElseThrow(() -> new DataNotFoundException("Product not found"));
+			product = productRepository.findByCodeAndActiveTrue(request.getCode()).orElseThrow(() -> new DataNotFoundException(ErrorConstant.PRODUCT_NOT_FOUND.getDescription()));
 		}
 		
 		product.setUpdatedBy(userId);
@@ -113,9 +114,9 @@ public class ProductService {
 	public DeleteProductResponse delete(DeleteProductRequest request, Long storeId, Long userId) {
 		Product product;
 		if (storeId != 0) {
-			product = productRepository.findByCodeAndStoreIdAndActiveTrue(request.getCode(), storeId).orElseThrow(() -> new DataNotFoundException("Product not found"));
+			product = productRepository.findByCodeAndStoreIdAndActiveTrue(request.getCode(), storeId).orElseThrow(() -> new DataNotFoundException(ErrorConstant.PRODUCT_NOT_FOUND.getDescription()));
 		} else {
-			product = productRepository.findByCodeAndActiveTrue(request.getCode()).orElseThrow(() -> new DataNotFoundException("Product not found"));
+			product = productRepository.findByCodeAndActiveTrue(request.getCode()).orElseThrow(() -> new DataNotFoundException(ErrorConstant.PRODUCT_NOT_FOUND.getDescription()));
 		}
 		
 		product.setUpdatedBy(userId);

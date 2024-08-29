@@ -461,3 +461,61 @@
 2024-08-29 13:17:17,818 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-2] AfterReturning get() -> GetProductResponse(products=[GetProductWrapper(name=Test1, code=T1, price=100.00, image=), GetProductWrapper(name=Test2, code=T2, price=100.50, image=), GetProductWrapper(name=Test3, code=T3, price=125000.00, image=http://162.168.60.251:65417/pos/product/EF52FA4C0E9BDD90104E35482CDEC896C1872CA59613B681B03AA87C03B74CD3)])
 2024-08-29 13:17:17,832 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-2] After get() -> [0, S1]
 2024-08-29 13:17:17,832 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-2] End get()
+2024-08-29 13:37:02,520 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.1.Final
+2024-08-29 13:37:02,550 INFO o.s.b.StartupInfoLogger [main] Starting PosApplication using Java 19.0.1 with PID 31512 (D:\Dimas\Projects\POS\pos\target\classes started by hand_ in D:\Dimas\Projects\POS\pos)
+2024-08-29 13:37:02,551 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.0, Spring v6.1.8
+2024-08-29 13:37:02,551 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-08-29 13:37:03,417 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2024-08-29 13:37:03,419 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-29 13:37:03,560 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 135 ms. Found 10 JPA repository interfaces.
+2024-08-29 13:37:03,578 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2024-08-29 13:37:03,579 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-08-29 13:37:03,598 INFO o.s.d.r.c.RepositoryConfigurationExtensionSupport [main] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.bleizing.pos.repository.MenuRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-08-29 13:37:03,598 INFO o.s.d.r.c.RepositoryConfigurationExtensionSupport [main] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.bleizing.pos.repository.MenuRolePermissionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-08-29 13:37:03,598 INFO o.s.d.r.c.RepositoryConfigurationExtensionSupport [main] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.bleizing.pos.repository.PermissionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-08-29 13:37:03,599 INFO o.s.d.r.c.RepositoryConfigurationExtensionSupport [main] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.bleizing.pos.repository.ProductRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-08-29 13:37:03,599 INFO o.s.d.r.c.RepositoryConfigurationExtensionSupport [main] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.bleizing.pos.repository.RoleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-08-29 13:37:03,600 INFO o.s.d.r.c.RepositoryConfigurationExtensionSupport [main] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.bleizing.pos.repository.StoreRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-08-29 13:37:03,600 INFO o.s.d.r.c.RepositoryConfigurationExtensionSupport [main] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.bleizing.pos.repository.SysParamRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-08-29 13:37:03,600 INFO o.s.d.r.c.RepositoryConfigurationExtensionSupport [main] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.bleizing.pos.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-08-29 13:37:03,600 INFO o.s.d.r.c.RepositoryConfigurationExtensionSupport [main] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.bleizing.pos.repository.UserRoleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-08-29 13:37:03,601 INFO o.s.d.r.c.RepositoryConfigurationExtensionSupport [main] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.bleizing.pos.repository.UserStoreRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-08-29 13:37:03,601 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2024-08-29 13:37:04,520 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-08-29 13:37:04,528 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-08-29 13:37:04,530 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-08-29 13:37:04,530 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-08-29 13:37:04,586 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-08-29 13:37:04,587 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1996 ms
+2024-08-29 13:37:04,804 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-29 13:37:04,851 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-29 13:37:04,884 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-08-29 13:37:05,111 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-29 13:37:05,136 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-08-29 13:37:05,236 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@12421766
+2024-08-29 13:37:05,238 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-08-29 13:37:05,264 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-08-29 13:37:06,288 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-29 13:37:06,398 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-29 13:37:07,802 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-29 13:37:08,948 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-08-29 13:37:08,964 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/api'
+2024-08-29 13:37:08,973 INFO o.s.b.StartupInfoLogger [main] Started PosApplication in 6.849 seconds (process running for 7.178)
+2024-08-29 13:37:08,975 INFO c.b.p.l.StartupListener [main] Startup Listener
+2024-08-29 13:37:38,377 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-29 13:37:38,377 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-08-29 13:37:38,381 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 3 ms
+2024-08-29 13:37:38,701 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-1] Start get() -> args = [0, S1]
+2024-08-29 13:37:38,702 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-1] Before get() -> [0, S1]
+2024-08-29 13:37:38,724 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-1] AfterReturning get() -> GetProductResponse(products=[GetProductWrapper(name=Test1, code=T1, price=100.00, image=), GetProductWrapper(name=Test2, code=T2, price=100.50, image=)])
+2024-08-29 13:37:38,725 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-1] After get() -> [0, S1]
+2024-08-29 13:37:38,725 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-1] End get()
+2024-08-29 13:37:42,853 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-2] Start get() -> args = [0, S2]
+2024-08-29 13:37:42,854 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-2] Before get() -> [0, S2]
+2024-08-29 13:37:42,859 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-2] AfterReturning get() -> GetProductResponse(products=[])
+2024-08-29 13:37:42,860 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-2] After get() -> [0, S2]
+2024-08-29 13:37:42,860 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-2] End get()
+2024-08-29 13:37:45,412 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-3] Start get() -> args = [0, S3]
+2024-08-29 13:37:45,412 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-3] Before get() -> [0, S3]
+2024-08-29 13:37:45,421 ERROR c.b.p.a.LoggingAspect [http-nio-8080-exec-3] AfterThrowing get() -> Store not found
+2024-08-29 13:37:45,421 INFO c.b.p.a.LoggingAspect [http-nio-8080-exec-3] After get() -> [0, S3]

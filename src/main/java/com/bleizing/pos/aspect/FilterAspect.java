@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.bleizing.pos.constant.ErrorConstant;
 import com.bleizing.pos.constant.PermissionContstant;
 import com.bleizing.pos.constant.RoleConstant;
 import com.bleizing.pos.constant.SysParamConstant;
@@ -122,12 +123,12 @@ public class FilterAspect  {
     
     private String authProcess(String bearer) throws Exception {
     	if (bearer == null || bearer.isBlank()) {
-    		throw new TokenRequiredException("Bearer token is null");
+    		throw new TokenRequiredException(ErrorConstant.BEARER_NULL.getDescription());
     	}
     	String token = bearer.substring(7);
 		
 		if (!jwtService.isTokenValid(token)) {
-			throw new TokenInvalidException("Token is invalid");
+			throw new TokenInvalidException(ErrorConstant.TOKEN_INVALID.getDescription());
 		}
 		return token;
     }
