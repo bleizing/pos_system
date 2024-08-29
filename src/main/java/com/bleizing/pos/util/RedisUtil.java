@@ -34,7 +34,7 @@ public class RedisUtil {
     }
 	
 	public void setValue(String key, String value, long timeout, TimeUnit timeUnit) {
-        redisTemplate.opsForValue().set(key, value, timeout, timeUnit);
+        redisTemplate.opsForValue().setIfAbsent(key, value, timeout, timeUnit);
     }
 	
 	public Object getOps(String category, String key) {
@@ -42,6 +42,6 @@ public class RedisUtil {
     }
 	
 	public void setOps(String category, String key, Object value) {
-		hashOperations.put(category, key, value);
+		hashOperations.putIfAbsent(category, key, value);
     }
 }

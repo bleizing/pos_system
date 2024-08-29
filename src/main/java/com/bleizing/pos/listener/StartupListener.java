@@ -13,6 +13,7 @@ import com.bleizing.pos.constant.MenuConstant;
 import com.bleizing.pos.constant.PermissionContstant;
 import com.bleizing.pos.constant.RoleConstant;
 import com.bleizing.pos.constant.SysParamConstant;
+import com.bleizing.pos.constant.VariableConstant;
 import com.bleizing.pos.model.Menu;
 import com.bleizing.pos.model.MenuRolePermission;
 import com.bleizing.pos.model.Permission;
@@ -90,7 +91,7 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.value("true")
 					.build();
 			sysParamRepository.save(sysParam);
-			redisUtil.setOps("SysParam", SysParamConstant.AUTH_REQUIRED.toString(), sysParam);
+			redisUtil.setOps(VariableConstant.SYS_PARAM.getValue(), SysParamConstant.AUTH_REQUIRED.toString(), sysParam);
 			
 			SysParam sysParam2 = SysParam.builder()
 					.name("Access Control Required")
@@ -99,7 +100,7 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.value("true")
 					.build();
 			sysParamRepository.save(sysParam2);
-			redisUtil.setOps("SysParam", SysParamConstant.ACCESS_CONTROL_REQUIRED.toString(), sysParam2);
+			redisUtil.setOps(VariableConstant.SYS_PARAM.getValue(), SysParamConstant.ACCESS_CONTROL_REQUIRED.toString(), sysParam2);
 			
 			User user;
 			user = User.builder()
@@ -109,40 +110,50 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build();
 			
 			user.setCreatedBy(1111L);
-			userRepository.save(user);
+			userRepository.saveAndFlush(user);
 			
 			User user1 = User.builder()
 					.name("manager")
 					.email("manager@tes.com")
 					.password(PasswordUtil.createHash("manager"))
 					.build();
-			userRepository.save(user1);
+			userRepository.saveAndFlush(user1);
 			
 			Role role = Role.builder().name(RoleConstant.SUPERADMIN.toString()).build();
 			roleRepository.save(role);
-			userRoleRepository.save(UserRole.builder()
+			
+			UserRole userRole = UserRole.builder()
 					.role(role)
 					.user(user)
-					.build());
+					.build();
+			userRoleRepository.saveAndFlush(userRole);
+			redisUtil.setOps(VariableConstant.USER_ROLE.getValue(), String.valueOf(user.getId()), role);
 			
 			Role role1 = Role.builder().name(RoleConstant.MANAGER.toString()).build();
 			roleRepository.save(role1);
-			userRoleRepository.save(UserRole.builder()
+			
+			UserRole userRole1 = UserRole.builder()
 					.role(role1)
 					.user(user1)
-					.build());
+					.build();
+			userRoleRepository.saveAndFlush(userRole1);
+			redisUtil.setOps(VariableConstant.USER_ROLE.getValue(), String.valueOf(user1.getId()), role1);
 			
 			Permission permission = Permission.builder().name(PermissionContstant.CREATE.toString()).build();
-			permissionRepository.save(permission);
+			permissionRepository.saveAndFlush(permission);
+			redisUtil.setOps(VariableConstant.PERMISSION_ID.getValue(), permission.getName(), permission.getId());
 			
 			Permission permission1 = Permission.builder().name(PermissionContstant.READ.toString()).build();
-			permissionRepository.save(permission1);
+			permissionRepository.saveAndFlush(permission1);
+			redisUtil.setOps(VariableConstant.PERMISSION_ID.getValue(), permission1.getName(), permission1.getId());
 			
 			Permission permission2 = Permission.builder().name(PermissionContstant.UPDATE.toString()).build();
-			permissionRepository.save(permission2);
+			permissionRepository.saveAndFlush(permission2);
+			redisUtil.setOps(VariableConstant.PERMISSION_ID.getValue(), permission2.getName(), permission2.getId());
 			
 			Permission permission3 = Permission.builder().name(PermissionContstant.DELETE.toString()).build();
-			permissionRepository.save(permission3);
+			permissionRepository.saveAndFlush(permission3);
+			redisUtil.setOps(VariableConstant.PERMISSION_ID.getValue(), permission3.getName(), permission3.getId());
 			
 			Store store = Store.builder()
 					.name("Toko A")
@@ -174,76 +185,112 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.code(MenuConstant.SYSTEM.getCode())
 					.path(MenuConstant.SYSTEM.getPath())
 					.build();
-			menuRepository.save(menu);
+			menuRepository.saveAndFlush(menu);
+			redisUtil.setOps(VariableConstant.MENU_ID.getValue(), menu.getPath(), menu.getId());
 			
 			Menu menu1 = Menu.builder()
 					.name(MenuConstant.STORE.getName())
 					.code(MenuConstant.STORE.getCode())
 					.path(MenuConstant.STORE.getPath())
 					.build();
-			menuRepository.save(menu1);
+			menuRepository.saveAndFlush(menu1);
+			redisUtil.setOps(VariableConstant.MENU_ID.getValue(), menu1.getPath(), menu1.getId());
 			
 			Menu menu2 = Menu.builder()
 					.name(MenuConstant.PRODUCT.getName())
 					.code(MenuConstant.PRODUCT.getCode())
 					.path(MenuConstant.PRODUCT.getPath())
 					.build();
-			menuRepository.save(menu2);
+			menuRepository.saveAndFlush(menu2);
+			redisUtil.setOps(VariableConstant.MENU_ID.getValue(), menu2.getPath(), menu2.getId());
 			
 			Menu menu3 = Menu.builder()
 					.name(MenuConstant.STORAGE.getName())
 					.code(MenuConstant.STORAGE.getCode())
 					.path(MenuConstant.STORAGE.getPath())
 					.build();
-			menuRepository.save(menu3);
+			menuRepository.saveAndFlush(menu3);
+			redisUtil.setOps(VariableConstant.MENU_ID.getValue(), menu3.getPath(), menu3.getId());
 			
 			userStoreRepository.save(UserStore.builder()
 					.store(store1)
 					.user(user1)
 					.build());
 			
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
+			MenuRolePermission menuRolePermission = MenuRolePermission.builder()
 					.menu(menu1)
 					.role(role1)
 					.permission(permission1)
-					.build());
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.build();
+			menuRolePermissionRepository.saveAndFlush(menuRolePermission);
+			redisUtil.setOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), 
+					role1.getId() + ":" + permission1.getId() + ":" + menu1.getId(), 
+					true);
+			MenuRolePermission menuRolePermission1 = MenuRolePermission.builder()
 					.menu(menu1)
 					.role(role1)
 					.permission(permission2)
-					.build());
+					.build();
+			menuRolePermissionRepository.saveAndFlush(menuRolePermission1);
+			redisUtil.setOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), 
+					role1.getId() + ":" + permission2.getId() + ":" + menu1.getId(), 
+					true);
 			
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
+			MenuRolePermission menuRolePermission2 = MenuRolePermission.builder()
 					.menu(menu2)
 					.role(role1)
 					.permission(permission)
-					.build());
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.build();
+			menuRolePermissionRepository.saveAndFlush(menuRolePermission2);
+			redisUtil.setOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), 
+					role1.getId() + ":" + permission.getId() + ":" + menu2.getId(), 
+					true);
+			MenuRolePermission menuRolePermission3 = MenuRolePermission.builder()
 					.menu(menu2)
 					.role(role1)
 					.permission(permission1)
-					.build());
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.build();
+			menuRolePermissionRepository.saveAndFlush(menuRolePermission3);
+			redisUtil.setOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), 
+					role1.getId() + ":" + permission1.getId() + ":" + menu2.getId(), 
+					true);
+			MenuRolePermission menuRolePermission4 = MenuRolePermission.builder()
 					.menu(menu2)
 					.role(role1)
 					.permission(permission2)
-					.build());
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.build();
+			menuRolePermissionRepository.saveAndFlush(menuRolePermission4);
+			redisUtil.setOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), 
+					role1.getId() + ":" + permission2.getId() + ":" + menu2.getId(), 
+					true);
+			MenuRolePermission menuRolePermission5 = MenuRolePermission.builder()
 					.menu(menu2)
 					.role(role1)
 					.permission(permission3)
-					.build());
+					.build();
+			menuRolePermissionRepository.saveAndFlush(menuRolePermission5);
+			redisUtil.setOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), 
+					role1.getId() + ":" + permission3.getId() + ":" + menu2.getId(), 
+					true);
 			
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
+			MenuRolePermission menuRolePermission6 = MenuRolePermission.builder()
 					.menu(menu3)
 					.role(role1)
 					.permission(permission1)
-					.build());
-			menuRolePermissionRepository.save(MenuRolePermission.builder()
+					.build();
+			menuRolePermissionRepository.saveAndFlush(menuRolePermission6);
+			redisUtil.setOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), 
+					role1.getId() + ":" + permission1.getId() + ":" + menu3.getId(), 
+					true);
+			MenuRolePermission menuRolePermission7 = MenuRolePermission.builder()
 					.menu(menu3)
 					.role(role1)
 					.permission(permission3)
-					.build());
+					.build();
+			menuRolePermissionRepository.saveAndFlush(menuRolePermission7);
+			redisUtil.setOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), 
+					role1.getId() + ":" + permission3.getId() + ":" + menu3.getId(), 
+					true);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (InvalidKeySpecException e) {

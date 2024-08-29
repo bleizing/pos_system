@@ -2,7 +2,6 @@ package com.bleizing.pos.aspect;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.List;
 import java.util.Optional;
 
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -25,7 +24,6 @@ import com.bleizing.pos.error.ForbiddenAccessException;
 import com.bleizing.pos.error.PathInvalidException;
 import com.bleizing.pos.error.TokenInvalidException;
 import com.bleizing.pos.error.TokenRequiredException;
-import com.bleizing.pos.model.Menu;
 import com.bleizing.pos.model.Role;
 import com.bleizing.pos.model.SysParam;
 import com.bleizing.pos.repository.MenuRepository;
@@ -159,26 +157,32 @@ public class FilterAspect  {
 	}
 	
 	private void checkAccessControl(Long roleId, String permission, String path) throws Exception {
-		menuRolePermissionRepository.findByRoleIdAndPermissionIdAndMenuIdAndActiveTrue(roleId, getPermissionId(permission), getMenuId(path)).orElseThrow(() -> new ForbiddenAccessException(ErrorList.FORBIDDEN_ACCESS.getDescription()));
-	}
+		Optional.of(redisUtil.getOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), roleId + ":" + getPermissionId(permission) + ":" + getMenuId(path)))
+		.orElse(menuRolePermissionRepository.findByRoleIdAndPermissionIdAndMenuIdAndActiveTrue(roleId, getPermissionId(permission), getMenuId(path))
+				.orElseThrow(() -> new ForbiddenAccessException(ErrorList.FORBIDDEN_ACCESS.getDescription())));
+		}
 	
 	private Long getMenuId(String path) throws Exception {
-		List<Menu> menus = menuRepository.findByPathAndActiveTrue(path).orElseThrow(() -> new PathInvalidException("Path is invalid"));
-		if (menus.isEmpty()) {
-			throw new PathInvalidException("Path is invalid");
-		}
-		return menus.get(0).getId();
+		return Optional.ofNullable((Long) redisUtil.getOps(VariableConstant.MENU_ID.getValue(), path))
+				.orElse(menuRepository.findByPathAndActiveTrue(path)
+						.orElseThrow(() -> new PathInvalidException(ErrorList.PATH_INVALID.getDescription())).getId());
 	}
 	
 	private Long getPermissionId(String name) throws Exception {
-		return permissionRepository.findByNameAndActiveTrue(name).orElseThrow(() -> new Exception("Permission Invalid")).getId();
+		return Optional.ofNullable((Long) redisUtil.getOps(VariableConstant.PERMISSION_ID.getValue(), name))
+				.orElse(permissionRepository.findByNameAndActiveTrue(name)
+						.orElseThrow(() -> new Exception(ErrorList.PERMISSION_INVALID.getDescription())).getId());
 	}
 	
 	private Role getRole(Long userId) throws Exception {
-		return userRoleRepository.findByUserIdAndActiveTrue(userId).orElseThrow(() -> new Exception("Role Invalid")).getRole();
+		return Optional.ofNullable((Role) redisUtil.getOps(VariableConstant.USER_ROLE.getValue(), String.valueOf(userId)))
+				.orElse(userRoleRepository.findByUserIdAndActiveTrue(userId)
+						.orElseThrow(() -> new Exception(ErrorList.ROLE_INVALID.getDescription())).getRole());
 	}
 	
 	private SysParam getSysParam(String code) throws Exception {
-		return Optional.ofNullable((SysParam) redisUtil.getOps("SysParam", code)).orElse(sysParamRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new Exception("Sys Param Invalid")));
+		return Optional.ofNullable((SysParam) redisUtil.getOps(VariableConstant.SYS_PARAM.getValue(), code))
+				.orElse(sysParamRepository.findByCodeAndActiveTrue(code)
+						.orElseThrow(() -> new Exception(ErrorList.SYS_PARAM_INVALID.getDescription())));
 	}
 }
