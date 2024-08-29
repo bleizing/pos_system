@@ -45,6 +45,9 @@ public class Product extends BaseModel {
 	@Column(precision=9, scale=2)
     private BigDecimal price;
 	
+	@Column
+	private String image;
+	
 	@ManyToOne
     @JoinColumn(name="store_id", nullable=false)
     private Store store;

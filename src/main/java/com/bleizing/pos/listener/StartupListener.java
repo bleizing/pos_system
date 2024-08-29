@@ -102,6 +102,15 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 			sysParamRepository.save(sysParam2);
 			redisUtil.setOps(VariableConstant.SYS_PARAM.getValue(), SysParamConstant.ACCESS_CONTROL_REQUIRED.toString(), sysParam2);
 			
+			SysParam sysParam3 = SysParam.builder()
+					.name("Base URL MinIO")
+					.code(SysParamConstant.URL_MINIO.toString())
+					.description("Base URL for MinIO")
+					.value("http://162.168.60.251:9000/")
+					.build();
+			sysParamRepository.save(sysParam3);
+			redisUtil.setOps(VariableConstant.SYS_PARAM.getValue(), SysParamConstant.URL_MINIO.toString(), sysParam3);
+			
 			User user;
 			user = User.builder()
 					.name("superadmin")

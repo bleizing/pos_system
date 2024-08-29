@@ -27,8 +27,12 @@ import com.bleizing.pos.repository.StoreRepository;
 public class ProductService {
 	@Autowired
 	private ProductRepository productRepository;
+	
 	@Autowired
 	private StoreRepository storeRepository;
+	
+	@Autowired
+	private StorageService storageService;
 	
 	@Logged
 	public GetProductResponse get(Long id, String code) throws Exception {
@@ -42,11 +46,12 @@ public class ProductService {
 		products = productRepository.findByStoreIdAndActiveTrue(id).orElseThrow(() -> new DataNotFoundException("Products not found"));
 		
 		List<GetProductWrapper> wrapper = new ArrayList<>();
-		products.stream().forEach(product -> {
+		products.stream().forEach(product -> {			
 			wrapper.add(GetProductWrapper.builder()
 					.name(product.getName())
 					.code(product.getCode())
 					.price(product.getPrice())
+					.image(product.getImage() != null ? storageService.getFullPath(product.getImage()) : "")
 					.build());
 		});
 		
@@ -73,6 +78,7 @@ public class ProductService {
 				.code(request.getCode())
 				.name(request.getName())
 				.price(request.getPrice())
+				.image(request.getImage())
 				.store(store)
 				.build();
 		product.setCreatedBy(userId);

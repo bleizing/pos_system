@@ -35,6 +35,10 @@ public class CreateProductRequest implements Serializable {
 	@DecimalMin(value = "0.0")
 	@Schema(example = "125000")
 	private BigDecimal price;
+	
+	@NotBlank
+	@Schema(example = "product/EF52FA4C0E9BDD90104E35482CDEC896C1872CA59613B681B03AA87C03B74CD3")
+	private String image;
 
 	@Nullable
 	private String storeCode;

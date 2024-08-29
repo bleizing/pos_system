@@ -10,7 +10,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bleizing.pos.constant.SysParamConstant;
+import com.bleizing.pos.constant.VariableConstant;
+import com.bleizing.pos.model.SysParam;
 import com.bleizing.pos.util.PasswordUtil;
+import com.bleizing.pos.util.RedisUtil;
 
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
@@ -25,6 +29,9 @@ public class StorageService {
 	
 	@Value("${minio.bucket.name}")
     private String defaultBucketName;
+	
+	@Autowired
+	private RedisUtil redisUtil;
 	
 	public String uploadFile(MultipartFile file) throws IOException {
 		return uploadFile(defaultBucketName, file);
@@ -69,5 +76,15 @@ public class StorageService {
 			throw new Exception("deleteFile Error: " + e.getMessage());
 		}
     	return true;
+    }
+    
+    public String getFullPath(String objectName) {
+    	SysParam sysParam = (SysParam) redisUtil.getOps(VariableConstant.SYS_PARAM.getValue(), SysParamConstant.URL_MINIO.toString());
+    	StringBuilder sb = new StringBuilder();
+    	sb.append(sysParam.getValue());
+    	sb.append(defaultBucketName);
+    	sb.append("/");
+    	sb.append(objectName);
+    	return sb.toString();
     }
 }
