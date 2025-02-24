@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
@@ -76,6 +77,9 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 	@Autowired
 	private RedisUtil redisUtil;
 	
+	 @Value("${storage.platform}")
+	 private String storagePlatform;
+	
 	@Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
 		log.info("Startup Listener");
@@ -110,6 +114,23 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build();
 			sysParamRepository.save(sysParam3);
 			redisUtil.setOps(VariableConstant.SYS_PARAM.getValue(), SysParamConstant.URL_MINIO.toString(), sysParam3);
+			
+
+//			log.info("storage platform 1 = {}", storagePlatform);
+//			SysParam sysParam4 = SysParam.builder()
+//					.name("Storage Platform")
+//					.code(SysParamConstant.STORAGE_PLATFORM.toString())
+//					.description("Platform for Storage")
+//					.value("s3")
+//					.build();
+//			sysParamRepository.save(sysParam4);
+//			redisUtil.setOps(VariableConstant.SYS_PARAM.getValue(), SysParamConstant.STORAGE_PLATFORM.toString(), sysParam4);
+//			
+//			Properties properties = new Properties();
+//			properties.setProperty("storage.platform", sysParam4.getValue());
+//			
+//			log.info("storage platform 2 = {}", storagePlatform);
+//			log.info("storage platform 3 = {}", properties.getProperty("storage.platform"));
 			
 			User user;
 			user = User.builder()

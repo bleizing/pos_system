@@ -30,7 +30,7 @@ import jakarta.validation.Valid;
 
 @Tag(name = "Product", description = "Product Controller")
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/api/v1/product")
 @SecurityRequirement(name = "Authorization")
 public class ProductController {
 	@Autowired

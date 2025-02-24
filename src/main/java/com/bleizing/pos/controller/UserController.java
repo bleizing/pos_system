@@ -15,7 +15,7 @@ import jakarta.validation.Valid;
 
 @Tag(name = "User", description = "User Controller")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/v1/user")
 public class UserController {
 	@Autowired
 	private UserService userService;

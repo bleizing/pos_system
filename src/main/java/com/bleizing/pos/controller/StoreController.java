@@ -31,7 +31,7 @@ import jakarta.validation.Valid;
 
 @Tag(name = "Store", description = "Store Controller")
 @RestController
-@RequestMapping("/store")
+@RequestMapping("/api/v1/store")
 @SecurityRequirement(name = "Authorization")
 public class StoreController {
 	@Autowired
