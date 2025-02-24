@@ -26,11 +26,16 @@ public class UpdateProductRequest implements Serializable {
 	@Schema(example = "T2")
 	private String code;
 
-	@Schema(example = "Toko B1")
+	@Nullable
+	@Schema(example = "Test2")
 	private String name;
 	
 	@Nullable
-	@DecimalMin(value = "0.0")
+	@DecimalMin(value = "0.1")
 	@Schema(example = "100000")
 	private BigDecimal price;
+	
+	@Nullable
+	@Schema(example = "product/EF52FA4C0E9BDD90104E35482CDEC896C1872CA59613B681B03AA87C03B74CD3")
+	private String image;
 }

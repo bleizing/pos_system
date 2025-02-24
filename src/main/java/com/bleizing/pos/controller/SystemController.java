@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "System", description = "System Controller")
 @RestController
-@RequestMapping("/sys")
+@RequestMapping("/api/v1/sys")
 @SecurityRequirement(name = "Authorization")
 public class SystemController {
 	@Autowired

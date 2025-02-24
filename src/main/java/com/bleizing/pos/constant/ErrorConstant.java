@@ -7,9 +7,11 @@ public enum ErrorConstant {
 	BEARER_NULL("Bearer token is null"),
 	TOKEN_INVALID("Token is invalid"),
 	CODE_EMPTY("Code must be filled"),
-	INVALID_NAME("Invalid file name"),
+	INVALID_FILENAME("Invalid file name"),
 	
 	CREDENTIAL_INCORRECT("Email or password incorrect"),
+	CREATE_BUCKET_FAILED("createBucket Error: "),
+	CHECK_BUCKET_EXISTS_INVALID("checkBucketExists Invalid"),
 	UPLOAD_FAILED("uploadFile Error: "),
 	DELETE_FAILED("deleteFile Error: "),
 	

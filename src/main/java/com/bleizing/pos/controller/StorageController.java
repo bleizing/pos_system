@@ -23,7 +23,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Storage", description = "Storage Controller")
 @RestController
-@RequestMapping("/storage")
+@RequestMapping("/api/v1/storage")
 @SecurityRequirement(name = "Authorization")
 public class StorageController {
 
@@ -47,6 +47,6 @@ public class StorageController {
 	@Authenticated
 	@AccessControl
 	public DeleteStorageResponse delete(@RequestParam(value = "filename") String filename) throws Exception {
-		return DeleteStorageResponse.builder().success(storageService.deletFile(filename)).build();
+		return DeleteStorageResponse.builder().success(storageService.deleteFile(filename)).build();
 	}
 }

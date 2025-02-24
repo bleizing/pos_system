@@ -104,6 +104,9 @@ public class ProductService {
 		if (!Objects.isNull(request.getPrice())) {
 			product.setPrice(request.getPrice());
 		}
+		if (!Objects.isNull(request.getImage()) && !request.getImage().isBlank()) {
+			product.setImage(request.getImage());
+		}
 		
 		productRepository.save(product);
 		
