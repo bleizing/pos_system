@@ -16,17 +16,13 @@ public class S3Config {
 	String accessKey;
 
    @Value("${aws.secret.key}")
-   String secretKey;
-   
-   @Value("${aws.region.name}")
-   String regionName;
-	
+   String secretKey;	
 
    @Bean
    public S3Client s3Client() {
 	   return S3Client
 			   .builder()
-			   .region(Region.of(regionName))
+			   .region(Region.AP_SOUTHEAST_1)
 			   .credentialsProvider(StaticCredentialsProvider.create(getAwsCredentials()))
 			   .build();
    }

@@ -2,6 +2,7 @@ package com.bleizing.pos.interfaces.impl;
 
 import java.io.File;
 import java.io.InputStream;
+import java.nio.file.FileSystems;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,8 +37,6 @@ public class S3Platform implements StoragePlatform {
 	@Logged
 	@Override
 	public String uploadFile(String subfolder, String objectName, InputStream inputStream, String contentType) throws Exception {
-		String fileName = "";
-		
 		boolean bucketExist = bucketExist(defaultBucketName);
 		if (!bucketExist) {
 			log.info("bucket not exists");
@@ -45,17 +44,18 @@ public class S3Platform implements StoragePlatform {
 		}
 		
 		try {
-			fileName = createObjectName(subfolder, objectName);
-			File file = new File(fileName);
+			String fileName = createObjectName("pos/" + subfolder, objectName);
+			File file = new File(objectName);
 			
 			s3Client.putObject(request -> request
 			    .bucket(defaultBucketName)
-			    .key(file.getName())
+			    .key(fileName)
 			    .ifNoneMatch("*"), 
-			    file.toPath());
+			    FileSystems.getDefault().getPath(file.getPath()));
 			
-			return objectName;
+			return fileName;
         } catch (Exception e) {
+        	e.printStackTrace();
             throw new RuntimeException(ErrorConstant.UPLOAD_FAILED.getDescription() + e.getMessage());
         }
 	}
@@ -69,6 +69,7 @@ public class S3Platform implements StoragePlatform {
 		} catch (NoSuchBucketException  e) {
 			return false;
 		} catch (Exception e) {
+        	e.printStackTrace();
 			throw new Exception(ErrorConstant.CHECK_BUCKET_EXISTS_INVALID.getDescription() + e.getMessage());
 		}
 	}
@@ -105,5 +106,4 @@ public class S3Platform implements StoragePlatform {
 		SysParam sysParam = (SysParam) redisUtil.getOps(VariableConstant.SYS_PARAM.getValue(), SysParamConstant.URL_S3.toString());
 		return getFullPath(sysParam.getValue(), defaultBucketName, objectName);
 	}
-
 }
