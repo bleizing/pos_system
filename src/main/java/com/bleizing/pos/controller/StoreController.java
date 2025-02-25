@@ -49,7 +49,7 @@ public class StoreController {
 //            description  = "Store code",
 //            example = "S2",
 //            required = false)
-            @Nullable @RequestParam(value = "code", required = false) String code, HttpServletRequest servletRequest) throws Exception {
+            @Nullable @RequestParam(value = "store_code", required = false) String code, HttpServletRequest servletRequest) throws Exception {
 		return storeService.getStoreByUserLoggedIn((Long) servletRequest.getAttribute(VariableConstant.STORE_ID.getValue()), code);
 	}
 	
@@ -60,7 +60,7 @@ public class StoreController {
 		return storeService.create(request, (Long) servletRequest.getAttribute(VariableConstant.USER_ID.getValue()));
 	}
 	
-	@GetMapping("/getAll")
+	@GetMapping("/get-all")
 	@Authenticated
 	@AccessControl
 	public GetAllStoreResponse getAll() {

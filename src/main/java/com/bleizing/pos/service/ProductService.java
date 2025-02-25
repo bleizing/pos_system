@@ -13,6 +13,7 @@ import com.bleizing.pos.dto.CreateProductRequest;
 import com.bleizing.pos.dto.CreateProductReseponse;
 import com.bleizing.pos.dto.DeleteProductRequest;
 import com.bleizing.pos.dto.DeleteProductResponse;
+import com.bleizing.pos.dto.GetProductDetailResponse;
 import com.bleizing.pos.dto.GetProductResponse;
 import com.bleizing.pos.dto.GetProductWrapper;
 import com.bleizing.pos.dto.UpdateProductRequest;
@@ -57,6 +58,26 @@ public class ProductService {
 		});
 		
 		return GetProductResponse.builder().products(wrapper).build();
+	}
+	
+	@Logged
+	public GetProductDetailResponse getDetail(Long id, String code) throws Exception {
+		Product product;
+		if (id == 0) {
+			if (Objects.isNull(code) || code.isBlank()) {
+				throw new Exception(ErrorConstant.CODE_EMPTY.getDescription());
+			}
+			id = productRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new DataNotFoundException(ErrorConstant.PRODUCTS_NOT_FOUND.getDescription())).getStore().getId();
+		}
+		product = productRepository.findByCodeAndStoreIdAndActiveTrue(code, id).orElseThrow(() -> new DataNotFoundException(ErrorConstant.PRODUCTS_NOT_FOUND.getDescription()));
+		
+		return GetProductDetailResponse.builder()
+				.code(product.getCode())
+				.name(product.getName())
+				.price(product.getPrice())
+				.image(product.getImage())
+				.storeCode(product.getStore().getCode())
+				.build();
 	}
 	
 	@Logged

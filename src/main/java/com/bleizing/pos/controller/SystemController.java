@@ -20,7 +20,7 @@ public class SystemController {
 	@Autowired
 	private SystemService systemService;
 	
-	@GetMapping("/initData")
+	@GetMapping("/init-data")
 	@Authenticated
 	@AccessControl
 	public String initData() {

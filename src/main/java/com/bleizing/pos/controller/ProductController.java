@@ -17,6 +17,7 @@ import com.bleizing.pos.dto.CreateProductRequest;
 import com.bleizing.pos.dto.CreateProductReseponse;
 import com.bleizing.pos.dto.DeleteProductRequest;
 import com.bleizing.pos.dto.DeleteProductResponse;
+import com.bleizing.pos.dto.GetProductDetailResponse;
 import com.bleizing.pos.dto.GetProductResponse;
 import com.bleizing.pos.dto.UpdateProductRequest;
 import com.bleizing.pos.dto.UpdateProductResponse;
@@ -39,8 +40,24 @@ public class ProductController {
 	@GetMapping("/get")
 	@Authenticated
 	@AccessControl
-	public GetProductResponse get(@Nullable @RequestParam(value = "code", required = false) String code, HttpServletRequest servletRequest) throws Exception {
+	public GetProductResponse get(@Nullable @RequestParam(value = "store_code", required = false) String code, HttpServletRequest servletRequest) throws Exception {
 		return productService.get((Long) servletRequest.getAttribute(VariableConstant.STORE_ID.getValue()), code);
+	}
+	
+	@GetMapping("/get-detail")
+	@Authenticated
+	@AccessControl
+//	@Parameters({
+//		@Parameter(in = ParameterIn.QUERY, name = "code", schema = @Schema(type = "string", defaultValue = "S2"), required = false)
+//	})
+	public GetProductDetailResponse getDetail(
+//			@Parameter(
+//            name =  "code",
+//            description  = "Store code",
+//            example = "S2",
+//            required = false)
+            @RequestParam(value = "product_code", required = true) String code, HttpServletRequest servletRequest) throws Exception {
+		return productService.getDetail((Long) servletRequest.getAttribute(VariableConstant.STORE_ID.getValue()), code);
 	}
 	
 	@PostMapping("/create")
