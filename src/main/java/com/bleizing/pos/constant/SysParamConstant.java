@@ -5,4 +5,5 @@ public enum SysParamConstant {
 	ACCESS_CONTROL_REQUIRED,
 	STORAGE_PLATFORM,
 	URL_MINIO,
+	URL_S3,
 }

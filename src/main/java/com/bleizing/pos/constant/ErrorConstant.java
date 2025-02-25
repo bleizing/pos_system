@@ -11,7 +11,7 @@ public enum ErrorConstant {
 	
 	CREDENTIAL_INCORRECT("Email or password incorrect"),
 	CREATE_BUCKET_FAILED("createBucket Error: "),
-	CHECK_BUCKET_EXISTS_INVALID("checkBucketExists Invalid"),
+	CHECK_BUCKET_EXISTS_INVALID("checkBucketExists Invalid: "),
 	UPLOAD_FAILED("uploadFile Error: "),
 	DELETE_FAILED("deleteFile Error: "),
 	
