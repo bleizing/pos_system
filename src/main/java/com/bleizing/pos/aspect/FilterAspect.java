@@ -125,7 +125,8 @@ public class FilterAspect  {
     	if (bearer == null || bearer.isBlank()) {
     		throw new TokenRequiredException(ErrorConstant.BEARER_NULL.getDescription());
     	}
-    	String token = bearer.substring(7);
+    	String regex = "(?i)Bearer ";
+    	String token = bearer.replaceAll(regex, "");
 		
 		if (!jwtService.isTokenValid(token)) {
 			throw new TokenInvalidException(ErrorConstant.TOKEN_INVALID.getDescription());
