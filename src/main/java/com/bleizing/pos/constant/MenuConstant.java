@@ -8,9 +8,8 @@ public enum MenuConstant {
 	STORE("Store", "STORE", "/store"),
 	PRODUCT("Product", "PRODUCT", "/product"),
 	STORAGE("Storage", "STORAGE", "/storage"),
+	CART("Cart", "CART", "/cart"),
 	;
-
-	
 
 	private final String name;
 	private final String code;

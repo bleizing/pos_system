@@ -1,6 +1,7 @@
 package com.bleizing.pos.service;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,8 @@ import com.bleizing.pos.dto.LoginRequest;
 import com.bleizing.pos.dto.LoginResponse;
 import com.bleizing.pos.error.DataNotFoundException;
 import com.bleizing.pos.error.EmailPasswordInvalid;
+import com.bleizing.pos.error.ErrorList;
+import com.bleizing.pos.error.ForbiddenAccessException;
 import com.bleizing.pos.model.User;
 import com.bleizing.pos.model.UserStore;
 import com.bleizing.pos.repository.UserRepository;
@@ -40,8 +43,12 @@ public class UserService {
 		
 		Long storeId = 0L;
 		if (!userRoleRepository.findByUserIdAndActiveTrue(user.getId()).orElseThrow(() -> new DataNotFoundException(ErrorConstant.USER_ROLE_NOT_FOUND.getDescription())).getRole().getName().equals("SUPERADMIN")) {
-			UserStore userStore = userStoreRepository.findByUserIdAndActiveTrue(user.getId()).orElseThrow(() -> new DataNotFoundException(ErrorConstant.USER_STORE_NOT_FOUND.getDescription()));
-			storeId = userStore.getStore().getId();
+			Optional<UserStore> userStoreOptional = userStoreRepository.findByUserIdAndActiveTrue(user.getId());
+			if (userStoreOptional.isPresent()) {
+				storeId = userStoreOptional.get().getStore().getId();
+			} else {
+				storeId = -1L;
+			}
 		}
 		
 		HashMap<String, Object> claims = new HashMap<>();
@@ -54,5 +61,10 @@ public class UserService {
 				.accessToken(token)
 				.expiredIn(jwtService.getExpirationTime())
 				.build();
+	}
+	
+	@Logged
+	public User getUserLoggedIn(Long userId) {
+		return userRepository.findByIdAndActiveTrue(userId).orElseThrow(() -> new ForbiddenAccessException(ErrorList.FORBIDDEN_ACCESS.getDescription()));
 	}
 }

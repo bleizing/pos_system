@@ -17,6 +17,7 @@ import com.bleizing.pos.dto.CreateProductRequest;
 import com.bleizing.pos.dto.CreateProductReseponse;
 import com.bleizing.pos.dto.DeleteProductRequest;
 import com.bleizing.pos.dto.DeleteProductResponse;
+import com.bleizing.pos.dto.GetAllProductResponse;
 import com.bleizing.pos.dto.GetProductDetailResponse;
 import com.bleizing.pos.dto.GetProductResponse;
 import com.bleizing.pos.dto.UpdateProductRequest;
@@ -42,6 +43,11 @@ public class ProductController {
 	@AccessControl
 	public GetProductResponse get(@Nullable @RequestParam(value = "store_code", required = false) String code, HttpServletRequest servletRequest) throws Exception {
 		return productService.get((Long) servletRequest.getAttribute(VariableConstant.STORE_ID.getValue()), code);
+	}
+	
+	@GetMapping("/get-all")
+	public GetAllProductResponse getAll() {
+		return productService.getAll();
 	}
 	
 	@GetMapping("/get-detail")

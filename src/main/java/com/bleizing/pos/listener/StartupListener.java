@@ -149,6 +149,13 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build();
 			userRepository.saveAndFlush(user1);
 			
+			User user2 = User.builder()
+					.name("customer")
+					.email("customer@tes.com")
+					.password(PasswordUtil.createHash("customer"))
+					.build();
+			userRepository.saveAndFlush(user2);
+			
 			Role role = Role.builder().name(RoleConstant.SUPERADMIN.toString()).build();
 			roleRepository.save(role);
 			
@@ -162,12 +169,22 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 			Role role1 = Role.builder().name(RoleConstant.MANAGER.toString()).build();
 			roleRepository.save(role1);
 			
+			Role role2 = Role.builder().name(RoleConstant.CUSTOMER.toString()).build();
+			roleRepository.save(role2);
+			
 			UserRole userRole1 = UserRole.builder()
 					.role(role1)
 					.user(user1)
 					.build();
 			userRoleRepository.saveAndFlush(userRole1);
 			redisUtil.setOps(VariableConstant.USER_ROLE.getValue(), String.valueOf(user1.getId()), role1);
+			
+			UserRole userRole2 = UserRole.builder()
+					.role(role2)
+					.user(user2)
+					.build();
+			userRoleRepository.saveAndFlush(userRole2);
+			redisUtil.setOps(VariableConstant.USER_ROLE.getValue(), String.valueOf(user2.getId()), role2);
 			
 			Permission permission = Permission.builder().name(PermissionContstant.CREATE.toString()).build();
 			permissionRepository.saveAndFlush(permission);
@@ -241,6 +258,14 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.build();
 			menuRepository.saveAndFlush(menu3);
 			redisUtil.setOps(VariableConstant.MENU_ID.getValue(), menu3.getPath(), menu3.getId());
+			
+			Menu menu4 = Menu.builder()
+					.name(MenuConstant.CART.getName())
+					.code(MenuConstant.CART.getCode())
+					.path(MenuConstant.CART.getPath())
+					.build();
+			menuRepository.saveAndFlush(menu4);
+			redisUtil.setOps(VariableConstant.MENU_ID.getValue(), menu4.getPath(), menu4.getId());
 			
 			userStoreRepository.save(UserStore.builder()
 					.store(store1)
@@ -320,6 +345,43 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 			menuRolePermissionRepository.saveAndFlush(menuRolePermission7);
 			redisUtil.setOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), 
 					role1.getId() + ":" + permission3.getId() + ":" + menu3.getId(), 
+					true);
+			
+			MenuRolePermission menuRolePermission8 = MenuRolePermission.builder()
+					.menu(menu4)
+					.role(role2)
+					.permission(permission)
+					.build();
+			menuRolePermissionRepository.saveAndFlush(menuRolePermission8);
+			redisUtil.setOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), 
+					role2.getId() + ":" + permission.getId() + ":" + menu4.getId(), 
+					true);
+			MenuRolePermission menuRolePermission9 = MenuRolePermission.builder()
+					.menu(menu4)
+					.role(role2)
+					.permission(permission1)
+					.build();
+			menuRolePermissionRepository.saveAndFlush(menuRolePermission9);
+			redisUtil.setOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), 
+					role2.getId() + ":" + permission1.getId() + ":" + menu4.getId(), 
+					true);
+			MenuRolePermission menuRolePermission10 = MenuRolePermission.builder()
+					.menu(menu4)
+					.role(role2)
+					.permission(permission2)
+					.build();
+			menuRolePermissionRepository.saveAndFlush(menuRolePermission10);
+			redisUtil.setOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), 
+					role2.getId() + ":" + permission2.getId() + ":" + menu4.getId(), 
+					true);
+			MenuRolePermission menuRolePermission11 = MenuRolePermission.builder()
+					.menu(menu4)
+					.role(role2)
+					.permission(permission3)
+					.build();
+			menuRolePermissionRepository.saveAndFlush(menuRolePermission11);
+			redisUtil.setOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), 
+					role2.getId() + ":" + permission3.getId() + ":" + menu4.getId(), 
 					true);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();

@@ -18,6 +18,7 @@ import com.bleizing.pos.error.EmailPasswordInvalid;
 import com.bleizing.pos.error.ErrorList;
 import com.bleizing.pos.error.ForbiddenAccessException;
 import com.bleizing.pos.error.PathInvalidException;
+import com.bleizing.pos.error.QuanityMinimumException;
 import com.bleizing.pos.error.TokenInvalidException;
 import com.bleizing.pos.error.TokenRequiredException;
 import com.bleizing.pos.error.UserStoreUnmatchException;
@@ -133,6 +134,17 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 				.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.code(ErrorList.DATA_EXISTS.getCode())
 				.message(ErrorList.DATA_EXISTS.getDescription())
+				.debugMessage(ex.getMessage())
+				.build());
+    }
+	
+	@ExceptionHandler(QuanityMinimumException.class)
+	public ResponseEntity<Object> quanityMinimumException(QuanityMinimumException ex) {
+		ex.printStackTrace();
+		return buildResponseEntity(ApiError.builder()
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.code(ErrorList.QUANTITY_MINIMUM.getCode())
+				.message(ErrorList.QUANTITY_MINIMUM.getDescription())
 				.debugMessage(ex.getMessage())
 				.build());
     }

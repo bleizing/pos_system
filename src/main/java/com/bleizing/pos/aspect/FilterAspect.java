@@ -159,10 +159,10 @@ public class FilterAspect  {
 	}
 	
 	private void checkAccessControl(Long roleId, String permission, String path) throws Exception {
-		Optional.of(redisUtil.getOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), roleId + ":" + getPermissionId(permission) + ":" + getMenuId(path)))
+		Optional.ofNullable(redisUtil.getOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), roleId + ":" + getPermissionId(permission) + ":" + getMenuId(path)))
 		.orElse(menuRolePermissionRepository.findByRoleIdAndPermissionIdAndMenuIdAndActiveTrue(roleId, getPermissionId(permission), getMenuId(path))
 				.orElseThrow(() -> new ForbiddenAccessException(ErrorList.FORBIDDEN_ACCESS.getDescription())));
-		}
+	}
 	
 	private Long getMenuId(String path) throws Exception {
 		return Optional.ofNullable((Long) redisUtil.getOps(VariableConstant.MENU_ID.getValue(), path))

@@ -10,4 +10,5 @@ import com.bleizing.pos.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	Optional<User> findByEmailAndActiveTrue(String email);
+	Optional<User> findByIdAndActiveTrue(Long id);
 }

@@ -24,6 +24,9 @@ public enum ErrorConstant {
 	PRODUCTS_NOT_FOUND("Products not found"),
 	USER_ROLE_NOT_FOUND("User Role not found"),
 	USER_STORE_NOT_FOUND("User Store not found"),
+
+	QUANTITY_MINIMUM("Quantity below minimum"),
+	CART_ITEMS_NOT_FOUND("Cart items not found"),
 	;
 	
 	private final String description;
