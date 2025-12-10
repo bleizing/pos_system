@@ -1,6 +1,7 @@
 package com.bleizing.pos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import com.bleizing.pos.annotation.Authenticated;
 import com.bleizing.pos.constant.VariableConstant;
 import com.bleizing.pos.dto.AddToCartRequest;
 import com.bleizing.pos.dto.AddToCartResponse;
+import com.bleizing.pos.dto.GetCartResponse;
 import com.bleizing.pos.service.CartService;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -29,7 +31,14 @@ public class CartController {
 	@PostMapping("/add")
 	@Authenticated
 	@AccessControl
-	public AddToCartResponse addToCart(@Valid @RequestBody AddToCartRequest request, HttpServletRequest servletRequest) {
-		return cartService.addToCart(request, (Long) servletRequest.getAttribute(VariableConstant.USER_ID.getValue()));
+	public AddToCartResponse add(@Valid @RequestBody AddToCartRequest request, HttpServletRequest servletRequest) {
+		return cartService.add(request, (Long) servletRequest.getAttribute(VariableConstant.USER_ID.getValue()));
+	}
+	
+	@GetMapping("/get")
+	@Authenticated
+	@AccessControl
+	public GetCartResponse get(HttpServletRequest servletRequest) {
+		return cartService.get((Long) servletRequest.getAttribute(VariableConstant.USER_ID.getValue()));
 	}
 }

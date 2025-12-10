@@ -1,5 +1,6 @@
 package com.bleizing.pos.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,8 @@ import com.bleizing.pos.annotation.Logged;
 import com.bleizing.pos.constant.ErrorConstant;
 import com.bleizing.pos.dto.AddToCartRequest;
 import com.bleizing.pos.dto.AddToCartResponse;
+import com.bleizing.pos.dto.GetCartResponse;
+import com.bleizing.pos.dto.GetCartWrapper;
 import com.bleizing.pos.error.QuanityMinimumException;
 import com.bleizing.pos.model.Cart;
 import com.bleizing.pos.model.CartItem;
@@ -29,7 +32,7 @@ public class CartService {
 	private ProductService productService;
 
 	@Logged
-	public AddToCartResponse addToCart(AddToCartRequest request, Long userId) {
+	public AddToCartResponse add(AddToCartRequest request, Long userId) {
 		Cart cart;
 		List<CartItem> cartItems;
 		Product product = productService.getProduct(Long.valueOf(request.getProductId()));
@@ -91,5 +94,31 @@ public class CartService {
 		}
 		
 		return AddToCartResponse.builder().success(true).build();
+	}
+	
+	@Logged
+	public GetCartResponse get(Long userId) {
+		List<GetCartWrapper> wrapper = new ArrayList<>();
+		Cart cart = null;
+		
+		Optional<Cart> cartOptional = cartRepository.findByUserIdAndCompleteFalse(userId);
+		if (cartOptional.isPresent()) {
+			cart = cartOptional.get();
+		}
+		
+		if (cart != null) {
+			List<CartItem> cartItems = cartItemRepository.findByCartId(cart.getId()).get();
+			if (cartItems != null) {
+				cartItems.stream().forEach((cartItem) -> {
+					wrapper.add(GetCartWrapper.builder()
+							.productId(cartItem.getProduct().getId())
+							.productName(cartItem.getProduct().getName())
+							.quantity(cartItem.getQuantity())
+							.build());
+				});
+			}
+		}
+		
+		return GetCartResponse.builder().carts(wrapper).build();
 	}
 }
