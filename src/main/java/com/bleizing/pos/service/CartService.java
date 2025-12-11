@@ -35,20 +35,13 @@ public class CartService {
 	public AddToCartResponse add(AddToCartRequest request, Long userId) {
 		Cart cart;
 		List<CartItem> cartItems;
-		Product product = productService.getProduct(Long.valueOf(request.getProductId()));
+		Product product = productService.getProductByCode(request.getProductCode());
 		
 		Optional<Cart> cartOptional = cartRepository.findByUserIdAndCompleteFalse(userId);
 		if (!cartOptional.isPresent()) {
 			if (request.getQuantity() < 1) {
 				throw new QuanityMinimumException(ErrorConstant.QUANTITY_MINIMUM.getDescription());
 			}
-			
-//			try {
-//				product = productService.getProduct(Long.valueOf(request.getProductId()));
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				return AddToCartResponse.builder().success(false).build();
-//			}
 			
 			cart = Cart.builder()
 					.user(userService.getUserLoggedIn(userId))
@@ -67,7 +60,7 @@ public class CartService {
 			
 			CartItem cartItem = null;
 			for (CartItem item : cartItems) {
-				if (item.getProduct().getId() == Long.valueOf(request.getProductId())) {
+				if (item.getProduct().getCode().equals(request.getProductCode())) {
 					cartItem = item;
 					break;
 				}
@@ -111,7 +104,7 @@ public class CartService {
 			if (cartItems != null) {
 				cartItems.stream().forEach((cartItem) -> {
 					wrapper.add(GetCartWrapper.builder()
-							.productId(cartItem.getProduct().getId())
+							.productCode(cartItem.getProduct().getCode())
 							.productName(cartItem.getProduct().getName())
 							.quantity(cartItem.getQuantity())
 							.build());

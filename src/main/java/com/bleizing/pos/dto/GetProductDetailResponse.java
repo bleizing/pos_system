@@ -23,4 +23,5 @@ public class GetProductDetailResponse implements Serializable {
 	private BigDecimal price;
 	private String image;
 	private String storeCode;
+	private int stock;
 }

@@ -22,8 +22,8 @@ public class AddToCartRequest implements Serializable {
 	private static final long serialVersionUID = 2158641359336996377L;
 
 	@NotBlank
-	@Schema(example = "1")
-	private String productId;
+	@Schema(example = "T1")
+	private String productCode;
 	
 	@NotNull
 	@DecimalMin(value = "0")

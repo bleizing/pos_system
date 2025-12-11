@@ -22,4 +22,5 @@ public class GetProductWrapper implements Serializable {
 	private String code;
 	private BigDecimal price;
 	private String image;
+	private int stock;
 }

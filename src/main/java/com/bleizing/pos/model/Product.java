@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -51,4 +52,8 @@ public class Product extends BaseModel {
 	@ManyToOne
     @JoinColumn(name="store_id", nullable=false)
     private Store store;
+	
+	@Min(value = 1)
+	@Column
+	private int stock;
 }

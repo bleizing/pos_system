@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import io.micrometer.common.lang.Nullable;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -42,4 +43,8 @@ public class CreateProductRequest implements Serializable {
 
 	@Nullable
 	private String storeCode;
+	
+	@NotNull
+	@Min(value = 1)
+	private int stock;
 }

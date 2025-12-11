@@ -17,7 +17,7 @@ public class GetCartWrapper implements Serializable {
 	 */
 	private static final long serialVersionUID = -8994967096456855898L;
 	
-	private Long productId;
+	private String productCode;
 	private String productName;
 	private int quantity;
 }

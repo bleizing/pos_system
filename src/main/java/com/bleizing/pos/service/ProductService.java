@@ -56,6 +56,7 @@ public class ProductService {
 					.code(product.getCode())
 					.price(product.getPrice())
 					.image(product.getImage() != null ? storageService.getFullPath(product.getImage()) : "")
+					.stock(product.getStock())
 					.build());
 		});
 		
@@ -72,6 +73,7 @@ public class ProductService {
 					.store(product.getStore().getName())
 					.price(product.getPrice())
 					.image(product.getImage() != null ? storageService.getFullPath(product.getImage()) : "")
+					.stock(product.getStock())
 					.build());
 		});
 		
@@ -95,6 +97,7 @@ public class ProductService {
 				.price(product.getPrice())
 				.image(product.getImage())
 				.storeCode(product.getStore().getCode())
+				.stock(product.getStock())
 				.build();
 	}
 	
@@ -120,6 +123,7 @@ public class ProductService {
 				.price(request.getPrice())
 				.image(request.getImage())
 				.store(store)
+				.stock(request.getStock())
 				.build();
 		product.setCreatedBy(userId);
 		product = productRepository.saveAndFlush(product);
@@ -146,6 +150,9 @@ public class ProductService {
 		if (!Objects.isNull(request.getImage()) && !request.getImage().isBlank()) {
 			product.setImage(request.getImage());
 		}
+		if (!Objects.isNull(request.getStock())) {
+			product.setStock(request.getStock());
+		}
 		
 		productRepository.save(product);
 		
@@ -169,7 +176,7 @@ public class ProductService {
 	}
 	
 	@Logged
-	public Product getProduct(Long id) {
-		return productRepository.findByIdAndActiveTrue(id).orElseThrow(() -> new DataNotFoundException(ErrorConstant.PRODUCT_NOT_FOUND.getDescription()));
+	public Product getProductByCode(String code) {
+		return productRepository.findByCodeAndActiveTrue(code).orElseThrow(() -> new DataNotFoundException(ErrorConstant.PRODUCT_NOT_FOUND.getDescription()));
 	}
 }

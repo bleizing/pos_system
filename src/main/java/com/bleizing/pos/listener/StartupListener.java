@@ -219,12 +219,14 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 					.code("T1")
 					.price(new BigDecimal(100))
 					.store(store)
+					.stock(10)
 					.build());
 			productRepository.save(Product.builder()
 					.name("Test2")
 					.code("T2")
 					.price(new BigDecimal(100.50))
 					.store(store)
+					.stock(1)
 					.build());
 			
 			Menu menu = Menu.builder()
