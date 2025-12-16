@@ -26,6 +26,7 @@ public enum ErrorConstant {
 	USER_STORE_NOT_FOUND("User Store not found"),
 
 	QUANTITY_MINIMUM("Quantity below minimum"),
+	OUT_OF_STOCK("Product out of stock"),
 	CART_ITEMS_NOT_FOUND("Cart items not found"),
 	;
 	

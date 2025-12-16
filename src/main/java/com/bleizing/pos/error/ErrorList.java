@@ -18,6 +18,7 @@ public enum ErrorList {
 	EMAIL_PASSWORD_INVALID("5000", "Email or Password Wrong"),
 	
 	QUANTITY_MINIMUM("6000", "Quantity below minimum"),
+	OUT_OF_STOCK("6001", "Product out of stock"),
 	
 	SYS_EXCEPTION("9999", "System Exception");
 	

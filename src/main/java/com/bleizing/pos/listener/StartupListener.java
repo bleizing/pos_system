@@ -15,6 +15,9 @@ import com.bleizing.pos.constant.PermissionContstant;
 import com.bleizing.pos.constant.RoleConstant;
 import com.bleizing.pos.constant.SysParamConstant;
 import com.bleizing.pos.constant.VariableConstant;
+import com.bleizing.pos.enumeration.BankingCategory;
+import com.bleizing.pos.enumeration.LovCategory;
+import com.bleizing.pos.model.Lov;
 import com.bleizing.pos.model.Menu;
 import com.bleizing.pos.model.MenuRolePermission;
 import com.bleizing.pos.model.Permission;
@@ -25,6 +28,7 @@ import com.bleizing.pos.model.SysParam;
 import com.bleizing.pos.model.User;
 import com.bleizing.pos.model.UserRole;
 import com.bleizing.pos.model.UserStore;
+import com.bleizing.pos.repository.LovRepository;
 import com.bleizing.pos.repository.MenuRepository;
 import com.bleizing.pos.repository.MenuRolePermissionRepository;
 import com.bleizing.pos.repository.PermissionRepository;
@@ -73,6 +77,9 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 	
 	@Autowired
 	private SysParamRepository sysParamRepository;
+	
+	@Autowired
+	private LovRepository lovRepository;
 	
 	@Autowired
 	private RedisUtil redisUtil;
@@ -385,6 +392,18 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 			redisUtil.setOps(VariableConstant.MENU_ROLE_PERMISSION.getValue(), 
 					role2.getId() + ":" + permission3.getId() + ":" + menu4.getId(), 
 					true);
+			
+			lovRepository.save(Lov.builder()
+					.code(BankingCategory.QRIS.getCode())
+					.name(BankingCategory.QRIS.getName())
+					.category(LovCategory.BANKING)
+					.build());
+			lovRepository.save(Lov.builder()
+					.code(BankingCategory.BCA_VA.getCode())
+					.name(BankingCategory.BCA_VA.getName())
+					.category(LovCategory.BANKING)
+					.build());
+			
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (InvalidKeySpecException e) {

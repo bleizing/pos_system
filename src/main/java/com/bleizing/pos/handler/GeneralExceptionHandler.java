@@ -17,6 +17,7 @@ import com.bleizing.pos.error.DataNotFoundException;
 import com.bleizing.pos.error.EmailPasswordInvalid;
 import com.bleizing.pos.error.ErrorList;
 import com.bleizing.pos.error.ForbiddenAccessException;
+import com.bleizing.pos.error.OutOfStockException;
 import com.bleizing.pos.error.PathInvalidException;
 import com.bleizing.pos.error.QuanityMinimumException;
 import com.bleizing.pos.error.TokenInvalidException;
@@ -145,6 +146,17 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 				.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.code(ErrorList.QUANTITY_MINIMUM.getCode())
 				.message(ErrorList.QUANTITY_MINIMUM.getDescription())
+				.debugMessage(ex.getMessage())
+				.build());
+    }
+	
+	@ExceptionHandler(OutOfStockException.class)
+	public ResponseEntity<Object> outOfStockException(OutOfStockException ex) {
+		ex.printStackTrace();
+		return buildResponseEntity(ApiError.builder()
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.code(ErrorList.OUT_OF_STOCK.getCode())
+				.message(ErrorList.OUT_OF_STOCK.getDescription())
 				.debugMessage(ex.getMessage())
 				.build());
     }

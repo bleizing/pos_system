@@ -20,4 +20,5 @@ public class GetCartWrapper implements Serializable {
 	private String productCode;
 	private String productName;
 	private int quantity;
+	private boolean availableToBuy;
 }

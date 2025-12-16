@@ -13,6 +13,7 @@ import com.bleizing.pos.dto.AddToCartRequest;
 import com.bleizing.pos.dto.AddToCartResponse;
 import com.bleizing.pos.dto.GetCartResponse;
 import com.bleizing.pos.dto.GetCartWrapper;
+import com.bleizing.pos.error.OutOfStockException;
 import com.bleizing.pos.error.QuanityMinimumException;
 import com.bleizing.pos.model.Cart;
 import com.bleizing.pos.model.CartItem;
@@ -35,7 +36,12 @@ public class CartService {
 	public AddToCartResponse add(AddToCartRequest request, Long userId) {
 		Cart cart;
 		List<CartItem> cartItems;
+		
 		Product product = productService.getProductByCode(request.getProductCode());
+		
+		if (product.getStock() < request.getQuantity()) {
+			throw new OutOfStockException(ErrorConstant.OUT_OF_STOCK.getDescription());
+		}
 		
 		Optional<Cart> cartOptional = cartRepository.findByUserIdAndCompleteFalse(userId);
 		if (!cartOptional.isPresent()) {
@@ -58,20 +64,13 @@ public class CartService {
 			cart = cartOptional.get();
 			cartItems = cartItemRepository.findByCartId(cart.getId()).get();
 			
-			CartItem cartItem = null;
-			for (CartItem item : cartItems) {
-				if (item.getProduct().getCode().equals(request.getProductCode())) {
-					cartItem = item;
-					break;
-				}
-			}
-			
-			if (cartItem == null) {
-				cartItem = CartItem.builder()
-						.cart(cart)
-						.product(product)
-						.build();
-			}
+			CartItem cartItem = cartItems.stream()
+					.filter(item -> item.getProduct().getCode().equals(request.getProductCode()))
+					.findFirst()
+					.orElse(CartItem.builder()
+							.cart(cart)
+							.product(product)
+							.build());
 			
 			if (request.getQuantity() > 0) {
 				cartItem.setQuantity(request.getQuantity());
@@ -107,6 +106,7 @@ public class CartService {
 							.productCode(cartItem.getProduct().getCode())
 							.productName(cartItem.getProduct().getName())
 							.quantity(cartItem.getQuantity())
+							.availableToBuy(cartItem.getProduct().isActive() ? true : false)
 							.build());
 				});
 			}
