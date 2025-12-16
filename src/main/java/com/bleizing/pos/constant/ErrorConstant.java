@@ -30,6 +30,8 @@ public enum ErrorConstant {
 	CART_ITEMS_NOT_FOUND("Cart items not found"),
 
 	CART_NOT_EXIST("Cart not exist"),
+
+	PAYMENT_NOT_FOUND("Payment not found"),
 	
 	ALREADY_PAYMENT("Already payment"),
 	;

@@ -18,10 +18,13 @@ import com.bleizing.pos.dto.CartPaymentRequest;
 import com.bleizing.pos.dto.CartPaymentResponse;
 import com.bleizing.pos.dto.GetCartResponse;
 import com.bleizing.pos.dto.GetCartWrapper;
+import com.bleizing.pos.dto.PaymentUpdateRequest;
+import com.bleizing.pos.dto.PaymentUpdateResponse;
 import com.bleizing.pos.enumeration.BankingCategory;
 import com.bleizing.pos.enumeration.PaymentStatus;
 import com.bleizing.pos.error.AlreadyPaymentException;
 import com.bleizing.pos.error.CartNotExistException;
+import com.bleizing.pos.error.DataNotFoundException;
 import com.bleizing.pos.error.OutOfStockException;
 import com.bleizing.pos.error.QuanityMinimumException;
 import com.bleizing.pos.model.Cart;
@@ -134,52 +137,68 @@ public class CartService {
 	
 	@Logged
 	public CartPaymentResponse payment(CartPaymentRequest request, Long userId) {
-		Cart cart = null;
 		Payment payment = null;
-		boolean cartExist = false;
 		
-		Optional<Cart> cartOptional = cartRepository.findByUserIdAndCompleteFalse(userId);
-		if (cartOptional.isPresent()) {
-			cart = cartOptional.get();
-			cartExist = true;
-		}
+		Cart cart = cartRepository.findByUserIdAndCompleteFalse(userId).orElseThrow(() -> new CartNotExistException(ErrorConstant.CART_NOT_EXIST.getDescription()));
 		
-		if (cart != null) {
-			cartExist = true;
-		}
-		
-		if (cartExist) {
-			Optional<Payment> paymentOptional = paymentRepository.findByCartId(cart.getId());
-			if (!paymentOptional.isPresent()) {
-				payment = Payment.builder()
-						.cart(cart)
-						.invoiceNumber(generateInvoiceNumber())	// TODO : Generate invoice number
-						.totalPrice(request.getTotalPrice())
-						.paymentMethod(BankingCategory.valueOf(request.getPaymentMethod()))
-						.paymentStatus(PaymentStatus.WAITING_FOR_PAYMENT)
-						.paymentIssueAt(LocalDateTime.now())
-						.build();
-				
-				paymentRepository.save(payment);
-				
-				if (!Objects.isNull(request.getAddress())) {
-					cart.setAddress(request.getAddress());
-				}
-				
-				if (!Objects.isNull(request.getPhone())) {
-					cart.setPhone(request.getPhone());
-				}
-				
-				cartRepository.save(cart);
-				
-			} else {
-				throw new AlreadyPaymentException(ErrorConstant.ALREADY_PAYMENT.getDescription());
+		Optional<Payment> paymentOptional = paymentRepository.findByCartIdAndActiveTrue(cart.getId());
+		if (!paymentOptional.isPresent()) {
+			payment = Payment.builder()
+					.cart(cart)
+					.invoiceNumber(generateInvoiceNumber())
+					.totalPrice(request.getTotalPrice())
+					.paymentMethod(BankingCategory.valueOf(request.getPaymentMethod()))
+					.paymentStatus(PaymentStatus.WAITING_FOR_PAYMENT)
+					.paymentIssueAt(LocalDateTime.now())
+					.build();
+			
+			paymentRepository.save(payment);
+			
+			if (!Objects.isNull(request.getAddress())) {
+				cart.setAddress(request.getAddress());
 			}
+			
+			if (!Objects.isNull(request.getPhone())) {
+				cart.setPhone(request.getPhone());
+			}
+			cart.setPayment(true);
+			
+			cartRepository.save(cart);
+			
 		} else {
-			throw new CartNotExistException(ErrorConstant.CART_NOT_EXIST.getDescription());
+			throw new AlreadyPaymentException(ErrorConstant.ALREADY_PAYMENT.getDescription());
 		}
 		
 		return CartPaymentResponse.builder().invoiceNumber(payment.getInvoiceNumber()).build();
+	}
+	
+	@Logged
+	public PaymentUpdateResponse paymentUpdate(PaymentUpdateRequest request) {
+		PaymentStatus paymentStatus;
+		
+		Payment payment = paymentRepository.findByInvoiceNumberAndActiveTrue(request.getInvoiceNumber()).orElseThrow(() -> new DataNotFoundException(ErrorConstant.PAYMENT_NOT_FOUND.getDescription()));
+		Cart cart = payment.getCart();
+		
+		if (cart.isComplete()) {
+			throw new AlreadyPaymentException(ErrorConstant.ALREADY_PAYMENT.getDescription());
+		}
+		
+		try {
+			paymentStatus = PaymentStatus.valueOf(request.getStatus().toUpperCase());
+		} catch (Exception e) {
+			paymentStatus = PaymentStatus.CANCEL;
+		}
+		
+		if (paymentStatus.equals(PaymentStatus.SETTLEMENT) || paymentStatus.equals(PaymentStatus.DENIED) || paymentStatus.equals(PaymentStatus.CANCEL)) {
+			payment.setPaymentAt(LocalDateTime.now());
+			cart.setComplete(true);
+			cartRepository.save(cart);
+		}
+		
+		payment.setPaymentStatus(paymentStatus);
+		paymentRepository.save(payment);
+		
+		return PaymentUpdateResponse.builder().success(true).build();
 	}
 	
 	private String generateInvoiceNumber() {

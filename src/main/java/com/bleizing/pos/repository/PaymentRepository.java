@@ -9,5 +9,6 @@ import com.bleizing.pos.model.Payment;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
-	Optional<Payment> findByCartId(Long cartId);
+	Optional<Payment> findByCartIdAndActiveTrue(Long cartId);
+	Optional<Payment> findByInvoiceNumberAndActiveTrue(String invoiceNumber);
 }

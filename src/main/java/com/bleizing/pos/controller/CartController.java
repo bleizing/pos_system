@@ -15,6 +15,8 @@ import com.bleizing.pos.dto.AddToCartResponse;
 import com.bleizing.pos.dto.CartPaymentRequest;
 import com.bleizing.pos.dto.CartPaymentResponse;
 import com.bleizing.pos.dto.GetCartResponse;
+import com.bleizing.pos.dto.PaymentUpdateRequest;
+import com.bleizing.pos.dto.PaymentUpdateResponse;
 import com.bleizing.pos.service.CartService;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -49,5 +51,12 @@ public class CartController {
 	@AccessControl
 	public CartPaymentResponse payment(@Valid @RequestBody CartPaymentRequest request, HttpServletRequest servletRequest) {
 		return cartService.payment(request, (Long) servletRequest.getAttribute(VariableConstant.USER_ID.getValue()));
+	}
+	
+	@PostMapping("/payment-update")
+	@Authenticated
+	@AccessControl
+	public PaymentUpdateResponse paymentUpdate(@Valid @RequestBody PaymentUpdateRequest request, HttpServletRequest servletRequest) {
+		return cartService.paymentUpdate(request);
 	}
 }
