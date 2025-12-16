@@ -15,10 +15,16 @@ public enum ErrorList {
 	DATA_NOT_FOUND("3001", "Data Not Found"),
 	DATA_EXISTS("3002", "Data Already Exists"),
 	
+	REQUEST_INVALID("4000", "Request Body Invalid"),
+	
 	EMAIL_PASSWORD_INVALID("5000", "Email or Password Wrong"),
 	
 	QUANTITY_MINIMUM("6000", "Quantity below minimum"),
 	OUT_OF_STOCK("6001", "Product out of stock"),
+	
+	CART_NOT_EXIST("7000", "Cart not exist"),
+	
+	ALREADY_PAYMENT("8000", "Already payment"),
 	
 	SYS_EXCEPTION("9999", "System Exception");
 	

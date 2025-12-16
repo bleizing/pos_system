@@ -28,6 +28,10 @@ public enum ErrorConstant {
 	QUANTITY_MINIMUM("Quantity below minimum"),
 	OUT_OF_STOCK("Product out of stock"),
 	CART_ITEMS_NOT_FOUND("Cart items not found"),
+
+	CART_NOT_EXIST("Cart not exist"),
+	
+	ALREADY_PAYMENT("Already payment"),
 	;
 	
 	private final String description;

@@ -12,6 +12,8 @@ import com.bleizing.pos.annotation.Authenticated;
 import com.bleizing.pos.constant.VariableConstant;
 import com.bleizing.pos.dto.AddToCartRequest;
 import com.bleizing.pos.dto.AddToCartResponse;
+import com.bleizing.pos.dto.CartPaymentRequest;
+import com.bleizing.pos.dto.CartPaymentResponse;
 import com.bleizing.pos.dto.GetCartResponse;
 import com.bleizing.pos.service.CartService;
 
@@ -40,5 +42,12 @@ public class CartController {
 	@AccessControl
 	public GetCartResponse get(HttpServletRequest servletRequest) {
 		return cartService.get((Long) servletRequest.getAttribute(VariableConstant.USER_ID.getValue()));
+	}
+	
+	@PostMapping("/payment")
+	@Authenticated
+	@AccessControl
+	public CartPaymentResponse payment(@Valid @RequestBody CartPaymentRequest request, HttpServletRequest servletRequest) {
+		return cartService.payment(request, (Long) servletRequest.getAttribute(VariableConstant.USER_ID.getValue()));
 	}
 }

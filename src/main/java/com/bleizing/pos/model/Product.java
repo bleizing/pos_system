@@ -43,6 +43,7 @@ public class Product extends BaseModel {
 	@Column(unique = true)
 	private String code;
 	
+	@Nonnull
 	@Column(precision=9, scale=2)
     private BigDecimal price;
 	

@@ -4,14 +4,18 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.bleizing.pos.error.AlreadyPaymentException;
 import com.bleizing.pos.error.ApiError;
+import com.bleizing.pos.error.CartNotExistException;
 import com.bleizing.pos.error.DataExistsException;
 import com.bleizing.pos.error.DataNotFoundException;
 import com.bleizing.pos.error.EmailPasswordInvalid;
@@ -72,6 +76,18 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 				.debugMessage(ex.getMessage())
 				.build());
     }
+	
+	@Override
+	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+		ex.printStackTrace();
+		return buildResponseEntity(ApiError.builder()
+				.status(HttpStatus.BAD_REQUEST)
+				.code(ErrorList.REQUEST_INVALID.getCode())
+				.message(ErrorList.REQUEST_INVALID.getDescription())
+				.debugMessage(ex.getMessage())
+				.build());
+	}
 	
 	@ExceptionHandler(PathInvalidException.class)
 	public ResponseEntity<Object> pathInvalidException(PathInvalidException ex) {
@@ -157,6 +173,28 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 				.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.code(ErrorList.OUT_OF_STOCK.getCode())
 				.message(ErrorList.OUT_OF_STOCK.getDescription())
+				.debugMessage(ex.getMessage())
+				.build());
+    }
+	
+	@ExceptionHandler(AlreadyPaymentException.class)
+	public ResponseEntity<Object> alreadyPaymentException(AlreadyPaymentException ex) {
+		ex.printStackTrace();
+		return buildResponseEntity(ApiError.builder()
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.code(ErrorList.ALREADY_PAYMENT.getCode())
+				.message(ErrorList.ALREADY_PAYMENT.getDescription())
+				.debugMessage(ex.getMessage())
+				.build());
+    }
+	
+	@ExceptionHandler(CartNotExistException.class)
+	public ResponseEntity<Object> cartNotExistException(CartNotExistException ex) {
+		ex.printStackTrace();
+		return buildResponseEntity(ApiError.builder()
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.code(ErrorList.CART_NOT_EXIST.getCode())
+				.message(ErrorList.CART_NOT_EXIST.getDescription())
 				.debugMessage(ex.getMessage())
 				.build());
     }
