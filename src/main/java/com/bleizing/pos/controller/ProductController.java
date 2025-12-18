@@ -46,8 +46,10 @@ public class ProductController {
 	}
 	
 	@GetMapping("/get-all")
-	public GetAllProductResponse getAll() {
-		return productService.getAll();
+	public GetAllProductResponse getAll(
+			@RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+		return productService.getAll(page, size);
 	}
 	
 	@GetMapping("/get-detail")

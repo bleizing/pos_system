@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.bleizing.pos.annotation.Logged;
@@ -64,8 +66,10 @@ public class ProductService {
 	}
 	
 	@Logged
-	public GetAllProductResponse getAll() {
-		List<Product> products = productRepository.findByActiveTrue().get();
+	public GetAllProductResponse getAll(int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+		
+		List<Product> products = productRepository.findByActiveTrue(pageable).get();
 		List<GetAllProductWrapper> wrapper = new ArrayList<>();
 		products.stream().forEach(product -> {
 			wrapper.add(GetAllProductWrapper.builder()
@@ -77,7 +81,13 @@ public class ProductService {
 					.build());
 		});
 		
-		return GetAllProductResponse.builder().products(wrapper).build();
+		return GetAllProductResponse.builder()
+				.products(wrapper)
+				.page(0)
+				.pageSize(10)
+				.totalSize(100)
+				.totalPage(10)
+				.build();
 	}
 	
 	@Logged
