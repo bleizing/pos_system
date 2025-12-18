@@ -18,7 +18,7 @@ public class BasePaginationResponse implements Serializable {
 	private static final long serialVersionUID = -8834675952604719164L;
 	
 	private int page;
-	private int pageSize;
-	private int totalSize;
-	private int totalPage;
+	private int size;
+	private long totalSize;
+	private long totalPage;
 }

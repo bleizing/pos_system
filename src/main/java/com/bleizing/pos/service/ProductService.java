@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import com.bleizing.pos.PaginationAbstract;
 import com.bleizing.pos.annotation.Logged;
 import com.bleizing.pos.constant.ErrorConstant;
 import com.bleizing.pos.dto.CreateProductRequest;
@@ -30,7 +30,7 @@ import com.bleizing.pos.repository.ProductRepository;
 import com.bleizing.pos.repository.StoreRepository;
 
 @Service
-public class ProductService {
+public class ProductService extends PaginationAbstract {
 	@Autowired
 	private ProductRepository productRepository;
 	
@@ -66,12 +66,16 @@ public class ProductService {
 	}
 	
 	@Logged
-	public GetAllProductResponse getAll(int page, int size) {
-		Pageable pageable = PageRequest.of(page, size);
+	public GetAllProductResponse getAll(int page, int size, String sortBy, boolean ascending, String filter) {
+		Page<Product> pageProduct;
+		if (filter == null || filter.equals("")) {
+			pageProduct = productRepository.findByActiveTrue(getPageable(page, size, sortBy, ascending)).get();
+		} else {
+			pageProduct = productRepository.findByNameContainingIgnoreCaseAndActiveTrue(filter, getPageable(page, size, sortBy, ascending)).get();
+		}
 		
-		List<Product> products = productRepository.findByActiveTrue(pageable).get();
 		List<GetAllProductWrapper> wrapper = new ArrayList<>();
-		products.stream().forEach(product -> {
+		pageProduct.getContent().stream().forEach(product -> {
 			wrapper.add(GetAllProductWrapper.builder()
 					.name(product.getName())
 					.store(product.getStore().getName())
@@ -81,13 +85,10 @@ public class ProductService {
 					.build());
 		});
 		
-		return GetAllProductResponse.builder()
+		GetAllProductResponse response = GetAllProductResponse.builder()
 				.products(wrapper)
-				.page(0)
-				.pageSize(10)
-				.totalSize(100)
-				.totalPage(10)
 				.build();
+		return pageableResponse(response, pageProduct.getNumber(), pageProduct.getNumberOfElements(), pageProduct.getTotalElements(), pageProduct.getTotalPages());
 	}
 	
 	@Logged

@@ -52,11 +52,15 @@ public class ProductSeeder implements CommandLineRunner {
 				productRepository.save(Product.builder()
 						.name("Product Test " + i)
 						.code("PT" + i)
-						.price(new BigDecimal(100))
+						.price(new BigDecimal(randomNumber(1000)))
 						.store(store)
-						.stock((int) (Math.random() * 100) + 1)
+						.stock((int) (randomNumber(100)))
 						.build());
 			});
 		}
+	}
+	
+	private int randomNumber(int max) {
+		return (int) (Math.random() * max) + 1;
 	}
 }

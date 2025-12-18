@@ -48,8 +48,11 @@ public class ProductController {
 	@GetMapping("/get-all")
 	public GetAllProductResponse getAll(
 			@RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-		return productService.getAll(page, size);
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "true") boolean ascending,
+            @RequestParam(value = "tes", required = false) String filter) {
+		return productService.getAll(page, size, sortBy, ascending, filter);
 	}
 	
 	@GetMapping("/get-detail")
